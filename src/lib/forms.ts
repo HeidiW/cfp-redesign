@@ -1,5 +1,18 @@
 /** Shared helpers for the /api form endpoints. */
 
+/**
+ * Parse the request body as form data. Returns null for anything that isn't a
+ * form POST (JSON, empty, malformed) so the caller can return a clean 400
+ * instead of an uncaught 500.
+ */
+export async function readForm(request: Request): Promise<FormData | null> {
+  try {
+    return await request.formData();
+  } catch {
+    return null;
+  }
+}
+
 /** Read a form field as a trimmed string ('' when missing or a file). */
 export function field(data: FormData, key: string): string {
   const value = data.get(key);

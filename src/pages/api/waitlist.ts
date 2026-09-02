@@ -1,6 +1,6 @@
 import type { APIRoute } from 'astro';
 import { resend, MAIL } from '../../lib/email';
-import { field, isEmail, isBot, sameOrigin, json, wantsHtml, htmlPage } from '../../lib/forms';
+import { field, isEmail, isBot, sameOrigin, readForm, json, wantsHtml, htmlPage } from '../../lib/forms';
 
 export const prerender = false;
 
@@ -11,12 +11,17 @@ const CONFIRMATION = "Thank you — we'll be in touch.";
  * JobsOxo page's form can decide which of name / company / message to collect.
  */
 export const POST: APIRoute = async ({ request }) => {
-  const data = await request.formData();
   const html = wantsHtml(request);
 
   if (!sameOrigin(request)) {
     const error = 'This request looks like it came from another site.';
     return html ? htmlPage(error, 403) : json({ ok: false, error }, 403);
+  }
+
+  const data = await readForm(request);
+  if (!data) {
+    const error = 'Could not read the form. Please try again.';
+    return html ? htmlPage(error, 400) : json({ ok: false, error }, 400);
   }
 
   if (isBot(data)) {
