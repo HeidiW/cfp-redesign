@@ -25,6 +25,13 @@ export default defineConfig({
         access: 'secret',
         optional: true,
       }),
+      // GA4 Measurement ID (G-XXXXXXXXXX). Optional — unset means no Google
+      // Analytics and no consent banner are rendered at all.
+      PUBLIC_GA_ID: envField.string({
+        context: 'client',
+        access: 'public',
+        optional: true,
+      }),
     },
   },
 });

@@ -1,8 +1,10 @@
 ---
+import { PUBLIC_GA_ID } from 'astro:env/client';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Section from '../components/Section.astro';
 import Eyebrow from '../components/Eyebrow.astro';
 
+const gaEnabled = Boolean(PUBLIC_GA_ID);
 const updated = 'September 2026';
 ---
 <BaseLayout
@@ -18,9 +20,9 @@ const updated = 'September 2026';
       <div class="legal__body">
         <p>
           This site is run by Conor Foy Plaster, a decorative plaster shop in
-          New York. It has no accounts and no login. The only information it
-          collects is what you type into one of the forms, plus anonymous
-          traffic statistics. This page explains both.
+          New York. It has no accounts and no login. It collects what you type
+          into one of the forms, plus traffic statistics{gaEnabled ? ' — anonymous by default, and more detailed only if you opt in' : ', which are anonymous'}.
+          This page explains {gaEnabled ? 'all of it' : 'both'}.
         </p>
 
         <h2>What the forms collect</h2>
@@ -62,31 +64,82 @@ const updated = 'September 2026';
           </li>
           <li>
             <strong>Vercel</strong> (vercel.com) hosts the site and provides the
-            traffic statistics below.
+            always-on traffic statistics below.
           </li>
+          {gaEnabled && (
+            <li>
+              <strong>Google</strong> (Google Analytics) — <em>only if you accept
+              the analytics banner.</em> See below.
+            </li>
+          )}
         </ul>
         <p>
-          Both are US companies acting as our processors. We do not use any
-          other third-party service on this site.
+          {gaEnabled ? 'All' : 'Both'} are US companies acting as our processors.
+          We use no other third-party service on this site — fonts are served
+          from our own domain, and there are no ad networks or social widgets.
         </p>
 
-        <h2>Analytics, and no cookies</h2>
+        <h2>Analytics</h2>
         <p>
-          We use Vercel Web Analytics to see how many people visit and which
-          pages they read. It is <strong>cookieless</strong> and aggregate — it
-          records page views, referrers, rough location by country, and device
-          type, with no identifier that follows you between visits or across
-          other websites. This site sets <strong>no cookies at all</strong>, and
-          there is nothing to consent to.
+          <strong>Vercel Web Analytics</strong> runs for everyone. It is
+          cookieless and aggregate — page views, referrers, rough location by
+          country, device type — with no identifier that follows you between
+          visits or across other sites. Nothing to consent to.
         </p>
+        {gaEnabled ? (
+          <p>
+            <strong>Google Analytics 4</strong> runs <strong>only if you click
+            &ldquo;Accept&rdquo;</strong> on the banner shown on your first visit.
+            If you decline, or ignore it, no Google script loads and no Google
+            cookies are set — your browser never contacts Google at all. If you
+            accept, Google receives your page views, approximate location, device
+            and referrer, tied to a cookie-based ID, and we see it in aggregate
+            in the GA dashboard. Google Consent Mode is set so advertising
+            signals stay off regardless.
+          </p>
+        ) : (
+          <p>We do not use Google Analytics or any other third-party tracker.</p>
+        )}
 
-        <h2>No third-party requests</h2>
-        <p>
-          Fonts are served from this site's own domain, so — unlike most sites —
-          loading a page here sends nothing to Google, an ad network, or a
-          tracker. The only outbound connection your browser makes is to Vercel,
-          for the analytics beacon.
-        </p>
+        <h2>Cookies</h2>
+        {gaEnabled ? (
+          <>
+            <p>The site uses these, and no others:</p>
+            <div class="legal__table-wrap">
+              <table class="legal__table">
+                <thead>
+                  <tr><th>Name</th><th>Set by</th><th>Purpose</th><th>Lasts</th></tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>cfp-consent</td>
+                    <td>this site</td>
+                    <td>Remembers your analytics choice so the banner does not reappear. Stored in your browser only; never sent anywhere.</td>
+                    <td>Until you clear it</td>
+                  </tr>
+                  <tr>
+                    <td>_ga, _ga_&hellip;</td>
+                    <td>Google Analytics</td>
+                    <td>Distinguishes visitors and sessions. <strong>Set only after you accept.</strong></td>
+                    <td>Up to 2 years</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p>
+              You can change your mind any time:
+              <button type="button" class="legal__reset" id="consent-reset">
+                reopen the analytics choice
+              </button>. To stop Google Analytics after accepting, decline there
+              and clear your browser&rsquo;s cookies for this site.
+            </p>
+          </>
+        ) : (
+          <p>
+            This site sets <strong>no cookies</strong> and stores nothing in your
+            browser. There is nothing to consent to.
+          </p>
+        )}
 
         <h2>How long we keep it</h2>
         <p>
@@ -99,8 +152,8 @@ const updated = 'September 2026';
 
         <h2>Your choices</h2>
         <p>
-          Every newsletter has an unsubscribe link. To see, correct, or delete
-          anything else we hold about you, email
+          Every newsletter has an unsubscribe link.{gaEnabled ? ' You can accept or decline analytics on the banner, and change it later from the link above.' : ''} To
+          see, correct, or delete anything else we hold about you, email
           <a href="mailto:info@conorfoy.com">info@conorfoy.com</a> and we will
           take care of it.
         </p>
@@ -114,6 +167,13 @@ const updated = 'September 2026';
     </div>
   </Section>
 </BaseLayout>
+
+<script>
+  // "reopen the analytics choice" — the button only exists when GA is configured.
+  document.getElementById('consent-reset')?.addEventListener('click', () => {
+    (window as typeof window & { __cfpConsentReset?: () => void }).__cfpConsentReset?.();
+  });
+</script>
 
 <style>
   .legal {
@@ -153,5 +213,52 @@ const updated = 'September 2026';
   .legal__body a {
     color: var(--color-accent-700);
     text-underline-offset: 3px;
+  }
+
+  .legal__table-wrap {
+    overflow-x: auto;
+    margin: 0 0 var(--space-3);
+  }
+  .legal__table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13.5px;
+    line-height: 1.6;
+  }
+  .legal__table th {
+    text-align: left;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--color-text) 60%, transparent);
+    padding: 8px 16px 8px 0;
+    border-bottom: 1px solid var(--color-divider);
+    white-space: nowrap;
+  }
+  .legal__table td {
+    padding: 10px 16px 10px 0;
+    border-bottom: 1px solid var(--color-divider);
+    vertical-align: top;
+  }
+  .legal__table td:first-child {
+    font-family: var(--font-heading);
+    white-space: nowrap;
+  }
+  .legal__table td:last-child {
+    white-space: nowrap;
+  }
+
+  .legal__reset {
+    font: inherit;
+    color: var(--color-accent-700);
+    background: none;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .legal__reset:hover {
+    color: var(--color-accent-600);
   }
 </style>

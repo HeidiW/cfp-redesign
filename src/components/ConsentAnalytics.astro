@@ -1,0 +1,151 @@
+---
+import { PUBLIC_GA_ID } from 'astro:env/client';
+
+/**
+ * Google Analytics 4, gated behind consent.
+ *
+ * - Renders nothing at all unless PUBLIC_GA_ID is set.
+ * - gtag.js is injected ONLY once the visitor clicks Accept (or on a later
+ *   page load if they accepted before). Decline / no-choice → zero contact
+ *   with Google.
+ * - Google Consent Mode v2 defaults are all "denied" up front.
+ * - The choice lives in localStorage ('cfp-consent'); the privacy page can
+ *   reopen the banner via window.__cfpConsentReset().
+ *
+ * Vercel Web Analytics (cookieless) is separate and always runs.
+ */
+const gaId = PUBLIC_GA_ID;
+---
+{gaId && (
+  <>
+    <div
+      id="consent-banner"
+      class="consent"
+      role="region"
+      aria-label="Analytics consent"
+      hidden
+    >
+      <p class="consent__text">
+        We&rsquo;d like to use Google Analytics to understand how the site is
+        used. It sets cookies — you can decline and the site works the same.
+        Details on the <a href="/privacy">privacy page</a>.
+      </p>
+      <div class="consent__actions">
+        <button type="button" class="btn btn-secondary consent__btn" data-consent="denied">
+          Decline
+        </button>
+        <button type="button" class="btn btn-primary consent__btn" data-consent="granted">
+          Accept
+        </button>
+      </div>
+    </div>
+
+    <script is:inline define:vars={{ gaId }}>
+      (function () {
+        var KEY = 'cfp-consent';
+        var banner = document.getElementById('consent-banner');
+
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { window.dataLayer.push(arguments); }
+        window.gtag = gtag;
+
+        // Consent Mode v2 — deny everything until the visitor opts in.
+        gtag('consent', 'default', {
+          ad_storage: 'denied',
+          ad_user_data: 'denied',
+          ad_personalization: 'denied',
+          analytics_storage: 'denied',
+        });
+
+        function loadGA() {
+          if (window.__gaLoaded) return;
+          window.__gaLoaded = true;
+          var s = document.createElement('script');
+          s.async = true;
+          s.src = 'https://www.googletagmanager.com/gtag/js?id=' + gaId;
+          document.head.appendChild(s);
+          gtag('js', new Date());
+          gtag('config', gaId);
+        }
+
+        function apply(choice) {
+          if (choice === 'granted') {
+            gtag('consent', 'update', { analytics_storage: 'granted' });
+            loadGA();
+          }
+        }
+
+        function choose(choice) {
+          try { localStorage.setItem(KEY, choice); } catch (e) {}
+          if (banner) banner.hidden = true;
+          apply(choice);
+        }
+
+        var stored = null;
+        try { stored = localStorage.getItem(KEY); } catch (e) {}
+
+        if (stored === 'granted' || stored === 'denied') {
+          apply(stored);
+        } else if (banner) {
+          banner.hidden = false;
+        }
+
+        if (banner) {
+          var buttons = banner.querySelectorAll('[data-consent]');
+          for (var i = 0; i < buttons.length; i++) {
+            buttons[i].addEventListener('click', function () {
+              choose(this.getAttribute('data-consent'));
+            });
+          }
+        }
+
+        // Let the privacy page reopen the choice.
+        window.__cfpConsentReset = function () {
+          try { localStorage.removeItem(KEY); } catch (e) {}
+          if (banner) banner.hidden = false;
+        };
+      })();
+    </script>
+  </>
+)}
+
+<style>
+  .consent {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 40;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px 28px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px clamp(20px, 5vw, 48px);
+    background: var(--color-surface);
+    border-top: 1px solid var(--color-divider);
+    box-shadow: var(--shadow-md);
+  }
+  /* An explicit `display` beats the [hidden] attribute — restore it. */
+  .consent[hidden] {
+    display: none;
+  }
+  .consent__text {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.65;
+    max-width: 68ch;
+  }
+  .consent__text a {
+    color: var(--color-accent-700);
+  }
+  .consent__actions {
+    display: flex;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+  .consent__btn {
+    font-size: 13px;
+    padding: 9px 18px;
+  }
+</style>

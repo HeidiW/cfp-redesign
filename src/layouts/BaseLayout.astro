@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import Analytics from '@vercel/analytics/astro';
+import ConsentAnalytics from '../components/ConsentAnalytics.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import type { NavLink } from '../data/nav';
@@ -39,5 +40,6 @@ const { title, description, footerLegal, headerCta, pageTone = 'default' } = Ast
     </main>
     <Footer legal={footerLegal} />
     <Analytics />
+    <ConsentAnalytics />
   </body>
 </html>
