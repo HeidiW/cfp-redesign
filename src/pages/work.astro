@@ -1,0 +1,293 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+import Eyebrow from '../components/Eyebrow.astro';
+import Plate from '../components/Plate.astro';
+import CtaBand from '../components/CtaBand.astro';
+
+import moxyImg from '../assets/work/moxy-hotel-williamsburg.png';
+import maximesImg from '../assets/work/maximes.jpg';
+import friedmansImg from '../assets/work/friedmans.jpg';
+import w13thImg from '../assets/work/w-13th-st-residence.jpg';
+import bobbyFlayImg from '../assets/work/bobby-flay-residence.jpg';
+import carverImg from '../assets/work/carver-steak.jpg';
+
+const categories = ['Restaurants', 'Hotels', 'Residences', 'Private clubs', 'Restoration'];
+
+const projects = [
+  {
+    name: "Friedman's",
+    year: '2024',
+    img: friedmansImg,
+    alt: "Friedman's — gold leaf laid in a diamond field over troweled plaster in the banquette room",
+    body:
+      'Gold leaf laid in a diamond field over troweled plaster, set out to turn the corners without breaking pattern — deliberately imperfect, so it catches the wall lights the way old gilding does.',
+    tags: ['Gold leaf', 'Restaurant'],
+  },
+  {
+    name: 'W 13th St Residence',
+    year: '2026',
+    img: w13thImg,
+    alt: 'W 13th St Residence — polished plaster bedroom wall',
+    body:
+      'Polished plaster carried wall to wall in a single warm tone, burnished until the surface holds a faint sheen — quiet enough to live with, deep enough to change with the light.',
+    tags: ['Polished plaster', 'Residential'],
+  },
+  {
+    name: 'Bobby Flay Residence',
+    year: '2025',
+    img: bobbyFlayImg,
+    alt: 'Bobby Flay Residence — lime-plaster ceiling and beams above reclaimed wood',
+    body:
+      'Hand-troweled lime over ceiling and beams, kept soft and slightly uneven so the light moves across it through the day and settles warm against the reclaimed wood.',
+    tags: ['Lime plaster', 'Residential'],
+  },
+  {
+    name: 'Carver Steak',
+    year: '2026',
+    img: carverImg,
+    alt: 'Carver Steak — polished plaster coffered ceiling above dark millwork',
+    body:
+      'A polished plaster coffered ceiling burnished to a warm limestone glow — the one bright plane in a room of dark wood and green velvet, doing all the lifting.',
+    tags: ['Polished plaster', 'Ceilings', 'Restaurant'],
+  },
+];
+---
+<BaseLayout
+  title="Work — Conor Foy Plaster"
+  description="Twenty-three years of decorative plaster for restaurants, hotels and private residences across New York — Moxy Hotel, Maxime's, Friedman's, Carver Steak and more."
+>
+  {/* ── Portfolio intro ─────────────────────────────────────────────── */}
+  <Section border="none" pt={80} pb={48} class="work-hero">
+    <div class="work-hero__row">
+      <div>
+        <Eyebrow track={0.2} mb={24}>Portfolio</Eyebrow>
+        <h1 class="work-hero__title">Twenty-three years of interiors.</h1>
+      </div>
+      <p class="work-hero__lede">
+        Restaurants, hotels and private residences across New York. Most of this
+        work was drawn by an architect, bid by a general contractor and finished
+        by our own crew — the names below are the rooms, not the renderings.
+      </p>
+    </div>
+
+    <div class="work-hero__tags">
+      <span class="tag tag-accent">All work</span>
+      {categories.map((category) => (
+        <span class="tag tag-outline">{category}</span>
+      ))}
+    </div>
+  </Section>
+
+  {/* ── Projects ────────────────────────────────────────────────────── */}
+  <Section border="none" pt={24} pb={80} class="projects">
+    <article class="feature feature--text-first">
+      <div class="feature__text">
+        <div class="feature__meta text-muted tnum">01 — 2023</div>
+        <h2 class="feature__title">Moxy Hotel</h2>
+        <div class="feature__place text-muted">Williamsburg, Brooklyn</div>
+        <p class="feature__body">
+          Venetian plaster through the public rooms with hand-painted murals in
+          the stair. The largest single scope we have carried, phased around an
+          operating hotel so no floor lost more than a week.
+        </p>
+        <div class="tag-row">
+          <span class="tag tag-outline">Venetian</span>
+          <span class="tag tag-outline">Hotel</span>
+        </div>
+      </div>
+      <Plate
+        src={moxyImg}
+        alt="Moxy Hotel Williamsburg — plaster columns and curved soffit"
+        height={560}
+        sizes="(max-width: 1080px) calc(100vw - 40px), 1020px"
+        loading="eager"
+      />
+    </article>
+
+    <article class="feature feature--image-first">
+      <Plate
+        src={maximesImg}
+        alt="Maxime's — restored Art Nouveau dining room with gold leaf and plaster"
+        height={600}
+        position="center"
+        sizes="(max-width: 1080px) calc(100vw - 40px), 1020px"
+      />
+      <div class="feature__text">
+        <div class="feature__meta text-muted tnum">02 — 2025</div>
+        <h2 class="feature__title">Maxime's</h2>
+        <div class="feature__place text-muted">Midtown</div>
+        <p class="feature__body">
+          The largest single job we have taken: hand-painted faux marble crown
+          molding, veining drawn by hand, coat over coat, until the plaster reads
+          as quarried stone. Lit low and red, the room feels older than the
+          building it sits in.
+        </p>
+        <div class="tag-row">
+          <span class="tag tag-outline">Hand painted</span>
+          <span class="tag tag-outline">Faux marble</span>
+          <span class="tag tag-outline">Private club</span>
+        </div>
+      </div>
+    </article>
+
+    <div class="projects__grid">
+      {projects.map((project) => (
+        <article class="pcard">
+          <Plate
+            src={project.img}
+            alt={project.alt}
+            height={340}
+            sizes="(max-width: 720px) calc(100vw - 40px), (max-width: 1080px) calc(50vw - 40px), 580px"
+          />
+          <div class="pcard__head">
+            <h2 class="pcard__title">{project.name}</h2>
+            <span class="pcard__year text-muted tnum">{project.year}</span>
+          </div>
+          <p class="pcard__body text-muted">{project.body}</p>
+          <div class="tag-row">
+            {project.tags.map((tag) => (
+              <span class="tag tag-outline">{tag}</span>
+            ))}
+          </div>
+        </article>
+      ))}
+    </div>
+  </Section>
+
+  <CtaBand
+    title="Drawing something now?"
+    note="Send the room. We reply within one business day."
+    ctaLabel="Request a consultation"
+    ctaHref="/contact"
+  />
+</BaseLayout>
+
+<style>
+  /* ── Portfolio intro ─────────────────────────────────────────────── */
+  .work-hero__row {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 64px;
+    align-items: end;
+  }
+  .work-hero__title {
+    font-size: clamp(38px, 7vw, 76px);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.025em;
+    margin: 0;
+  }
+  .work-hero__lede {
+    font-size: 16px;
+    line-height: 1.85;
+    text-align: justify;
+    margin: 0 0 8px;
+  }
+  .work-hero__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 44px;
+    padding-top: 28px;
+    border-top: 1px solid var(--color-divider);
+  }
+
+  /* ── Featured rows ───────────────────────────────────────────────── */
+  .feature {
+    display: grid;
+    gap: 48px;
+    padding-bottom: 64px;
+    margin-bottom: 64px;
+    border-bottom: 1px solid var(--color-divider);
+  }
+  .feature--text-first {
+    grid-template-columns: 240px 1fr;
+  }
+  .feature--image-first {
+    grid-template-columns: 1fr 240px;
+  }
+  .feature__text {
+    padding-top: 6px;
+  }
+  .feature__meta {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .feature__title {
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 1.1;
+    margin: 0 0 6px;
+  }
+  .feature__place {
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .feature__body {
+    font-size: 13.5px;
+    line-height: 1.8;
+    margin: 0 0 16px;
+  }
+
+  .tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  /* ── Small project grid ──────────────────────────────────────────── */
+  .projects__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 48px 40px;
+  }
+  .pcard__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 20px;
+    margin-top: 18px;
+  }
+  .pcard__title {
+    font-size: 27px;
+    font-weight: 400;
+    margin: 0;
+  }
+  .pcard__year {
+    font-size: 12px;
+  }
+  .pcard__body {
+    font-size: 13.5px;
+    line-height: 1.8;
+    margin: 10px 0 14px;
+  }
+
+  /* ── Responsive ──────────────────────────────────────────────────── */
+  @media (max-width: 1080px) {
+    .work-hero__row {
+      grid-template-columns: 1fr;
+      gap: 22px;
+    }
+    .feature--text-first,
+    .feature--image-first {
+      grid-template-columns: 1fr;
+    }
+    /* Stacked, the rows keep DOM order — so the reversed row reads
+       image-then-text, matching the prototype. */
+    .projects__grid {
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+    }
+  }
+
+  @media (max-width: 720px) {
+    .projects__grid {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+  }
+</style>

@@ -7,11 +7,16 @@
 interface Props {
   /** Tracking in em. Designs use 0.18 for section kickers, 0.2 for page-level. */
   track?: number;
+  /** Bottom margin in px. Designs use 18 above section headings, 24 in page heroes. */
+  mb?: number;
   class?: string;
 }
-const { track = 0.18, class: className } = Astro.props;
+const { track = 0.18, mb = 18, class: className } = Astro.props;
 ---
-<div class:list={['eyebrow', className]} style={`--eyebrow-track: ${track}em`}>
+<div
+  class:list={['eyebrow', className]}
+  style={`--eyebrow-track: ${track}em; --eyebrow-mb: ${mb}px`}
+>
   <slot />
 </div>
 
@@ -21,6 +26,6 @@ const { track = 0.18, class: className } = Astro.props;
     letter-spacing: var(--eyebrow-track, 0.18em);
     text-transform: uppercase;
     color: var(--color-accent-700);
-    margin: 0 0 18px;
+    margin: 0 0 var(--eyebrow-mb, 18px);
   }
 </style>

@@ -1,0 +1,48 @@
+---
+import Section from './Section.astro';
+
+/**
+ * The closing call-to-action band — a warm surface strip with a heading, a
+ * one-line note and an outlined button. Used at the foot of Work, Trade
+ * Partners, and other interior pages.
+ */
+interface Props {
+  title: string;
+  note: string;
+  ctaLabel: string;
+  ctaHref: string;
+}
+const { title, note, ctaLabel, ctaHref } = Astro.props;
+---
+<Section tone="surface" border="top" pt={72} pb={72}>
+  <div class="cta-band">
+    <div>
+      <h2 class="cta-band__title">{title}</h2>
+      <p class="cta-band__note text-muted">{note}</p>
+    </div>
+    <a class="btn btn-primary cta-band__btn" href={ctaHref}>{ctaLabel}</a>
+  </div>
+</Section>
+
+<style>
+  .cta-band {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .cta-band__title {
+    font-size: clamp(26px, 3.8vw, 38px);
+    font-weight: 400;
+    margin: 0 0 10px;
+  }
+  .cta-band__note {
+    font-size: 15px;
+    margin: 0;
+  }
+  .cta-band__btn {
+    font-size: 14px;
+    padding: 13px 24px;
+  }
+</style>
