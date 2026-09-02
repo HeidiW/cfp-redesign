@@ -1,0 +1,168 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+import Eyebrow from '../components/Eyebrow.astro';
+import ConsultationForm from '../components/ConsultationForm.astro';
+import NewsletterForm from '../components/NewsletterForm.astro';
+import FormSwap from '../components/FormSwap.astro';
+
+const contactBlocks = [
+  { label: 'Email', href: 'mailto:info@conorfoy.com', value: 'info@conorfoy.com' },
+  { label: 'WhatsApp', href: 'https://wa.me/13474523548', value: 'Message us directly' },
+  { label: 'JobsOxo enquiries', href: '/jobsoxo#demo', value: 'Join the JobsOxo waitlist' },
+];
+---
+<BaseLayout
+  title="Contact — Conor Foy Plaster"
+  description="Tell us about the room. Email reply within one business day — a photograph and a rough square footage is enough to start, and the first conversation costs nothing."
+>
+  {/* ── Contact ─────────────────────────────────────────────────────── */}
+  <Section border="none" pt={80} pb={72}>
+    <div class="contact">
+      <div class="contact__intro">
+        <Eyebrow track={0.2} mb={24}>Consult with us</Eyebrow>
+        <h1 class="contact__title">Tell us about the room.</h1>
+        <p class="contact__body">
+          Email reply within one business day. Drawings are welcome but not
+          required — a photograph and a rough square footage is enough to start,
+          and the first conversation costs nothing.
+        </p>
+
+        <hr class="hr" />
+
+        <div class="contact__details">
+          {contactBlocks.map((block) => (
+            <div class="contact__block">
+              <div class="contact__block-label text-muted">{block.label}</div>
+              <a class="contact__block-value" href={block.href}>{block.value}</a>
+            </div>
+          ))}
+          <div class="contact__block">
+            <div class="contact__block-label text-muted">Working area</div>
+            <div class="contact__area">
+              New York City and the five boroughs. Selected work further afield.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact__card">
+        <h2 class="contact__card-title">Consultation request</h2>
+        <p class="contact__card-note text-muted">
+          Fields marked with an asterisk are the ones we actually need.
+        </p>
+        <ConsultationForm />
+      </div>
+    </div>
+  </Section>
+
+  {/* ── Newsletter ──────────────────────────────────────────────────── */}
+  <Section tone="surface" pt={64} pb={64}>
+    <div class="contact-news">
+      <div class="contact-news__intro">
+        <h2 class="contact-news__title">Recent rooms, a few times a year.</h2>
+        <p class="text-muted contact-news__body">
+          New plaster and restoration projects in New York, photographed
+          properly. No newsletter cadence, no marketing — we send it when there
+          is something worth looking at.
+        </p>
+      </div>
+      <NewsletterForm />
+    </div>
+  </Section>
+
+  <FormSwap />
+</BaseLayout>
+
+<style>
+  /* ── Contact ─────────────────────────────────────────────────────── */
+  .contact {
+    display: grid;
+    grid-template-columns: 1fr 1.15fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .contact__title {
+    font-size: clamp(34px, 6.5vw, 68px);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.025em;
+    margin: 0 0 28px;
+  }
+  .contact__body {
+    font-size: 16px;
+    line-height: 1.85;
+    text-align: justify;
+    margin: 0 0 32px;
+  }
+  .contact__details {
+    display: grid;
+    gap: 22px;
+    margin-top: 28px;
+  }
+  .contact__block-label {
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .contact__block-value {
+    font-size: 17px;
+    font-family: var(--font-heading);
+    text-decoration: none;
+  }
+  .contact__area {
+    font-size: 15px;
+  }
+
+  .contact__card {
+    border: 1px solid var(--color-divider);
+    border-radius: var(--radius-md);
+    padding: 40px;
+  }
+  .contact__card-title {
+    font-size: 26px;
+    font-weight: 400;
+    margin: 0 0 6px;
+  }
+  .contact__card-note {
+    font-size: 13.5px;
+    margin: 0 0 28px;
+  }
+
+  /* ── Newsletter ──────────────────────────────────────────────────── */
+  .contact-news {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 72px;
+    align-items: center;
+  }
+  .contact-news__title {
+    font-size: 34px;
+    font-weight: 400;
+    margin: 0 0 10px;
+  }
+  .contact-news__body {
+    font-size: 14.5px;
+    line-height: 1.8;
+    margin: 0;
+  }
+
+  /* ── Responsive ──────────────────────────────────────────────────── */
+  @media (max-width: 1080px) {
+    .contact,
+    .contact-news {
+      grid-template-columns: 1fr;
+      gap: 22px;
+    }
+    .contact__card {
+      padding: 28px;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .contact-news {
+      gap: 28px;
+    }
+  }
+</style>

@@ -16,8 +16,14 @@ export const POST: APIRoute = async ({ request }) => {
 
   const name = field(data, 'name');
   const email = field(data, 'email');
+  const company = field(data, 'company');
+  const phone = field(data, 'phone');
+  const role = field(data, 'role');
   const projectType = field(data, 'projectType');
+  const location = field(data, 'location');
+  const area = field(data, 'area');
   const timeline = field(data, 'timeline');
+  const finishes = data.getAll('finishes').filter((v): v is string => typeof v === 'string');
   const message = field(data, 'message');
 
   if (!name || !isEmail(email)) {
@@ -34,8 +40,14 @@ export const POST: APIRoute = async ({ request }) => {
   const body = [
     `Name:     ${name}`,
     `Email:    ${email}`,
+    company && `Company:  ${company}`,
+    phone && `Phone:    ${phone}`,
+    role && `Role:     ${role}`,
     projectType && `Project:  ${projectType}`,
+    location && `Location: ${location}`,
+    area && `Area:     ${area}`,
     timeline && `Timeline: ${timeline}`,
+    finishes.length > 0 && `Finishes: ${finishes.join(', ')}`,
     '',
     message || '(no message)',
   ]
