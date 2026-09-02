@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/classical-c73d70d1-c1eb-459a-9501-a48720d6f372/styles.css">
+  <script src="./image-slot.js"></script>
+  <script src="_ds/classical-c73d70d1-c1eb-459a-9501-a48720d6f372/_ds_bundle.js"></script>
+  <style>
+    :root {
+      --color-bg: #ebf2fa;
+      --color-surface: #f7e2d7;
+      --color-text: #132a13;
+      --color-accent: #640d14;
+      --color-accent-2: #e5be9e;
+      --color-divider: color-mix(in srgb, #132a13 20%, transparent);
+      --color-neutral-100: #f4f8fb;
+      --color-neutral-200: #e6ecec;
+      --color-neutral-300: #cfd8d1;
+      --color-neutral-400: #aeb8b0;
+      --color-neutral-500: #8b968d;
+      --color-neutral-600: #6c766e;
+      --color-neutral-700: #4f584f;
+      --color-neutral-800: #33392f;
+      --color-neutral-900: #1d2a1c;
+      --color-accent-100: #fdeee9;
+      --color-accent-200: #fad4c0;
+      --color-accent-300: #e5be9e;
+      --color-accent-400: #b85a52;
+      --color-accent-500: #8e2b2a;
+      --color-accent-600: #4c0810;
+      --color-accent-700: #640d14;
+      --color-accent-800: #4c0810;
+      --color-accent-900: #33060b;
+      --color-accent-2-100: #fdeee9;
+      --color-accent-2-200: #fad4c0;
+      --color-accent-2-300: #e5be9e;
+      --color-accent-2-400: #cfa279;
+      --color-accent-2-500: #b08556;
+      --color-accent-2-600: #8b6740;
+      --color-accent-2-700: #6b4e30;
+      --color-accent-2-800: #4a3520;
+      --color-accent-2-900: #2e2114;
+    }
+
+    a { color: var(--color-accent); }
+    a:hover { color: var(--color-accent-600); }
+
+    @media (max-width: 1080px) {
+      header.nav { flex-wrap: wrap; row-gap: 14px; }
+      header.nav > nav { gap: 18px !important; flex-wrap: wrap; }
+      [data-rsp="cards"] { grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)) !important; }
+      [data-rsp="cells2"] { grid-template-columns: repeat(2, 1fr) !important; }
+      [data-rsp="cells1"] { grid-template-columns: 1fr !important; }
+      [data-rsp="plates8"] { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; }
+      [data-rsp="rows"] { grid-template-columns: 1fr !important; gap: 22px !important; }
+    }
+    @media (max-width: 900px) { .table { font-size: 12px; } }
+    @media (max-width: 720px) {
+      [data-rsp="cards"] { grid-template-columns: 1fr !important; gap: 28px !important; }
+      [data-rsp="cells2"] { grid-template-columns: 1fr !important; }
+      [data-rsp="plates8"] { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+      [data-cols="1"] { columns: 1 !important; }
+      header.nav > nav { width: 100%; }
+    }
+  </style>
+</helmet>
+
+<div style="background: var(--color-bg); color: var(--color-text); font-family: var(--font-body);">
+
+  <header class="nav" style="position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--color-bg) 92%, transparent); backdrop-filter: blur(8px); padding-left: clamp(20px, 5vw, 48px); padding-right: clamp(20px, 5vw, 48px);">
+    <div class="nav-brand" style="display: flex; align-items: center; gap: 13px;">
+      <span style="display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border: 1px solid var(--color-accent); border-radius: var(--radius-sm); font-family: var(--font-heading); font-size: 14px; letter-spacing: 0.06em; color: var(--color-accent-700); padding-left: 0.06em;">CFP</span>
+      <span style="display: grid; gap: 2px;">
+        <span style="font-family: var(--font-heading); font-size: 17px; line-height: 1; letter-spacing: 0.01em;">Conor Foy Plaster</span>
+        <span class="text-muted" style="font-family: var(--font-body); font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; line-height: 1; white-space: nowrap;">New York · Est. 2002</span>
+      </span>
+    </div>
+    <nav style="display: flex; gap: 26px; align-items: center;">
+      <a href="work.dc.html">Work</a>
+      <a href="services.dc.html">Services</a>
+      <a href="consulting.dc.html">Consulting</a>
+      <a href="jobsoxo.dc.html">JobsOxo</a>
+      <a href="about.dc.html">About</a>
+      <a href="trade-partners.dc.html">Trade</a>
+      <a class="btn btn-primary" href="contact.dc.html" style="margin-left: 10px; white-space: nowrap; color: var(--color-accent);">Request a consultation</a>
+    </nav>
+  </header>
+
+  <section style="max-width: 1280px; margin: 0 auto; padding: 88px clamp(20px, 5vw, 48px) 72px;">
+    <div style="display: flex; align-items: center; gap: 14px; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--color-accent-700); margin-bottom: 32px; font-feature-settings: 'tnum';">
+      <span>Venetian &amp; custom plaster</span>
+      <span style="width: 40px; height: 1px; background: var(--color-accent);"></span>
+      <span>New York, since 2002</span>
+    </div>
+    <h1 style="font-size: clamp(46px, 9vw, 104px); font-weight: 400; line-height: 0.98; letter-spacing: -0.028em; margin: 0 0 32px; text-wrap: balance;">Rooms that hold light.</h1>
+    <div data-rsp="rows" style="display: grid; grid-template-columns: 1fr 1.05fr; gap: 64px; align-items: stretch;">
+      <div>
+        <p style="max-width: 50ch; font-size: 16.5px; line-height: 1.8; text-align: justify; margin: 0 0 32px;">Hand-troweled lime, Japanese plaster, tadelakt and gold leaf for restaurants, hotels and homes — installed by a crew that has worked together for twenty years, run on a system we built ourselves.</p>
+        <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+          <a class="btn btn-primary" href="#contact" style="font-size: 14px; padding: 12px 22px;">Request a consultation</a>
+          <a class="btn btn-secondary" href="#work" style="font-size: 14px; padding: 12px 22px;">See the work</a>
+        </div>
+      </div>
+      <figure style="display: flex; flex-direction: column; margin: 0;">
+        <img class="plate" src="uploads/assets-1788224033372-mz8e.png" alt="Gold leaf over hand-troweled lime plaster" style="width: 100%; flex: 1 1 auto; min-height: 200px; object-fit: cover;">
+        <figcaption style="margin-top: 12px; font-size: 12px;">Gold leaf over lime plaster — studio sample, 2026</figcaption>
+      </figure>
+    </div>
+
+    <div style="margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--color-divider);">
+      <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: baseline; justify-content: space-between; margin-bottom: 18px;">
+        <div style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--color-accent-700);">In the shop, on the wall</div>
+        <p class="text-muted" style="font-size: 12px; margin: 0; max-width: 46ch;">Eight plates — samples, mixing, crew and detail. Drop a photograph onto any frame to fill it.</p>
+      </div>
+      <div data-rsp="plates8" style="display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 12px;">
+        <div style="aspect-ratio: 3 / 4; min-width: 0; overflow: hidden;"><image-slot style="width: 100%; height: 100%; aspect-ratio: auto;" id="about-plate-1" shape="rect" fit="cover" placeholder="Sample panel"></image-slot></div>
+        <div style="aspect-ratio: 3 / 4; min-width: 0; overflow: hidden;"><image-slot style="width: 100%; height: 100%; aspect-ratio: auto;" id="about-plate-2" shape="rect" fit="cover" placeholder="Mixing pigment"></image-slot></div>
+        <div style="aspect-ratio: 3 / 4; min-width: 0; overflow: hidden;"><image-slot style="width: 100%; height: 100%; aspect-ratio: auto;" id="about-plate-3" shape="rect" fit="cover" placeholder="Trowel detail"></image-slot></div>
+        <div style="aspect-ratio: 3 / 4; min-width: 0; overflow: hidden;"><image-slot style="width: 100%; height: 100%; aspect-ratio: auto;" id="about-plate-4" shape="rect" fit="cover" placeholder="Crew on site"></image-slot></div>
+        <div style="aspect-ratio: 3 / 4; min-width: 0; overflow: hidden;"><image-slot style="width: 100%; height: 100%; aspect-ratio: auto;" id="about-plate-5" shape="rect" fit="cover" placeholder="Gilding"></image-slot></div>
+        <div style="aspect-ratio: 3 / 4; min-width: 0; overflow: hidden;"><image-slot style="width: 100%; height: 100%; aspect-ratio: auto;" id="about-plate-6" shape="rect" fit="cover" placeholder="Tadelakt, polished"></image-slot></div>
+        <div style="aspect-ratio: 3 / 4; min-width: 0; overflow: hidden;"><image-slot style="width: 100%; height: 100%; aspect-ratio: auto;" id="about-plate-7" shape="rect" fit="cover" placeholder="Restoration"></image-slot></div>
+        <div style="aspect-ratio: 3 / 4; min-width: 0; overflow: hidden;"><image-slot style="width: 100%; height: 100%; aspect-ratio: auto;" id="about-plate-8" shape="rect" fit="cover" placeholder="Finished room"></image-slot></div>
+      </div>
+    </div>
+
+  </section>
+
+  <section style="border-top: 1px solid var(--color-divider); border-bottom: 1px solid var(--color-divider);">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 22px clamp(20px, 5vw, 48px); display: flex; flex-wrap: wrap; gap: 40px; align-items: center; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;">
+      <span class="text-muted" style="letter-spacing: 0.2em;">Recent rooms</span>
+      <span>Maxime's</span><span>Friedman's</span><span>W 13th St Residence</span><span>Bobby Flay residence</span><span>Moxy Williamsburg</span><span>Carver Steak</span>
+    </div>
+  </section>
+
+  <section id="work" style="max-width: 1280px; margin: 0 auto; padding: 88px clamp(20px, 5vw, 48px) 40px;">
+    <h2 style="font-size: 15px; font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase; color: var(--color-accent-700); margin: 0 0 48px;">Selected work</h2>
+
+    <article data-cols="1" data-rsp="rows" style="display: grid; grid-template-columns: 220px 1fr; gap: 48px; padding-bottom: 64px; margin-bottom: 64px; border-bottom: 1px solid var(--color-divider);">
+      <div style="padding-top: 6px;">
+        <div class="text-muted" style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 12px; font-feature-settings: 'tnum';">01 — 2023</div>
+        <h3 style="font-size: 30px; font-weight: 400; margin: 0 0 12px; line-height: 1.12;">Moxy Hotel, Williamsburg</h3>
+        <p class="text-muted" style="font-size: 13.5px; line-height: 1.75; margin: 0 0 16px;">Venetian plaster through the public rooms with hand-painted murals in the stair — the largest single scope we have carried, phased around an operating hotel.</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 6px;"><span class="tag tag-outline">Venetian</span></div>
+      </div>
+      <img class="plate" src="uploads/assets-1788224004596-jq8l.png" alt="Moxy Hotel Williamsburg — plaster columns and curved soffit" style="width: 100%; height: 520px; object-fit: cover;">
+    </article>
+
+    <article data-rsp="rows" style="display: grid; grid-template-columns: 1fr 220px; gap: 48px; padding-bottom: 64px; margin-bottom: 64px; border-bottom: 1px solid var(--color-divider);">
+      <img class="plate" src="uploads/IMG_6113.jpg" alt="Maxime's — restored Art Nouveau dining room with gold leaf and plaster" style="width: 100%; height: 560px; object-fit: cover; object-position: center;">
+      <div style="padding-top: 6px;">
+        <div class="text-muted" style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 12px; font-feature-settings: 'tnum';">02 — 2025</div>
+        <h3 style="font-size: 30px; font-weight: 400; margin: 0 0 12px; line-height: 1.12;">Maxime's</h3>
+        <p class="text-muted" style="font-size: 13.5px; line-height: 1.75; margin: 0 0 16px;">Hand-painted faux marble crown molding — veining drawn by hand, coat over coat, until the plaster reads as quarried stone.</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 6px;"><span class="tag tag-outline">Hand painted</span><span class="tag tag-outline">Faux marble</span><span class="tag tag-outline">Private club</span></div>
+      </div>
+    </article>
+
+    <div data-rsp="cards" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px;">
+      <div>
+        <img class="plate" src="uploads/IMG_0707.jpg" alt="Friedman's — gold leaf diamond pattern over troweled plaster" style="width: 100%; height: 210px; object-fit: cover;">
+        <div style="margin-top: 12px; font-family: var(--font-heading); font-size: 19px;">Friedman's</div>
+        <div class="text-muted" style="font-size: 12px; font-feature-settings: 'tnum';">Gold leaf · 2024</div>
+      </div>
+      <div>
+        <img class="plate" src="uploads/Screenshot 2026-09-01 at 6.21.33 PM.jpg" alt="W 13th St Residence — polished plaster bedroom wall" style="width: 100%; height: 210px; object-fit: cover;">
+        <div style="margin-top: 12px; font-family: var(--font-heading); font-size: 19px;">W 13th St Residence</div>
+        <div class="text-muted" style="font-size: 12px; font-feature-settings: 'tnum';">Polished plaster · 2026</div>
+      </div>
+      <div>
+        <img class="plate" src="uploads/IMG_8614.jpg" alt="Bobby Flay Residence — lime-plaster ceiling and beams" style="width: 100%; height: 210px; object-fit: cover;">
+        <div style="margin-top: 12px; font-family: var(--font-heading); font-size: 19px;">Bobby Flay Residence</div>
+        <div class="text-muted" style="font-size: 12px; font-feature-settings: 'tnum';">Lime plaster · 2025</div>
+      </div>
+      <div>
+        <img class="plate" src="uploads/IMG_7514.jpg" alt="Carver Steak — polished plaster coffered ceiling" style="width: 100%; height: 210px; object-fit: cover;">
+        <div style="margin-top: 12px; font-family: var(--font-heading); font-size: 19px;">Carver Steak</div>
+        <div class="text-muted" style="font-size: 12px; font-feature-settings: 'tnum';">Polished plaster · 2026</div>
+      </div>
+    </div>
+    <div style="margin-top: 40px;"><a href="work.dc.html" style="font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none;">Full portfolio →</a></div>
+  </section>
+
+  <section id="services" style="max-width: 1280px; margin: 0 auto; padding: 88px clamp(20px, 5vw, 48px);">
+    <div style="border-top: 1px solid var(--color-divider); padding-top: 48px;">
+      <div data-rsp="rows" style="display: grid; grid-template-columns: 1fr 1fr; gap: 64px; margin-bottom: 48px; align-items: end;">
+        <h2 style="font-size: clamp(29px, 4.4vw, 44px); font-weight: 400; line-height: 1.08; margin: 0;">Eight finishes, mixed to the room.</h2>
+        <p style="font-size: 15px; line-height: 1.85; text-align: justify; margin: 0;">Every job starts with samples made on site, in the room's own light — because plaster that looks right in a shop looks like something else under a restaurant's lamps. Nothing goes on a wall until you have seen it where it will live.</p>
+      </div>
+      <div data-rsp="cells2" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--color-divider); border: 1px solid var(--color-divider);">
+        <div style="background: var(--color-bg); padding: 26px 22px;"><div style="font-family: var(--font-heading); font-size: 21px; margin-bottom: 8px;">Venetian plaster</div><div class="text-muted" style="font-size: 12.5px; line-height: 1.7;">Burnished lime with depth and a low sheen.</div></div>
+        <div style="background: var(--color-bg); padding: 26px 22px;"><div style="font-family: var(--font-heading); font-size: 21px; margin-bottom: 8px;">Japanese plaster</div><div class="text-muted" style="font-size: 12.5px; line-height: 1.7;">Clay and fiber, dead matte, quiet.</div></div>
+        <div style="background: var(--color-bg); padding: 26px 22px;"><div style="font-family: var(--font-heading); font-size: 21px; margin-bottom: 8px;">Tadelakt</div><div class="text-muted" style="font-size: 12.5px; line-height: 1.7;">Waterproof lime for baths and wet rooms.</div></div>
+        <div style="background: var(--color-bg); padding: 26px 22px;"><div style="font-family: var(--font-heading); font-size: 21px; margin-bottom: 8px;">Gold leaf</div><div class="text-muted" style="font-size: 12.5px; line-height: 1.7;">Genuine and composition gilding, laid by hand.</div></div>
+        <div style="background: var(--color-bg); padding: 26px 22px;"><div style="font-family: var(--font-heading); font-size: 21px; margin-bottom: 8px;">Murals</div><div class="text-muted" style="font-size: 12.5px; line-height: 1.7;">Painted scenes and ornament to drawing.</div></div>
+        <div style="background: var(--color-bg); padding: 26px 22px;"><div style="font-family: var(--font-heading); font-size: 21px; margin-bottom: 8px;">Lime wash</div><div class="text-muted" style="font-size: 12.5px; line-height: 1.7;">Breathable, cloudy, ages well.</div></div>
+        <div style="background: var(--color-bg); padding: 26px 22px;"><div style="font-family: var(--font-heading); font-size: 21px; margin-bottom: 8px;">Color matching</div><div class="text-muted" style="font-size: 12.5px; line-height: 1.7;">Pigment mixed to a swatch, a stone, a memory.</div></div>
+        <div style="background: var(--color-bg); padding: 26px 22px;"><div style="font-family: var(--font-heading); font-size: 21px; margin-bottom: 8px;">Restoration</div><div class="text-muted" style="font-size: 12.5px; line-height: 1.7;">Repair and matching on older decorative work.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" style="background: var(--color-surface); border-top: 1px solid var(--color-divider); border-bottom: 1px solid var(--color-divider);">
+    <div data-rsp="rows" style="max-width: 1280px; margin: 0 auto; padding: 88px clamp(20px, 5vw, 48px); display: grid; grid-template-columns: 1fr 1.4fr; gap: 72px; align-items: start;">
+      <div>
+        <div style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--color-accent-700); margin-bottom: 18px;">About Conor</div>
+        <h2 style="font-size: clamp(27px, 4vw, 40px); font-weight: 400; line-height: 1.1; margin: 0;">A trade learned by hand, run like a business.</h2>
+      </div>
+      <div data-cols="1" style="columns: 2; column-gap: 44px; font-size: 15px; line-height: 1.85; text-align: justify; hyphens: auto;">
+        <p>Conor Foy has been finishing walls in New York since 2002. The work is done on site by a small crew who have been together a long time, with material mixed to the room rather than ordered off a shelf.</p>
+        <p>What changed over twenty-three years is everything around the trowel. Estimating, scheduling, daily logs, invoicing, payroll — we rebuilt all of it, then built the software to run it. Architects and general contractors now hire us as much for the way a job is managed as for the finish at the end.</p>
+        <p>If you are drawing a room and want to know what a surface can actually do, that conversation is free, and we enjoy having it.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="consulting" style="max-width: 1280px; margin: 0 auto; padding: 88px clamp(20px, 5vw, 48px);">
+    <div data-rsp="rows" style="display: grid; grid-template-columns: 1fr 1.6fr; gap: 64px; align-items: start;">
+      <div>
+        <div style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--color-accent-700); margin-bottom: 18px;">Consulting</div>
+        <h2 style="font-size: clamp(27px, 4vw, 40px); font-weight: 400; line-height: 1.1; margin: 0 0 18px;">Hire the judgment, not just the crew.</h2>
+        <p class="text-muted" style="font-size: 14px; line-height: 1.8; margin: 0;">Three ways people bring us in before a trowel touches a wall.</p>
+      </div>
+      <div data-rsp="cards" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+        <div class="card"><div class="card-kicker">Architects &amp; designers</div><div class="card-title">Specification &amp; sampling</div><p class="card-body">Material selection, on-site samples in real light, and spec language your GC can bid against.</p></div>
+        <div class="card"><div class="card-kicker">General contractors</div><div class="card-title">Scope supervision</div><p class="card-body">Sequencing, substrate review, crew oversight and punch on plaster and decorative scope.</p></div>
+        <div class="card"><div class="card-kicker">Trade partners</div><div class="card-title">Operations setup</div><p class="card-body">Estimating structure, job costing and workflow for finishing companies that want to scale.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="jobsoxo" style="border-top: 1px solid var(--color-divider);">
+    <div data-rsp="rows" style="max-width: 1280px; margin: 0 auto; padding: 80px clamp(20px, 5vw, 48px); display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center;">
+      <div>
+        <div style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--color-accent-700); margin-bottom: 18px;">Our platform · Available mid-September 2026</div>
+        <h2 style="font-size: clamp(30px, 4.6vw, 46px); font-weight: 400; line-height: 1.08; margin: 0 0 18px;">JobsOxo</h2>
+        <p style="font-size: 16px; line-height: 1.8; margin: 0 0 26px; max-width: 46ch; text-align: justify;">All-in-one business management for construction, painting and decorating companies — from the first client inquiry through estimating, scheduling, invoicing, payment collection, payroll and reconciliation. We built it to run this shop. Now we sell it to yours.</p>
+        <a class="btn btn-primary" href="jobsoxo.dc.html" style="font-size: 14px; padding: 12px 22px;">See JobsOxo →</a>
+      </div>
+      <div style="display: grid; gap: 0; border-top: 1px solid var(--color-divider);">
+        <div style="display: flex; justify-content: space-between; gap: 20px; padding: 18px 0; border-bottom: 1px solid var(--color-divider);"><span style="font-family: var(--font-heading); font-size: 20px;">Inquiry → estimate</span><span class="text-muted" style="font-size: 12.5px; max-width: 24ch; text-align: right;">Leads, takeoffs and priced proposals in one thread</span></div>
+        <div style="display: flex; justify-content: space-between; gap: 20px; padding: 18px 0; border-bottom: 1px solid var(--color-divider);"><span style="font-family: var(--font-heading); font-size: 20px;">Scheduling</span><span class="text-muted" style="font-size: 12.5px; max-width: 24ch; text-align: right;">Crews, sites and days on one board</span></div>
+        <div style="display: flex; justify-content: space-between; gap: 20px; padding: 18px 0; border-bottom: 1px solid var(--color-divider);"><span style="font-family: var(--font-heading); font-size: 20px;">Invoicing &amp; payment</span><span class="text-muted" style="font-size: 12.5px; max-width: 24ch; text-align: right;">Progress billing, collection and follow-up</span></div>
+        <div style="display: flex; justify-content: space-between; gap: 20px; padding: 18px 0; border-bottom: 1px solid var(--color-divider);"><span style="font-family: var(--font-heading); font-size: 20px;">Payroll &amp; books</span><span class="text-muted" style="font-size: 12.5px; max-width: 24ch; text-align: right;">Hours to payroll to reconciled accounts</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" style="background: var(--color-surface); border-top: 1px solid var(--color-divider);">
+    <div data-rsp="rows" style="max-width: 1280px; margin: 0 auto; padding: 88px clamp(20px, 5vw, 48px); display: grid; grid-template-columns: 1fr 1.1fr; gap: 72px; align-items: start;">
+      <div>
+        <div style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--color-accent-700); margin-bottom: 18px;">Consult with us</div>
+        <h2 style="font-size: clamp(27px, 4vw, 40px); font-weight: 400; line-height: 1.1; margin: 0 0 18px;">Tell us about the room.</h2>
+        <p style="font-size: 15px; line-height: 1.85; margin: 0 0 28px; text-align: justify;">Email reply within one business day. Drawings are welcome but not required — a photograph and a rough square footage is enough to start.</p>
+        <hr class="hr">
+        <div style="display: grid; gap: 10px; font-size: 14px;">
+          <a href="mailto:info@conorfoy.com" style="text-decoration: none;">info@conorfoy.com</a>
+          <a href="https://wa.me/13474523548" style="text-decoration: none;">Message us on WhatsApp</a>
+          <span class="text-muted">New York, NY</span>
+        </div>
+      </div>
+      <form style="display: grid; gap: 18px;" onSubmit="{{ onSubmit }}">
+        <div data-rsp="rows" style="display: grid; grid-template-columns: 1fr 1fr; gap: 18px;">
+          <div class="field"><label>Name</label><input class="input" type="text" placeholder="Your name"></div>
+          <div class="field"><label>Email</label><input class="input" type="email" placeholder="you@studio.com"></div>
+        </div>
+        <div data-rsp="rows" style="display: grid; grid-template-columns: 1fr 1fr; gap: 18px;">
+          <div class="field"><label>Project type</label><input class="input" type="text" placeholder="Restaurant, hotel, residence…"></div>
+          <div class="field"><label>Approximate timeline</label><input class="input" type="text" placeholder="e.g. Q1 2027"></div>
+        </div>
+        <div class="field"><label>What are you looking to do?</label><textarea class="input" placeholder="The room, the finish you have in mind, and anything already drawn."></textarea></div>
+        <button class="btn btn-primary" type="submit" style="justify-self: start; font-size: 14px; padding: 12px 24px;">{{ submitLabel }}</button>
+      </form>
+    </div>
+  </section>
+
+  <section style="border-top: 1px solid var(--color-divider);">
+    <div data-rsp="rows" style="max-width: 1280px; margin: 0 auto; padding: 64px clamp(20px, 5vw, 48px); display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center;">
+      <div>
+        <h2 style="font-size: 34px; font-weight: 400; margin: 0 0 10px;">Recent rooms, a few times a year.</h2>
+        <p class="text-muted" style="font-size: 14.5px; line-height: 1.8; margin: 0;">New plaster and restoration projects in New York, photographed properly. We send it when there is something worth looking at, and not otherwise.</p>
+      </div>
+      <form style="display: flex; gap: 12px; align-items: flex-end;" onSubmit="{{ onSubscribe }}">
+        <div class="field" style="flex: 1;"><label>Email</label><input class="input" type="email" placeholder="you@studio.com"></div>
+        <button class="btn btn-primary" type="submit" style="font-size: 14px; padding: 11px 22px; white-space: nowrap;">{{ subscribeLabel }}</button>
+      </form>
+    </div>
+  </section>
+
+  <footer style="border-top: 1px solid var(--color-divider);">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 48px clamp(20px, 5vw, 48px); display: flex; flex-wrap: wrap; gap: 32px; justify-content: space-between; align-items: center;">
+      <div style="display: flex; align-items: center; gap: 13px;">
+        <span style="display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border: 1px solid var(--color-accent); border-radius: var(--radius-sm); font-family: var(--font-heading); font-size: 14px; letter-spacing: 0.06em; color: var(--color-accent-700); padding-left: 0.06em;">CFP</span>
+        <span style="font-family: var(--font-heading); font-size: 17px;">Conor Foy Plaster</span>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 24px; font-size: 13px;">
+        <a href="work.dc.html" style="text-decoration: none; color: inherit;">Work</a>
+        <a href="services.dc.html" style="text-decoration: none; color: inherit;">Services</a>
+        <a href="consulting.dc.html" style="text-decoration: none; color: inherit;">Consulting</a>
+        <a href="jobsoxo.dc.html" style="text-decoration: none; color: inherit;">JobsOxo</a>
+        <a href="about.dc.html" style="text-decoration: none; color: inherit;">About</a>
+        <a href="trade-partners.dc.html" style="text-decoration: none; color: inherit;">Trade</a>
+        <a href="contact.dc.html" style="text-decoration: none; color: inherit;">Contact</a>
+      </div>
+      <div class="text-muted" style="font-size: 12px; font-feature-settings: 'tnum';">© 2026 Conor Foy Plaster</div>
+    </div>
+  </footer>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { sent: false, subscribed: false };
+  renderVals() {
+    return {
+      submitLabel: this.state.sent ? "Thank you — we'll reply within a day" : "Send request",
+      subscribeLabel: this.state.subscribed ? "Subscribed" : "Sign up",
+      onSubmit: (e) => { e.preventDefault(); this.setState({ sent: true }); },
+      onSubscribe: (e) => { e.preventDefault(); this.setState({ subscribed: true }); }
+    };
+  }
+}
+</script>
+</body>
+</html>

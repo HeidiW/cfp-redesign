@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/classical-c73d70d1-c1eb-459a-9501-a48720d6f372/styles.css">
+  <script src="_ds/classical-c73d70d1-c1eb-459a-9501-a48720d6f372/_ds_bundle.js"></script>
+  <style>
+    :root {
+      --color-bg: #ebf2fa;
+      --color-surface: #f7e2d7;
+      --color-text: #132a13;
+      --color-accent: #640d14;
+      --color-accent-2: #e5be9e;
+      --color-divider: color-mix(in srgb, #132a13 20%, transparent);
+      --color-neutral-100: #f4f8fb;
+      --color-neutral-200: #e6ecec;
+      --color-neutral-300: #cfd8d1;
+      --color-neutral-400: #aeb8b0;
+      --color-neutral-500: #8b968d;
+      --color-neutral-600: #6c766e;
+      --color-neutral-700: #4f584f;
+      --color-neutral-800: #33392f;
+      --color-neutral-900: #1d2a1c;
+      --color-accent-100: #fdeee9;
+      --color-accent-200: #fad4c0;
+      --color-accent-300: #e5be9e;
+      --color-accent-400: #b85a52;
+      --color-accent-500: #8e2b2a;
+      --color-accent-600: #4c0810;
+      --color-accent-700: #640d14;
+      --color-accent-800: #4c0810;
+      --color-accent-900: #33060b;
+      --color-accent-2-100: #fdeee9;
+      --color-accent-2-200: #fad4c0;
+      --color-accent-2-300: #e5be9e;
+      --color-accent-2-400: #cfa279;
+      --color-accent-2-500: #b08556;
+      --color-accent-2-600: #8b6740;
+      --color-accent-2-700: #6b4e30;
+      --color-accent-2-800: #4a3520;
+      --color-accent-2-900: #2e2114;
+    }
+
+    a { color: var(--color-accent); }
+    a:hover { color: var(--color-accent-600); }
+
+    @media (max-width: 1080px) {
+      header.nav { flex-wrap: wrap; row-gap: 14px; }
+      header.nav > nav { gap: 18px !important; flex-wrap: wrap; }
+      [data-rsp="cards"] { grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)) !important; }
+      [data-rsp="cells2"] { grid-template-columns: repeat(2, 1fr) !important; }
+      [data-rsp="cells1"] { grid-template-columns: 1fr !important; }
+      [data-rsp="rows"] { grid-template-columns: 1fr !important; gap: 22px !important; }
+    }
+    @media (max-width: 900px) { .table { font-size: 12px; } }
+    @media (max-width: 720px) {
+      [data-rsp="cards"] { grid-template-columns: 1fr !important; gap: 28px !important; }
+      [data-rsp="cells2"] { grid-template-columns: 1fr !important; }
+      [data-cols="1"] { columns: 1 !important; }
+      header.nav > nav { width: 100%; }
+    }
+  </style>
+</helmet>
+
+<div style="background: var(--color-bg); color: var(--color-text); font-family: var(--font-body);">
+
+  <header class="nav" style="position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--color-bg) 92%, transparent); backdrop-filter: blur(8px); padding-left: clamp(20px, 5vw, 48px); padding-right: clamp(20px, 5vw, 48px);">
+    <a class="nav-brand" href="home-plate-book.dc.html" style="display: flex; align-items: center; gap: 13px; text-decoration: none; color: inherit;">
+      <span style="display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border: 1px solid var(--color-accent); border-radius: var(--radius-sm); font-family: var(--font-heading); font-size: 14px; letter-spacing: 0.06em; color: var(--color-accent-700); padding-left: 0.06em;">CFP</span>
+      <span style="display: grid; gap: 2px;">
+        <span style="font-family: var(--font-heading); font-size: 17px; line-height: 1; letter-spacing: 0.01em;">Conor Foy Plaster</span>
+        <span class="text-muted" style="font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; line-height: 1; white-space: nowrap;">New York · Est. 2002</span>
+      </span>
+    </a>
+    <nav style="display: flex; gap: 26px; align-items: center;">
+      <a href="work.dc.html">Work</a>
+      <a href="services.dc.html">Services</a>
+      <a href="consulting.dc.html">Consulting</a>
+      <a href="jobsoxo.dc.html">JobsOxo</a>
+      <a href="about.dc.html">About</a>
+      <a href="trade-partners.dc.html">Trade</a>
+      <a class="btn btn-primary" href="contact.dc.html" aria-current="page" style="margin-left: 10px; white-space: nowrap; color: var(--color-accent);">Request a consultation</a>
+    </nav>
+  </header>
+
+  <section style="max-width: 1280px; margin: 0 auto; padding: 80px clamp(20px, 5vw, 48px) 72px;">
+    <div data-rsp="rows" style="display: grid; grid-template-columns: 1fr 1.15fr; gap: 80px; align-items: start;">
+
+      <div>
+        <div style="font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--color-accent-700); margin-bottom: 24px;">Consult with us</div>
+        <h1 style="font-size: clamp(34px, 6.5vw, 68px); font-weight: 400; line-height: 1.0; letter-spacing: -0.025em; margin: 0 0 28px;">Tell us about the room.</h1>
+        <p style="font-size: 16px; line-height: 1.85; text-align: justify; margin: 0 0 32px;">Email reply within one business day. Drawings are welcome but not required — a photograph and a rough square footage is enough to start, and the first conversation costs nothing.</p>
+
+        <hr class="hr">
+
+        <div style="display: grid; gap: 22px; margin-top: 28px;">
+          <div>
+            <div class="text-muted" style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 6px;">Email</div>
+            <a href="mailto:info@conorfoy.com" style="font-size: 17px; font-family: var(--font-heading); text-decoration: none;">info@conorfoy.com</a>
+          </div>
+          <div>
+            <div class="text-muted" style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 6px;">WhatsApp</div>
+            <a href="https://wa.me/13474523548" style="font-size: 17px; font-family: var(--font-heading); text-decoration: none;">Message us directly</a>
+          </div>
+          <div>
+            <div class="text-muted" style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 6px;">JobsOxo enquiries</div>
+            <a href="jobsoxo.dc.html" style="font-size: 17px; font-family: var(--font-heading); text-decoration: none;">Join the JobsOxo waitlist</a>
+          </div>
+          <div>
+            <div class="text-muted" style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 6px;">Working area</div>
+            <div style="font-size: 15px;">New York City and the five boroughs. Selected work further afield.</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="border: 1px solid var(--color-divider); border-radius: var(--radius-md); padding: 40px;">
+        <h2 style="font-size: 26px; font-weight: 400; margin: 0 0 6px;">Consultation request</h2>
+        <p class="text-muted" style="font-size: 13.5px; margin: 0 0 28px;">Fields marked with an asterisk are the ones we actually need.</p>
+        <form style="display: grid; gap: 20px;" onSubmit="{{ onSubmit }}">
+          <div data-rsp="rows" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <div class="field"><label>Name *</label><input class="input" type="text" placeholder="Your name"></div>
+            <div class="field"><label>Email *</label><input class="input" type="email" placeholder="you@studio.com"></div>
+          </div>
+          <div data-rsp="rows" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <div class="field"><label>Company or studio</label><input class="input" type="text" placeholder="Optional"></div>
+            <div class="field"><label>Phone</label><input class="input" type="tel" placeholder="Optional"></div>
+          </div>
+
+          <div class="field">
+            <label>You are a…</label>
+            <div style="display: flex; flex-wrap: wrap; gap: 18px; padding-top: 4px;">
+              <label class="radio"><input type="radio" name="role"><span class="dot"></span>Architect or designer</label>
+              <label class="radio"><input type="radio" name="role"><span class="dot"></span>Contractor</label>
+              <label class="radio"><input type="radio" name="role"><span class="dot"></span>Owner or operator</label>
+              <label class="radio"><input type="radio" name="role"><span class="dot"></span>Trade partner</label>
+            </div>
+          </div>
+
+          <div data-rsp="rows" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <div class="field"><label>Project type *</label><input class="input" type="text" placeholder="Restaurant, hotel, residence…"></div>
+            <div class="field"><label>Location</label><input class="input" type="text" placeholder="Neighborhood is fine"></div>
+          </div>
+
+          <div data-rsp="rows" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <div class="field"><label>Approximate area</label><input class="input" type="text" placeholder="e.g. 2,400 sq ft of wall"></div>
+            <div class="field"><label>Timeline</label><input class="input" type="text" placeholder="e.g. on site Q1 2027"></div>
+          </div>
+
+          <div class="field">
+            <label>Finish you have in mind</label>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px; padding-top: 4px;">
+              <span class="tag tag-outline">Venetian</span><span class="tag tag-outline">Japanese plaster</span><span class="tag tag-outline">Tadelakt</span><span class="tag tag-outline">Gold leaf</span><span class="tag tag-outline">Murals</span><span class="tag tag-outline">Lime wash</span><span class="tag tag-outline">Restoration</span><span class="tag tag-outline">Not sure yet</span>
+            </div>
+          </div>
+
+          <div class="field"><label>Tell us about the room *</label><textarea class="input" style="min-height: 120px;" placeholder="What it is, what you want it to feel like, and anything already drawn or built."></textarea></div>
+
+          <button class="btn btn-primary" type="submit" style="justify-self: start; font-size: 14px; padding: 13px 26px;">{{ submitLabel }}</button>
+          <p class="text-muted" style="font-size: 11.5px; line-height: 1.7; margin: 0;">We reply to everything within one business day. Your details stay with us and are never passed on.</p>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <section style="background: var(--color-surface); border-top: 1px solid var(--color-divider); border-bottom: 1px solid var(--color-divider);">
+    <div data-rsp="rows" style="max-width: 1280px; margin: 0 auto; padding: 64px clamp(20px, 5vw, 48px); display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center;">
+      <div>
+        <h2 style="font-size: 34px; font-weight: 400; margin: 0 0 10px;">Recent rooms, a few times a year.</h2>
+        <p class="text-muted" style="font-size: 14.5px; line-height: 1.8; margin: 0;">New plaster and restoration projects in New York, photographed properly. No newsletter cadence, no marketing — we send it when there is something worth looking at.</p>
+      </div>
+      <form style="display: flex; gap: 12px; align-items: flex-end;" onSubmit="{{ onSubscribe }}">
+        <div class="field" style="flex: 1;"><label>Email</label><input class="input" type="email" placeholder="you@studio.com"></div>
+        <button class="btn btn-primary" type="submit" style="font-size: 14px; padding: 11px 22px; white-space: nowrap;">{{ subscribeLabel }}</button>
+      </form>
+    </div>
+  </section>
+
+  <footer style="border-top: 1px solid var(--color-divider);">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 48px clamp(20px, 5vw, 48px); display: flex; flex-wrap: wrap; gap: 32px; justify-content: space-between; align-items: center;">
+      <div style="display: flex; align-items: center; gap: 13px;">
+        <span style="display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border: 1px solid var(--color-accent); border-radius: var(--radius-sm); font-family: var(--font-heading); font-size: 14px; letter-spacing: 0.06em; color: var(--color-accent-700); padding-left: 0.06em;">CFP</span>
+        <span style="font-family: var(--font-heading); font-size: 17px;">Conor Foy Plaster</span>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 24px; font-size: 13px;">
+        <a href="work.dc.html" style="text-decoration: none; color: inherit;">Work</a>
+        <a href="services.dc.html" style="text-decoration: none; color: inherit;">Services</a>
+        <a href="consulting.dc.html" style="text-decoration: none; color: inherit;">Consulting</a>
+        <a href="jobsoxo.dc.html" style="text-decoration: none; color: inherit;">JobsOxo</a>
+        <a href="about.dc.html" style="text-decoration: none; color: inherit;">About</a>
+        <a href="trade-partners.dc.html" style="text-decoration: none; color: inherit;">Trade</a>
+        <a href="contact.dc.html" style="text-decoration: none; color: inherit;">Contact</a>
+      </div>
+      <div class="text-muted" style="font-size: 12px; font-feature-settings: 'tnum';">© 2026 Conor Foy Plaster</div>
+    </div>
+  </footer>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { sent: false, subscribed: false };
+  renderVals() {
+    return {
+      submitLabel: this.state.sent ? "Thank you — we'll reply within a day" : "Send request",
+      subscribeLabel: this.state.subscribed ? "Subscribed" : "Sign up",
+      onSubmit: (e) => { e.preventDefault(); this.setState({ sent: true }); },
+      onSubscribe: (e) => { e.preventDefault(); this.setState({ subscribed: true }); }
+    };
+  }
+}
+</script>
+</body>
+</html>

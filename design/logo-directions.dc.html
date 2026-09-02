@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/classical-c73d70d1-c1eb-459a-9501-a48720d6f372/styles.css">
+  <script src="_ds/classical-c73d70d1-c1eb-459a-9501-a48720d6f372/_ds_bundle.js"></script>
+  <style>
+    :root {
+      --color-bg: #ebf2fa;
+      --color-surface: #f7e2d7;
+      --color-text: #132a13;
+      --color-accent: #640d14;
+      --color-accent-2: #e5be9e;
+      --color-divider: color-mix(in srgb, #132a13 20%, transparent);
+      --color-neutral-100: #f4f8fb;
+      --color-neutral-200: #e6ecec;
+      --color-neutral-300: #cfd8d1;
+      --color-neutral-400: #aeb8b0;
+      --color-neutral-500: #8b968d;
+      --color-neutral-600: #6c766e;
+      --color-neutral-700: #4f584f;
+      --color-neutral-800: #33392f;
+      --color-neutral-900: #1d2a1c;
+      --color-accent-100: #fdeee9;
+      --color-accent-200: #fad4c0;
+      --color-accent-300: #e5be9e;
+      --color-accent-400: #b85a52;
+      --color-accent-500: #8e2b2a;
+      --color-accent-600: #4c0810;
+      --color-accent-700: #640d14;
+      --color-accent-800: #4c0810;
+      --color-accent-900: #33060b;
+      --color-accent-2-100: #fdeee9;
+      --color-accent-2-200: #fad4c0;
+      --color-accent-2-300: #e5be9e;
+      --color-accent-2-400: #cfa279;
+      --color-accent-2-500: #b08556;
+      --color-accent-2-600: #8b6740;
+      --color-accent-2-700: #6b4e30;
+      --color-accent-2-800: #4a3520;
+      --color-accent-2-900: #2e2114;
+    }
+
+    a { color: var(--color-accent); }
+    a:hover { color: var(--color-accent-600); }
+
+    @media (max-width: 1080px) {
+      header.nav { flex-wrap: wrap; row-gap: 14px; }
+      header.nav > nav { gap: 18px !important; flex-wrap: wrap; }
+      [data-rsp="cards"] { grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)) !important; }
+      [data-rsp="cells2"] { grid-template-columns: repeat(2, 1fr) !important; }
+      [data-rsp="cells1"] { grid-template-columns: 1fr !important; }
+      [data-rsp="rows"] { grid-template-columns: 1fr !important; gap: 22px !important; }
+    }
+    @media (max-width: 900px) { .table { font-size: 12px; } }
+    @media (max-width: 720px) {
+      [data-rsp="cards"] { grid-template-columns: 1fr !important; gap: 28px !important; }
+      [data-rsp="cells2"] { grid-template-columns: 1fr !important; }
+      [data-cols="1"] { columns: 1 !important; }
+      header.nav > nav { width: 100%; }
+    }
+  </style>
+</helmet>
+
+<div style="background: var(--color-bg); color: var(--color-text); font-family: var(--font-body); min-height: 100vh; padding: 64px clamp(20px, 5vw, 48px);">
+  <div style="max-width: 1100px; margin: 0 auto;">
+    <div style="font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--color-accent-700); margin-bottom: 14px;">Conor Foy Plaster</div>
+    <h1 style="font-size: clamp(30px, 4.6vw, 46px); font-weight: 400; margin: 0 0 14px;">Four marks.</h1>
+    <p class="text-muted" style="font-size: 15px; line-height: 1.8; max-width: 60ch; margin: 0 0 8px;">All typographic, all set in the house serif — no drawn symbol, because a plaster company's mark should read like a maker's stamp, not a logo. Each is shown large, then at nav size, then reversed on the dark ground the site uses.</p>
+    <hr class="hr" style="margin: 40px 0 0;">
+
+    <div style="display: grid; gap: 0;">
+
+      <div data-rsp="rows" style="display: grid; grid-template-columns: 96px 1fr 300px; gap: 40px; padding: 56px 0; border-bottom: 1px solid var(--color-divider); align-items: center;">
+        <div>
+          <div style="font-family: var(--font-heading); font-size: 34px; line-height: 1; color: var(--color-accent-700); font-feature-settings: 'tnum';">01</div>
+          <div class="text-muted" style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; margin-top: 8px;">Stamp</div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 22px;">
+          <span style="display: inline-flex; align-items: center; justify-content: center; width: 74px; height: 74px; border: 1px solid var(--color-accent); border-radius: var(--radius-sm); font-family: var(--font-heading); font-size: 29px; letter-spacing: 0.06em; color: var(--color-accent-700); padding-left: 0.06em;">CFP</span>
+          <span style="display: grid; gap: 6px;">
+            <span style="font-family: var(--font-heading); font-size: clamp(26px, 3.8vw, 38px); line-height: 1; letter-spacing: 0.005em;">Conor Foy Plaster</span>
+            <span class="text-muted" style="font-size: 10px; letter-spacing: 0.26em; text-transform: uppercase; line-height: 1;">New York · Est. 2002</span>
+          </span>
+        </div>
+        <div style="display: grid; gap: 14px;">
+          <div style="border: 1px solid var(--color-divider); padding: 14px; display: flex; align-items: center; gap: 11px;">
+            <span style="display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; border: 1px solid var(--color-accent); border-radius: var(--radius-sm); font-family: var(--font-heading); font-size: 12px; letter-spacing: 0.06em; color: var(--color-accent-700);">CFP</span>
+            <span style="font-family: var(--font-heading); font-size: 15px;">Conor Foy Plaster</span>
+          </div>
+          <div style="background: #16150f; padding: 14px; display: flex; align-items: center; gap: 11px;">
+            <span style="display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; border: 1px solid var(--color-accent-400); border-radius: var(--radius-sm); font-family: var(--font-heading); font-size: 12px; letter-spacing: 0.06em; color: var(--color-accent-300);">CFP</span>
+            <span style="font-family: var(--font-heading); font-size: 15px; color: #f3f2f2;">Conor Foy Plaster</span>
+          </div>
+        </div>
+      </div>
+
+      <div data-rsp="rows" style="display: grid; grid-template-columns: 96px 1fr 300px; gap: 40px; padding: 56px 0; border-bottom: 1px solid var(--color-divider); align-items: center;">
+        <div>
+          <div style="font-family: var(--font-heading); font-size: 34px; line-height: 1; color: var(--color-accent-700); font-feature-settings: 'tnum';">02</div>
+          <div class="text-muted" style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; margin-top: 8px;">Colophon</div>
+        </div>
+        <div style="display: inline-grid; gap: 10px; justify-items: start;">
+          <span style="font-family: var(--font-heading); font-size: clamp(30px, 4.6vw, 46px); line-height: 1; letter-spacing: 0.16em; padding-left: 0.16em;">CONOR FOY</span>
+          <span style="width: 100%; height: 1px; background: var(--color-accent);"></span>
+          <span style="font-family: var(--font-body); font-size: 13px; letter-spacing: 0.42em; text-transform: uppercase; padding-left: 0.42em; color: var(--color-neutral-700);">Plaster</span>
+        </div>
+        <div style="display: grid; gap: 14px;">
+          <div style="border: 1px solid var(--color-divider); padding: 14px; display: grid; gap: 5px; justify-items: start;">
+            <span style="font-family: var(--font-heading); font-size: 17px; line-height: 1; letter-spacing: 0.14em;">CONOR FOY</span>
+            <span style="width: 100%; height: 1px; background: var(--color-accent);"></span>
+            <span style="font-size: 8px; letter-spacing: 0.38em; text-transform: uppercase; color: var(--color-neutral-700);">Plaster</span>
+          </div>
+          <div style="background: #16150f; padding: 14px; display: grid; gap: 5px; justify-items: start;">
+            <span style="font-family: var(--font-heading); font-size: 17px; line-height: 1; letter-spacing: 0.14em; color: #f3f2f2;">CONOR FOY</span>
+            <span style="width: 100%; height: 1px; background: var(--color-accent-400);"></span>
+            <span style="font-size: 8px; letter-spacing: 0.38em; text-transform: uppercase; color: var(--color-accent-300);">Plaster</span>
+          </div>
+        </div>
+      </div>
+
+      <div data-rsp="rows" style="display: grid; grid-template-columns: 96px 1fr 300px; gap: 40px; padding: 56px 0; border-bottom: 1px solid var(--color-divider); align-items: center;">
+        <div>
+          <div style="font-family: var(--font-heading); font-size: 34px; line-height: 1; color: var(--color-accent-700); font-feature-settings: 'tnum';">03</div>
+          <div class="text-muted" style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; margin-top: 8px;">Trowel rule</div>
+        </div>
+        <div style="display: inline-grid; gap: 0; justify-items: start;">
+          <span style="font-family: var(--font-heading); font-size: clamp(32px, 5.5vw, 56px); line-height: 1.05; letter-spacing: -0.02em;">Conor Foy</span>
+          <span style="display: flex; align-items: center; gap: 14px; width: 100%;">
+            <span style="font-family: var(--font-heading); font-size: clamp(32px, 5.5vw, 56px); line-height: 1.05; letter-spacing: -0.02em; color: var(--color-accent-700);">Plaster</span>
+            <span style="flex: 1; height: 1px; background: var(--color-divider);"></span>
+            <span class="text-muted" style="font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; font-feature-settings: 'tnum';">NYC 2002</span>
+          </span>
+        </div>
+        <div style="display: grid; gap: 14px;">
+          <div style="border: 1px solid var(--color-divider); padding: 14px;">
+            <span style="font-family: var(--font-heading); font-size: 19px; line-height: 1.1;">Conor Foy <span style="color: var(--color-accent-700);">Plaster</span></span>
+          </div>
+          <div style="background: #16150f; padding: 14px;">
+            <span style="font-family: var(--font-heading); font-size: 19px; line-height: 1.1; color: #f3f2f2;">Conor Foy <span style="color: var(--color-accent-300);">Plaster</span></span>
+          </div>
+        </div>
+      </div>
+
+      <div data-rsp="rows" style="display: grid; grid-template-columns: 96px 1fr 300px; gap: 40px; padding: 56px 0; border-bottom: 1px solid var(--color-divider); align-items: center;">
+        <div>
+          <div style="font-family: var(--font-heading); font-size: 34px; line-height: 1; color: var(--color-accent-700); font-feature-settings: 'tnum';">04</div>
+          <div class="text-muted" style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; margin-top: 8px;">Monogram</div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 24px;">
+          <span style="display: inline-flex; align-items: flex-end; gap: 2px; font-family: var(--font-heading); font-size: clamp(38px, 7vw, 76px); line-height: 0.86; letter-spacing: -0.04em;">
+            <span>C</span><span style="color: var(--color-accent-700);">F</span><span>P</span>
+          </span>
+          <span style="width: 1px; height: 62px; background: var(--color-divider);"></span>
+          <span style="display: grid; gap: 4px;">
+            <span style="font-family: var(--font-heading); font-size: 21px; line-height: 1.15;">Conor Foy Plaster</span>
+            <span class="text-muted" style="font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;">Venetian &amp; custom finishes</span>
+          </span>
+        </div>
+        <div style="display: grid; gap: 14px;">
+          <div style="border: 1px solid var(--color-divider); padding: 14px; display: flex; align-items: center; gap: 12px;">
+            <span style="font-family: var(--font-heading); font-size: 26px; line-height: 0.9; letter-spacing: -0.04em;">C<span style="color: var(--color-accent-700);">F</span>P</span>
+            <span style="width: 1px; height: 22px; background: var(--color-divider);"></span>
+            <span style="font-family: var(--font-heading); font-size: 14px;">Conor Foy Plaster</span>
+          </div>
+          <div style="background: #16150f; padding: 14px; display: flex; align-items: center; gap: 12px;">
+            <span style="font-family: var(--font-heading); font-size: 26px; line-height: 0.9; letter-spacing: -0.04em; color: #f3f2f2;">C<span style="color: var(--color-accent-300);">F</span>P</span>
+            <span style="width: 1px; height: 22px; background: rgba(243,242,242,0.3);"></span>
+            <span style="font-family: var(--font-heading); font-size: 14px; color: #f3f2f2;">Conor Foy Plaster</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <p class="text-muted" style="font-size: 13px; line-height: 1.8; margin: 36px 0 0; max-width: 60ch;">01 is on the home page now. Say the number you want and I'll set it everywhere — or mix, e.g. 04's monogram with 02's letterspaced name.</p>
+  </div>
+</div>
+
+</x-dc>
+</body>
+</html>

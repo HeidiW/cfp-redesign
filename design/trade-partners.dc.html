@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/classical-c73d70d1-c1eb-459a-9501-a48720d6f372/styles.css">
+  <script src="_ds/classical-c73d70d1-c1eb-459a-9501-a48720d6f372/_ds_bundle.js"></script>
+  <style>
+    :root {
+      --color-bg: #ebf2fa;
+      --color-surface: #f7e2d7;
+      --color-text: #132a13;
+      --color-accent: #640d14;
+      --color-accent-2: #e5be9e;
+      --color-divider: color-mix(in srgb, #132a13 20%, transparent);
+      --color-neutral-100: #f4f8fb;
+      --color-neutral-200: #e6ecec;
+      --color-neutral-300: #cfd8d1;
+      --color-neutral-400: #aeb8b0;
+      --color-neutral-500: #8b968d;
+      --color-neutral-600: #6c766e;
+      --color-neutral-700: #4f584f;
+      --color-neutral-800: #33392f;
+      --color-neutral-900: #1d2a1c;
+      --color-accent-100: #fdeee9;
+      --color-accent-200: #fad4c0;
+      --color-accent-300: #e5be9e;
+      --color-accent-400: #b85a52;
+      --color-accent-500: #8e2b2a;
+      --color-accent-600: #4c0810;
+      --color-accent-700: #640d14;
+      --color-accent-800: #4c0810;
+      --color-accent-900: #33060b;
+      --color-accent-2-100: #fdeee9;
+      --color-accent-2-200: #fad4c0;
+      --color-accent-2-300: #e5be9e;
+      --color-accent-2-400: #cfa279;
+      --color-accent-2-500: #b08556;
+      --color-accent-2-600: #8b6740;
+      --color-accent-2-700: #6b4e30;
+      --color-accent-2-800: #4a3520;
+      --color-accent-2-900: #2e2114;
+    }
+
+    a { color: var(--color-accent); }
+    a:hover { color: var(--color-accent-600); }
+
+    @media (max-width: 1080px) {
+      header.nav { flex-wrap: wrap; row-gap: 14px; }
+      header.nav > nav { gap: 18px !important; flex-wrap: wrap; }
+      [data-rsp="cards"] { grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)) !important; }
+      [data-rsp="cells2"] { grid-template-columns: repeat(2, 1fr) !important; }
+      [data-rsp="cells1"] { grid-template-columns: 1fr !important; }
+      [data-rsp="rows"] { grid-template-columns: 1fr !important; gap: 22px !important; }
+    }
+    @media (max-width: 900px) { .table { font-size: 12px; } }
+    @media (max-width: 720px) {
+      [data-rsp="cards"] { grid-template-columns: 1fr !important; gap: 28px !important; }
+      [data-rsp="cells2"] { grid-template-columns: 1fr !important; }
+      [data-cols="1"] { columns: 1 !important; }
+      header.nav > nav { width: 100%; }
+    }
+  </style>
+</helmet>
+
+<div style="background: var(--color-bg); color: var(--color-text); font-family: var(--font-body);">
+
+  <header class="nav" style="position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--color-bg) 92%, transparent); backdrop-filter: blur(8px); padding-left: clamp(20px, 5vw, 48px); padding-right: clamp(20px, 5vw, 48px);">
+    <a class="nav-brand" href="home-plate-book.dc.html" style="display: flex; align-items: center; gap: 13px; text-decoration: none; color: inherit;">
+      <span style="display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border: 1px solid var(--color-accent); border-radius: var(--radius-sm); font-family: var(--font-heading); font-size: 14px; letter-spacing: 0.06em; color: var(--color-accent-700); padding-left: 0.06em;">CFP</span>
+      <span style="display: grid; gap: 2px;">
+        <span style="font-family: var(--font-heading); font-size: 17px; line-height: 1; letter-spacing: 0.01em;">Conor Foy Plaster</span>
+        <span class="text-muted" style="font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; line-height: 1; white-space: nowrap;">New York · Est. 2002</span>
+      </span>
+    </a>
+    <nav style="display: flex; gap: 26px; align-items: center;">
+      <a href="work.dc.html">Work</a>
+      <a href="services.dc.html">Services</a>
+      <a href="consulting.dc.html">Consulting</a>
+      <a href="jobsoxo.dc.html">JobsOxo</a>
+      <a href="about.dc.html">About</a>
+      <a href="trade-partners.dc.html" aria-current="page">Trade</a>
+      <a class="btn btn-primary" href="contact.dc.html" style="margin-left: 10px; white-space: nowrap; color: var(--color-accent);">Request a consultation</a>
+    </nav>
+  </header>
+
+  <section style="max-width: 1280px; margin: 0 auto; padding: 80px clamp(20px, 5vw, 48px) 56px;">
+    <div data-rsp="rows" style="display: grid; grid-template-columns: 1.1fr 1fr; gap: 64px; align-items: end;">
+      <div>
+        <div style="font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--color-accent-700); margin-bottom: 24px;">For trade partners</div>
+        <h1 style="font-size: clamp(38px, 7vw, 76px); font-weight: 400; line-height: 1.0; letter-spacing: -0.025em; margin: 0;">Work with us, not against us.</h1>
+      </div>
+      <p style="font-size: 16px; line-height: 1.85; text-align: justify; margin: 0 0 8px;">Painters, drywall contractors, tile setters and general contractors who need decorative plaster on a job they are already running. And finishing companies who want the systems we built for ourselves. Three ways in.</p>
+    </div>
+  </section>
+
+  <section style="max-width: 1280px; margin: 0 auto; padding: 0 48px 72px;">
+    <div data-rsp="cells1" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--color-divider); border: 1px solid var(--color-divider);">
+      <div style="background: var(--color-bg); padding: 40px 32px;">
+        <div class="text-muted" style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 18px; font-feature-settings: 'tnum';">01</div>
+        <h2 style="font-size: 30px; font-weight: 400; margin: 0 0 14px; line-height: 1.1;">Subcontract to us</h2>
+        <p style="font-size: 14px; line-height: 1.8; margin: 0 0 18px;">You hold the contract, we do the plaster. We show up insured, on schedule, with our own material and our own crew, and we do not talk to your client about anything except the wall.</p>
+        <p class="text-muted" style="font-size: 13px; line-height: 1.75; margin: 0;">Most common on restaurant and hotel buildouts where one room needs a finish nobody on site can do.</p>
+      </div>
+      <div style="background: var(--color-bg); padding: 40px 32px;">
+        <div class="text-muted" style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 18px; font-feature-settings: 'tnum';">02</div>
+        <h2 style="font-size: 30px; font-weight: 400; margin: 0 0 14px; line-height: 1.1;">White-label supervision</h2>
+        <p style="font-size: 14px; line-height: 1.8; margin: 0 0 18px;">You have the crew but not the specialist. We review the substrate, set the sequence, train your people on the finish, and stand behind the result — under your name if you prefer.</p>
+        <p class="text-muted" style="font-size: 13px; line-height: 1.75; margin: 0;">Priced as a day rate. Cheaper than a callback.</p>
+      </div>
+      <div style="background: var(--color-bg); padding: 40px 32px;">
+        <div class="text-muted" style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 18px; font-feature-settings: 'tnum';">03</div>
+        <h2 style="font-size: 30px; font-weight: 400; margin: 0 0 14px; line-height: 1.1;">Run your shop on JobsOxo</h2>
+        <p style="font-size: 14px; line-height: 1.8; margin: 0 0 18px;">The platform we built to run this business — inquiry, estimating, scheduling, invoicing, payment, payroll and reconciliation in one place. Sold on its own, or set up with us alongside.</p>
+        <a href="jobsoxo.dc.html" style="font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none;">JobsOxo — available mid-September 2026 →</a>
+      </div>
+    </div>
+  </section>
+
+  <section style="background: var(--color-surface); border-top: 1px solid var(--color-divider); border-bottom: 1px solid var(--color-divider);">
+    <div data-rsp="rows" style="max-width: 1280px; margin: 0 auto; padding: 80px clamp(20px, 5vw, 48px); display: grid; grid-template-columns: 1fr 1.4fr; gap: 64px; align-items: start;">
+      <div>
+        <div style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--color-accent-700); margin-bottom: 18px;">What you can expect</div>
+        <h2 style="font-size: clamp(27px, 4vw, 40px); font-weight: 400; line-height: 1.1; margin: 0;">The boring parts, handled.</h2>
+      </div>
+      <div style="display: grid; gap: 0; border-top: 1px solid var(--color-divider);">
+        <div data-cols="1" data-rsp="rows" style="display: grid; grid-template-columns: 230px 1fr; gap: 32px; padding: 22px 0; border-bottom: 1px solid var(--color-divider); align-items: baseline;">
+          <span style="font-family: var(--font-heading); font-size: 21px;">Insurance &amp; compliance</span>
+          <span class="text-muted" style="font-size: 14px; line-height: 1.75;">General liability, workers' comp, certificates issued before we mobilise. Union and non-union sites both.</span>
+        </div>
+        <div data-cols="1" data-rsp="rows" style="display: grid; grid-template-columns: 230px 1fr; gap: 32px; padding: 22px 0; border-bottom: 1px solid var(--color-divider); align-items: baseline;">
+          <span style="font-family: var(--font-heading); font-size: 21px;">Bids that hold</span>
+          <span class="text-muted" style="font-size: 14px; line-height: 1.75;">Priced off measured takeoffs, with allowances stated. If the scope does not change, the number does not either.</span>
+        </div>
+        <div data-cols="1" data-rsp="rows" style="display: grid; grid-template-columns: 230px 1fr; gap: 32px; padding: 22px 0; border-bottom: 1px solid var(--color-divider); align-items: baseline;">
+          <span style="font-family: var(--font-heading); font-size: 21px;">Daily logs and photos</span>
+          <span class="text-muted" style="font-size: 14px; line-height: 1.75;">Filed from site every day in JobsOxo, and shared with you — so you can answer your client without calling us.</span>
+        </div>
+        <div data-cols="1" data-rsp="rows" style="display: grid; grid-template-columns: 230px 1fr; gap: 32px; padding: 22px 0; border-bottom: 1px solid var(--color-divider); align-items: baseline;">
+          <span style="font-family: var(--font-heading); font-size: 21px;">Cure time, respected</span>
+          <span class="text-muted" style="font-size: 14px; line-height: 1.75;">We will tell you at bid stage how many days the finish needs, and we will not agree to a schedule we cannot hold.</span>
+        </div>
+        <div data-cols="1" data-rsp="rows" style="display: grid; grid-template-columns: 230px 1fr; gap: 32px; padding: 22px 0; border-bottom: 1px solid var(--color-divider); align-items: baseline;">
+          <span style="font-family: var(--font-heading); font-size: 21px;">Color on record</span>
+          <span class="text-muted" style="font-size: 14px; line-height: 1.75;">Every formula archived, so a repair in five years matches without a site visit to guess at it.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="max-width: 1280px; margin: 0 auto; padding: 72px clamp(20px, 5vw, 48px);">
+    <div style="display: flex; flex-wrap: wrap; gap: 32px; align-items: center; justify-content: space-between;">
+      <div>
+        <h2 style="font-size: clamp(26px, 3.8vw, 38px); font-weight: 400; margin: 0 0 10px;">Bidding something with plaster in it?</h2>
+        <p class="text-muted" style="font-size: 15px; margin: 0;">Send the drawings and we will price the scope.</p>
+      </div>
+      <a class="btn btn-primary" href="contact.dc.html" style="font-size: 14px; padding: 13px 24px;">Get in touch</a>
+    </div>
+  </section>
+
+  <footer style="border-top: 1px solid var(--color-divider);">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 48px clamp(20px, 5vw, 48px); display: flex; flex-wrap: wrap; gap: 32px; justify-content: space-between; align-items: center;">
+      <div style="display: flex; align-items: center; gap: 13px;">
+        <span style="display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border: 1px solid var(--color-accent); border-radius: var(--radius-sm); font-family: var(--font-heading); font-size: 14px; letter-spacing: 0.06em; color: var(--color-accent-700); padding-left: 0.06em;">CFP</span>
+        <span style="font-family: var(--font-heading); font-size: 17px;">Conor Foy Plaster</span>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 24px; font-size: 13px;">
+        <a href="work.dc.html" style="text-decoration: none; color: inherit;">Work</a>
+        <a href="services.dc.html" style="text-decoration: none; color: inherit;">Services</a>
+        <a href="consulting.dc.html" style="text-decoration: none; color: inherit;">Consulting</a>
+        <a href="jobsoxo.dc.html" style="text-decoration: none; color: inherit;">JobsOxo</a>
+        <a href="about.dc.html" style="text-decoration: none; color: inherit;">About</a>
+        <a href="trade-partners.dc.html" style="text-decoration: none; color: inherit;">Trade</a>
+        <a href="contact.dc.html" style="text-decoration: none; color: inherit;">Contact</a>
+      </div>
+      <div class="text-muted" style="font-size: 12px; font-feature-settings: 'tnum';">© 2026 Conor Foy Plaster</div>
+    </div>
+  </footer>
+</div>
+
+</x-dc>
+</body>
+</html>
