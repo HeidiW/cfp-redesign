@@ -1,0 +1,234 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+import Eyebrow from '../components/Eyebrow.astro';
+import Plate from '../components/Plate.astro';
+import CtaBand from '../components/CtaBand.astro';
+
+import conorImg from '../assets/about-conor.jpg';
+
+const timeline = [
+  { year: '2002', event: 'Conor Foy starts taking his own work in New York. Mostly residential, mostly Venetian.' },
+  { year: '2011', event: 'First full restaurant. Hospitality becomes the centre of the practice, and stays there.' },
+  { year: '2016', event: 'Tadelakt and Japanese plaster added to the book after two years of testing on our own walls.' },
+  { year: '2019', event: 'Architects begin hiring us at drawing stage. The consulting side starts by accident.' },
+  { year: '2022', event: 'Moxy Hotel, Williamsburg — a full public-rooms scope phased around an operating hotel.' },
+  { year: '2025', event: "Maxime's — the largest single job to date." },
+  { year: '2026', event: "JobsOxo — built by Heidi Williams-Foy, Conor's wife — goes into daily use across every crew and every job, and opens to other trade companies in mid-September." },
+];
+
+const pillars = [
+  {
+    title: 'The crew',
+    body: 'Small and long-serving. The people who show up to your site are the people who did the sample, and most of them have been here more than a decade. We do not scale by hiring strangers for a season.',
+  },
+  {
+    title: 'The material',
+    body: 'Lime, clay, pigment, leaf. Mixed for the job rather than bought pre-tinted, which is why a color can be matched again in five years and why the surface has depth a can of paint cannot reach.',
+  },
+  {
+    title: 'The paperwork',
+    body: 'Estimates that hold, invoices on time, and a client who can see where the job stands without calling to ask. Unglamorous, and the main reason contractors call us back.',
+  },
+];
+---
+<BaseLayout
+  title="About — Conor Foy Plaster"
+  description="Conor Foy has been finishing walls in New York since 2002 — material mixed to the room, applied on site, by a crew that has worked together for over a decade."
+>
+  {/* ── Intro ───────────────────────────────────────────────────────── */}
+  <Section border="none" pt={80} pb={64}>
+    <div class="about-hero">
+      <div class="about-hero__text">
+        <Eyebrow track={0.2} mb={24}>About</Eyebrow>
+        <h1 class="about-hero__title">A trade learned by hand.</h1>
+        <div class="about-hero__prose">
+          <p>
+            Conor Foy took an MFA at Columbia University, graduating in 1998, and
+            has been finishing walls in New York since 2002 — first as a hand on
+            other people's crews, then with his own. The work has always been the
+            same work: material mixed to the room, applied on site, by people who
+            have done it enough times to know when a coat is right.
+          </p>
+          <p>
+            What is unusual is not the craft. Plenty of good plasterers work in
+            this city. What is unusual is that the shop behind the craft got
+            rebuilt with the same care — estimating that is consistent whoever
+            writes it, schedules that hold, invoices that arrive when they
+            should, and a record of every color mixed so a repair years later
+            still matches.
+          </p>
+          <p>
+            That rebuild produced software, and the software became a second
+            business. But the reason it exists is the first one: we wanted the
+            finish and the paperwork to be equally good.
+          </p>
+        </div>
+      </div>
+      <figure class="about-hero__figure">
+        <Plate
+          src={conorImg}
+          alt="Conor Foy beside a curved polished plaster wall"
+          height={520}
+          sizes="(max-width: 1080px) calc(100vw - 40px), 560px"
+          loading="eager"
+        />
+        <figcaption class="about-hero__caption">
+          Conor Foy — curved polished plaster, on site
+        </figcaption>
+      </figure>
+    </div>
+  </Section>
+
+  {/* ── Timeline ────────────────────────────────────────────────────── */}
+  <Section tone="surface" class="about-timeline">
+    <div class="about-timeline__grid">
+      <div>
+        <Eyebrow>Twenty-three years</Eyebrow>
+        <h2 class="about-timeline__title">The short version.</h2>
+      </div>
+      <div class="about-timeline__list">
+        {timeline.map((entry) => (
+          <div class="tl">
+            <span class="tl__year tnum">{entry.year}</span>
+            <span class="tl__event">{entry.event}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </Section>
+
+  {/* ── Pillars ─────────────────────────────────────────────────────── */}
+  <Section border="none" class="about-pillars">
+    <div class="about-pillars__grid">
+      {pillars.map((pillar) => (
+        <div>
+          <h3 class="about-pillar__title">{pillar.title}</h3>
+          <p class="about-pillar__body">{pillar.body}</p>
+        </div>
+      ))}
+    </div>
+  </Section>
+
+  <CtaBand
+    tone="surface"
+    title="Come see a sample."
+    note="Or we will bring one to your site."
+    ctaLabel="Request a consultation"
+    ctaHref="/contact"
+  />
+</BaseLayout>
+
+<style>
+  /* ── Intro ───────────────────────────────────────────────────────── */
+  .about-hero {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 64px;
+    align-items: end;
+  }
+  .about-hero__title {
+    font-size: clamp(38px, 7vw, 76px);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.025em;
+    margin: 0 0 32px;
+  }
+  .about-hero__prose {
+    columns: 2;
+    column-gap: 44px;
+    font-size: 15px;
+    line-height: 1.85;
+    text-align: justify;
+    hyphens: auto;
+  }
+  .about-hero__prose p {
+    margin: 0 0 var(--space-3);
+  }
+  .about-hero__figure {
+    margin: 0;
+  }
+  .about-hero__caption {
+    margin-top: 12px;
+    font-size: 12px;
+  }
+
+  /* ── Timeline ────────────────────────────────────────────────────── */
+  .about-timeline__grid {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 64px;
+    align-items: start;
+  }
+  .about-timeline__title {
+    font-size: clamp(27px, 4vw, 40px);
+    font-weight: 400;
+    line-height: 1.1;
+    margin: 0;
+  }
+  .about-timeline__list {
+    display: grid;
+    border-top: 1px solid var(--color-divider);
+  }
+  .tl {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 32px;
+    padding: 22px 0;
+    border-bottom: 1px solid var(--color-divider);
+    align-items: baseline;
+  }
+  .tl__year {
+    font-family: var(--font-heading);
+    font-size: 22px;
+    color: var(--color-accent-700);
+  }
+  .tl__event {
+    font-size: 14.5px;
+    line-height: 1.75;
+  }
+
+  /* ── Pillars ─────────────────────────────────────────────────────── */
+  .about-pillars__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+  }
+  .about-pillar__title {
+    font-size: 26px;
+    font-weight: 400;
+    margin: 0 0 12px;
+  }
+  .about-pillar__body {
+    font-size: 14.5px;
+    line-height: 1.85;
+    text-align: justify;
+    margin: 0;
+  }
+
+  /* ── Responsive ──────────────────────────────────────────────────── */
+  @media (max-width: 1080px) {
+    .about-hero,
+    .about-timeline__grid {
+      grid-template-columns: 1fr;
+      gap: 22px;
+    }
+    .tl {
+      grid-template-columns: 1fr;
+      gap: 6px;
+    }
+    .about-pillars__grid {
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+    }
+  }
+
+  @media (max-width: 720px) {
+    .about-hero__prose {
+      columns: 1;
+    }
+    .about-pillars__grid {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+  }
+</style>
