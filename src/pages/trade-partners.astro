@@ -1,0 +1,210 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+import Eyebrow from '../components/Eyebrow.astro';
+import CtaBand from '../components/CtaBand.astro';
+
+const ways = [
+  {
+    n: '01',
+    title: 'Subcontract to us',
+    body: 'You hold the contract, we do the plaster. We show up insured, on schedule, with our own material and our own crew, and we do not talk to your client about anything except the wall.',
+    note: 'Most common on restaurant and hotel buildouts where one room needs a finish nobody on site can do.',
+  },
+  {
+    n: '02',
+    title: 'White-label supervision',
+    body: 'You have the crew but not the specialist. We review the substrate, set the sequence, train your people on the finish, and stand behind the result — under your name if you prefer.',
+    note: 'Priced as a day rate. Cheaper than a callback.',
+  },
+  {
+    n: '03',
+    title: 'Run your shop on JobsOxo',
+    body: 'The platform we built to run this business — inquiry, estimating, scheduling, invoicing, payment, payroll and reconciliation in one place. Sold on its own, or set up with us alongside.',
+    link: { text: 'JobsOxo — available mid-September 2026 →', href: '/jobsoxo' },
+  },
+];
+
+const expectations = [
+  { term: 'Insurance & compliance', body: "General liability, workers' comp, certificates issued before we mobilise. Union and non-union sites both." },
+  { term: 'Bids that hold', body: 'Priced off measured takeoffs, with allowances stated. If the scope does not change, the number does not either.' },
+  { term: 'Daily logs and photos', body: 'Filed from site every day in JobsOxo, and shared with you — so you can answer your client without calling us.' },
+  { term: 'Cure time, respected', body: 'We will tell you at bid stage how many days the finish needs, and we will not agree to a schedule we cannot hold.' },
+  { term: 'Color on record', body: 'Every formula archived, so a repair in five years matches without a site visit to guess at it.' },
+];
+---
+<BaseLayout
+  title="Trade Partners — Conor Foy Plaster"
+  description="Three ways to bring a decorative-plaster specialist onto a job you're already running — subcontract, white-label supervision, or run your shop on JobsOxo."
+>
+  {/* ── Intro ───────────────────────────────────────────────────────── */}
+  <Section border="none" pt={80} pb={56}>
+    <div class="tp-hero">
+      <div>
+        <Eyebrow track={0.2} mb={24}>For trade partners</Eyebrow>
+        <h1 class="tp-hero__title">Work with us, not against us.</h1>
+      </div>
+      <p class="tp-hero__lede">
+        Painters, drywall contractors, tile setters and general contractors who
+        need decorative plaster on a job they are already running. And finishing
+        companies who want the systems we built for ourselves. Three ways in.
+      </p>
+    </div>
+  </Section>
+
+  {/* ── Three ways in ───────────────────────────────────────────────── */}
+  <Section border="none" pt={0} pb={72}>
+    <div class="ways">
+      {ways.map((way) => (
+        <div class="way">
+          <div class="way__num text-muted tnum">{way.n}</div>
+          <h2 class="way__title">{way.title}</h2>
+          <p class="way__body">{way.body}</p>
+          {way.note && <p class="way__note text-muted">{way.note}</p>}
+          {way.link && (
+            <a class="way__link" href={way.link.href}>{way.link.text}</a>
+          )}
+        </div>
+      ))}
+    </div>
+  </Section>
+
+  {/* ── What you can expect ─────────────────────────────────────────── */}
+  <Section tone="surface" class="tp-expect">
+    <div class="tp-expect__grid">
+      <div>
+        <Eyebrow>What you can expect</Eyebrow>
+        <h2 class="tp-expect__title">The boring parts, handled.</h2>
+      </div>
+      <div class="tp-expect__list">
+        {expectations.map((item) => (
+          <div class="expect">
+            <span class="expect__term">{item.term}</span>
+            <span class="expect__body text-muted">{item.body}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </Section>
+
+  <CtaBand
+    title="Bidding something with plaster in it?"
+    note="Send the drawings and we will price the scope."
+    ctaLabel="Get in touch"
+    ctaHref="/contact"
+  />
+</BaseLayout>
+
+<style>
+  /* ── Intro ───────────────────────────────────────────────────────── */
+  .tp-hero {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 64px;
+    align-items: end;
+  }
+  .tp-hero__title {
+    font-size: clamp(38px, 7vw, 76px);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.025em;
+    margin: 0;
+  }
+  .tp-hero__lede {
+    font-size: 16px;
+    line-height: 1.85;
+    text-align: justify;
+    margin: 0 0 8px;
+  }
+
+  /* ── Three ways in ───────────────────────────────────────────────── */
+  .ways {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--color-divider);
+    border: 1px solid var(--color-divider);
+  }
+  .way {
+    background: var(--color-bg);
+    padding: 40px 32px;
+  }
+  .way__num {
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+  .way__title {
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 1.1;
+    margin: 0 0 14px;
+  }
+  .way__body {
+    font-size: 14px;
+    line-height: 1.8;
+    margin: 0 0 18px;
+  }
+  .way__note {
+    font-size: 13px;
+    line-height: 1.75;
+    margin: 0;
+  }
+  .way__link {
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+
+  /* ── What you can expect ─────────────────────────────────────────── */
+  .tp-expect__grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 64px;
+    align-items: start;
+  }
+  .tp-expect__title {
+    font-size: clamp(27px, 4vw, 40px);
+    font-weight: 400;
+    line-height: 1.1;
+    margin: 0;
+  }
+  .tp-expect__list {
+    display: grid;
+    border-top: 1px solid var(--color-divider);
+  }
+  .expect {
+    display: grid;
+    grid-template-columns: 230px 1fr;
+    gap: 32px;
+    padding: 22px 0;
+    border-bottom: 1px solid var(--color-divider);
+    align-items: baseline;
+  }
+  .expect__term {
+    font-family: var(--font-heading);
+    font-size: 21px;
+  }
+  .expect__body {
+    font-size: 14px;
+    line-height: 1.75;
+  }
+
+  /* ── Responsive ──────────────────────────────────────────────────── */
+  @media (max-width: 1080px) {
+    .tp-hero,
+    .tp-expect__grid {
+      grid-template-columns: 1fr;
+      gap: 22px;
+    }
+    .ways {
+      grid-template-columns: 1fr;
+    }
+    .expect {
+      grid-template-columns: 1fr;
+      gap: 6px;
+    }
+  }
+</style>
