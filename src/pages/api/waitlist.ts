@@ -21,6 +21,7 @@ export const POST: APIRoute = async ({ request }) => {
   const email = field(data, 'email');
   const name = field(data, 'name');
   const company = field(data, 'company');
+  const crewSize = field(data, 'crewSize');
   const message = field(data, 'message');
 
   if (!isEmail(email)) {
@@ -35,9 +36,10 @@ export const POST: APIRoute = async ({ request }) => {
   }
 
   const body = [
-    name && `Name:    ${name}`,
-    `Email:   ${email}`,
-    company && `Company: ${company}`,
+    name && `Name:      ${name}`,
+    `Email:     ${email}`,
+    company && `Company:   ${company}`,
+    crewSize && `Crew size: ${crewSize}`,
     message && `\n${message}`,
   ]
     .filter(Boolean)

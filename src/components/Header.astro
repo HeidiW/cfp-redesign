@@ -1,7 +1,12 @@
 ---
 import Brand from './Brand.astro';
-import { headerLinks, headerCta, isCurrent } from '../data/nav';
+import { headerLinks, headerCta as defaultCta, isCurrent, type NavLink } from '../data/nav';
 
+interface Props {
+  /** Override the accent CTA (JobsOxo → "Join the waitlist" / #demo). */
+  cta?: NavLink;
+}
+const { cta = defaultCta } = Astro.props;
 const pathname = Astro.url.pathname;
 ---
 <header class="nav site-header">
@@ -18,11 +23,11 @@ const pathname = Astro.url.pathname;
     ))}
     <a
       class="btn btn-primary site-nav__cta"
-      href={headerCta.href}
-      aria-current={isCurrent(headerCta.href, pathname) ? 'page' : undefined}
+      href={cta.href}
+      aria-current={isCurrent(cta.href, pathname) ? 'page' : undefined}
       style="color: var(--color-accent);"
     >
-      {headerCta.label}
+      {cta.label}
     </a>
   </nav>
 </header>

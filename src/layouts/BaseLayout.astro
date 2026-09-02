@@ -2,14 +2,19 @@
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import type { NavLink } from '../data/nav';
 
 interface Props {
   title: string;
   description?: string;
   /** Footer legal line override (JobsOxo). */
   footerLegal?: string;
+  /** Header CTA override — JobsOxo swaps in "Join the waitlist" → #demo. */
+  headerCta?: NavLink;
+  /** Page ground. `neutral` is the lighter neutral-100 JobsOxo runs on. */
+  pageTone?: 'default' | 'neutral';
 }
-const { title, description, footerLegal } = Astro.props;
+const { title, description, footerLegal, headerCta, pageTone = 'default' } = Astro.props;
 ---
 <!doctype html>
 <html lang="en">
@@ -26,8 +31,8 @@ const { title, description, footerLegal } = Astro.props;
     {description && <meta name="description" content={description} />}
     <meta name="generator" content={Astro.generator} />
   </head>
-  <body>
-    <Header />
+  <body data-page-tone={pageTone === 'neutral' ? 'neutral' : undefined}>
+    <Header cta={headerCta} />
     <main>
       <slot />
     </main>

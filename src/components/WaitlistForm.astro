@@ -1,0 +1,68 @@
+---
+/** JobsOxo waitlist — "Join the waitlist" → "Thank you — we'll be in touch".
+ *  Posts to /api/waitlist, which emails hello@jobsoxo.com via Resend. */
+---
+<form class="waitlist-form" method="post" action="/api/waitlist" data-swap-form>
+  <div class="waitlist-form__pair">
+    <div class="field">
+      <label for="wl-name">Name</label>
+      <input class="input" id="wl-name" name="name" type="text" placeholder="Your name" />
+    </div>
+    <div class="field">
+      <label for="wl-company">Company</label>
+      <input class="input" id="wl-company" name="company" type="text" placeholder="Company name" />
+    </div>
+  </div>
+  <div class="waitlist-form__pair">
+    <div class="field">
+      <label for="wl-email">Email</label>
+      <input class="input" id="wl-email" name="email" type="email" placeholder="you@company.com" required />
+    </div>
+    <div class="field">
+      <label for="wl-crew">Crew size</label>
+      <input class="input" id="wl-crew" name="crewSize" type="text" placeholder="e.g. 12" />
+    </div>
+  </div>
+  <div class="field">
+    <label for="wl-context">What are you running on today?</label>
+    <textarea class="input" id="wl-context" name="message"
+      placeholder="Spreadsheets, QuickBooks, paper, something else — and what hurts most."></textarea>
+  </div>
+
+  <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+  <button
+    class="btn btn-primary waitlist-form__submit"
+    type="submit"
+    data-swap-done="Thank you — we'll be in touch"
+  >
+    Join the waitlist
+  </button>
+  <p class="form-status" data-form-status role="alert" hidden></p>
+</form>
+
+<style>
+  .waitlist-form {
+    display: grid;
+    gap: 18px;
+  }
+
+  .waitlist-form__pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+
+  .waitlist-form__submit {
+    justify-self: start;
+    font-size: 14px;
+    padding: 13px 26px;
+  }
+
+  /* data-rsp="rows" in the prototype: pairs stack ≤1080px. */
+  @media (max-width: 1080px) {
+    .waitlist-form__pair {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

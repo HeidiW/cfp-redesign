@@ -6,6 +6,8 @@
  * two background tones: `bg` (Alice Blue, the ground) and `surface` (the warm
  * tint). No more than two tones per page. Surface bands typically carry a
  * hairline on both edges, so `tone="surface"` defaults `border` to `both`.
+ * `tone="none"` is transparent — for pages whose ground is set on <body>
+ * (JobsOxo runs on the lighter neutral-100), where `bg` then reads as a band.
  *
  * Inner content is centred at `width` (1180 or 1280 in the designs) with the
  * standard band padding: `88px clamp(20px, 5vw, 48px)` at desktop.
@@ -18,7 +20,7 @@
  */
 interface Props {
   id?: string;
-  tone?: 'bg' | 'surface';
+  tone?: 'bg' | 'surface' | 'none';
   border?: 'top' | 'both' | 'none';
   /** Inner max-width in px. */
   width?: number;
@@ -64,6 +66,9 @@ const style = [
   }
   .band--surface {
     background: var(--color-surface);
+  }
+  .band--none {
+    background: transparent;
   }
 
   .band--border-top {

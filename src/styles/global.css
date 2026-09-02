@@ -332,6 +332,11 @@ h1, h2, h3, h4, h5, h6 { font-weight: 400; }
 a { color: var(--color-accent); }
 a:hover { color: var(--color-accent-600); }
 
+/* In-page anchor targets clear the sticky header. */
+:where(section, [id]):target {
+  scroll-margin-top: 5rem;
+}
+
 /* Tabular figures for standalone numerals — years, table figures, dollar
    amounts, kicker numbers. Running prose keeps proportional figures. */
 .tnum { font-feature-settings: 'tnum'; }
@@ -352,4 +357,17 @@ a:hover { color: var(--color-accent-600); }
   font-size: 13.5px;
   line-height: 1.6;
   color: var(--color-accent-700);
+}
+
+/* JobsOxo runs on the lighter neutral ground, so `--color-bg` (Alice Blue)
+   reads as a raised band. The header/footer follow the ground. These win over
+   the components' own scoped background rules on specificity. */
+body[data-page-tone='neutral'] {
+  background: var(--color-neutral-100);
+}
+body[data-page-tone='neutral'] .site-header {
+  background: color-mix(in srgb, var(--color-neutral-100) 92%, transparent);
+}
+body[data-page-tone='neutral'] .site-footer {
+  background: var(--color-bg);
 }

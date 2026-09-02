@@ -1,0 +1,469 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+import Eyebrow from '../components/Eyebrow.astro';
+import WaitlistForm from '../components/WaitlistForm.astro';
+import FormSwap from '../components/FormSwap.astro';
+
+const sidebar = ['Jobs', 'Estimates', 'Schedule', 'Invoices', 'Payroll', 'Reconcile'];
+const sidebarSecondary = ['Clients', 'Reports'];
+
+// Illustrative sample data. The two projects that were renamed elsewhere on the
+// site (Gramercy Hotel, Nobu Downtown) are swapped for their replacements.
+const jobs = [
+  { job: 'Carver Steak — coffered ceiling', stage: 'Install', stageClass: 'tag-accent', crew: 'Team A', contract: '$186,400', invoiced: '$120,000' },
+  { job: 'W 13th St Residence — polished plaster', stage: 'Install', stageClass: 'tag-accent', crew: 'Team B', contract: '$94,200', invoiced: '$47,100' },
+  { job: 'Private residence — Tribeca', stage: 'Sampling', stageClass: 'tag-neutral', crew: 'Conor', contract: '$38,500', invoiced: '$4,000' },
+  { job: "Maxime's — panel restoration", stage: 'Punch', stageClass: 'tag-neutral', crew: 'Team A', contract: '$61,700', invoiced: '$61,700' },
+  { job: 'Bar buildout — LES', stage: 'Estimate sent', stageClass: 'tag-outline', crew: '—', contract: '$32,000', invoiced: '$0' },
+];
+
+const workflow = [
+  { n: '01', title: 'Inquiry', body: 'Every lead lands in one inbox with its site, contact and history attached. Nothing lives in someone’s texts.' },
+  { n: '02', title: 'Estimating', body: 'Takeoffs against your own labor and material rates, priced consistently whoever writes them.' },
+  { n: '03', title: 'Scheduling', body: 'Crews, sites and days on one board, so you can see who is double-booked before Monday.' },
+  { n: '04', title: 'Invoicing & payment', body: 'Progress billing off the schedule, sent, tracked and chased without a separate reminder system.' },
+  { n: '05', title: 'Payroll', body: 'Hours logged on site flow straight to payroll and to the job’s cost, at the same time.' },
+  { n: '06', title: 'Reconciliation', body: 'Books that close because the numbers were right when they were entered, not fixed afterwards.' },
+];
+
+const why = [
+  { kicker: 'Built for', title: 'Job-based service companies', body: 'Painting, plastering, decorating, flooring, tile, drywall — trades where a job has a scope, a crew and a schedule, and the margin lives in the labor.' },
+  { kicker: 'Not built for', title: 'General contractors managing 40 subs', body: 'There is good software for that already, and this is not trying to be it.' },
+  { kicker: 'Runs on', title: 'Phones on site, laptops in the office', body: 'Hours, photos and daily logs go in from the job. Everything else happens at a desk.' },
+];
+---
+<BaseLayout
+  title="JobsOxo — job management for finishing companies"
+  description="All-in-one business management for construction, painting and decorating companies — inquiry, estimating, scheduling, invoicing, payment, payroll and reconciliation in one place. Opening mid-September 2026."
+  pageTone="neutral"
+  headerCta={{ label: 'Join the waitlist', href: '#demo' }}
+  footerLegal="© 2026 Conor Foy Plaster · JobsOxo is a product of JobsOxo, LLC"
+>
+  {/* ── Hero ────────────────────────────────────────────────────────── */}
+  <Section tone="none" border="none" width={1180} pt={96} pb={72}>
+    <div class="jo-hero">
+      <span class="jo-badge">
+        <span class="jo-badge__dot" aria-hidden="true"></span>
+        Available mid-September 2026
+      </span>
+      <h1 class="jo-hero__title">JobsOxo</h1>
+      <p class="jo-hero__tagline">Run the whole job in one place.</p>
+      <p class="jo-hero__sub text-muted">
+        All-in-one business management for construction, painting, decorating and
+        other job-based service companies — from the first client inquiry through
+        estimating, scheduling, invoicing, payment collection, payroll and
+        financial reconciliation.
+      </p>
+      <div class="jo-hero__actions">
+        <a class="btn btn-primary jo-hero__btn" href="#demo">Join the waitlist</a>
+        <a class="btn btn-secondary jo-hero__btn" href="#workflow">See the workflow</a>
+      </div>
+    </div>
+  </Section>
+
+  {/* ── Jobs-board mock ─────────────────────────────────────────────── */}
+  <Section tone="none" border="none" width={1180} pt={0} pb={96}>
+    <div class="board">
+      <div class="board__chrome">
+        <span class="board__dots" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </span>
+        <span class="board__label text-muted">JobsOxo — Jobs board</span>
+      </div>
+      <div class="board__scroll">
+        <div class="board__body">
+          <nav class="board__nav">
+            <div class="board__nav-item board__nav-item--active">Jobs</div>
+            {sidebar.slice(1).map((item) => (
+              <div class="board__nav-item text-muted">{item}</div>
+            ))}
+            <hr class="hr board__nav-rule" />
+            {sidebarSecondary.map((item) => (
+              <div class="board__nav-item text-muted">{item}</div>
+            ))}
+          </nav>
+          <div class="board__main">
+            <div class="board__head">
+              <h3 class="board__title">Active jobs</h3>
+              <span class="board__summary text-muted tnum">6 open · $412,800 in progress</span>
+            </div>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Job</th>
+                  <th>Stage</th>
+                  <th>Crew</th>
+                  <th class="num">Contract</th>
+                  <th class="num">Invoiced</th>
+                </tr>
+              </thead>
+              <tbody>
+                {jobs.map((row) => (
+                  <tr>
+                    <td>{row.job}</td>
+                    <td><span class:list={['tag', row.stageClass]}>{row.stage}</span></td>
+                    <td class="text-muted">{row.crew}</td>
+                    <td class="num tnum">{row.contract}</td>
+                    <td class="num tnum">{row.invoiced}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="jo-board-note text-muted">Interface shown with sample data</p>
+  </Section>
+
+  {/* ── Workflow ────────────────────────────────────────────────────── */}
+  <Section id="workflow" tone="bg" border="both" width={1180}>
+    <div class="jo-workflow__head">
+      <Eyebrow track={0.2} mb={16}>The workflow</Eyebrow>
+      <h2 class="jo-workflow__title">Inquiry to reconciled, without leaving.</h2>
+      <p class="jo-workflow__note text-muted">
+        Six stages that most shops run in six different tools, three of which are
+        spreadsheets.
+      </p>
+    </div>
+    <div class="jo-workflow__grid">
+      {workflow.map((stage) => (
+        <div class="jo-stage">
+          <div class="jo-stage__num text-muted tnum">{stage.n}</div>
+          <h3 class="jo-stage__title">{stage.title}</h3>
+          <p class="jo-stage__body text-muted">{stage.body}</p>
+        </div>
+      ))}
+    </div>
+  </Section>
+
+  {/* ── Why it exists ───────────────────────────────────────────────── */}
+  <Section tone="none" border="none" width={1180}>
+    <div class="jo-why__grid">
+      <div>
+        <Eyebrow track={0.2}>Why it exists</Eyebrow>
+        <h2 class="jo-why__title">We wrote it because nothing else fit.</h2>
+        <p class="jo-why__body">
+          Conor Foy Plaster has been finishing rooms in New York since 2002. By
+          the time we were running several crews across several sites, the
+          estimating lived in one place, the schedule in another, the hours on
+          paper, and the truth about whether a job made money arrived three
+          months late.
+        </p>
+        <p class="jo-why__body">
+          The construction software we tried was built for people who build
+          buildings, not for shops who finish them. So Heidi Williams-Foy —
+          Conor's wife — built ours. We have been running the business on it
+          since the start of this year, and it opens to other shops in
+          mid-September 2026.
+        </p>
+      </div>
+      <div class="jo-why__cards">
+        {why.map((card) => (
+          <div class="card">
+            <div class="card-kicker">{card.kicker}</div>
+            <div class="card-title">{card.title}</div>
+            <p class="card-body">{card.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </Section>
+
+  {/* ── Waitlist ────────────────────────────────────────────────────── */}
+  <Section id="demo" tone="bg" border="top" width={1180}>
+    <div class="jo-demo__grid">
+      <div class="jo-demo__intro">
+        <Eyebrow track={0.2}>Get started</Eyebrow>
+        <h2 class="jo-demo__title">First look, mid-September 2026.</h2>
+        <p class="jo-demo__body">
+          Leave your details and we will walk you through it the week it opens —
+          half an hour, screen shared, using a real job of yours rather than a
+          demo account. If it is not right for your shop we will say so on the
+          call.
+        </p>
+        <hr class="hr" />
+        <div class="jo-demo__contact">
+          <a href="mailto:hello@jobsoxo.com">hello@jobsoxo.com</a>
+          <span class="text-muted">A product of JobsOxo, LLC — New York</span>
+        </div>
+      </div>
+      <WaitlistForm />
+    </div>
+  </Section>
+
+  <FormSwap />
+</BaseLayout>
+
+<style>
+  /* ── Hero ────────────────────────────────────────────────────────── */
+  .jo-hero {
+    text-align: center;
+  }
+  .jo-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid var(--color-divider);
+    border-radius: 999px;
+    padding: 6px 16px;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-accent-700);
+    margin-bottom: 32px;
+  }
+  .jo-badge__dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--color-accent);
+  }
+  .jo-hero__title {
+    font-size: clamp(44px, 8.5vw, 92px);
+    font-weight: 400;
+    line-height: 0.98;
+    letter-spacing: -0.03em;
+    margin: 0 0 24px;
+  }
+  .jo-hero__tagline {
+    font-family: var(--font-heading);
+    font-size: 20px;
+    line-height: 1.6;
+    max-width: 30ch;
+    margin: 0 auto 20px;
+  }
+  .jo-hero__sub {
+    font-size: 16px;
+    line-height: 1.75;
+    max-width: 56ch;
+    margin: 0 auto 36px;
+  }
+  .jo-hero__actions {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .jo-hero__btn {
+    font-size: 14px;
+    padding: 13px 26px;
+  }
+
+  /* ── Jobs-board mock ─────────────────────────────────────────────── */
+  .board {
+    border: 1px solid var(--color-divider);
+    border-radius: var(--radius-lg);
+    background: var(--color-bg);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+  }
+  .board__chrome {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 18px;
+    border-bottom: 1px solid var(--color-divider);
+    background: var(--color-surface);
+  }
+  .board__dots {
+    display: flex;
+    gap: 6px;
+  }
+  .board__dots span {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    border: 1px solid var(--color-neutral-400);
+  }
+  .board__label {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-left: 8px;
+  }
+  .board__scroll {
+    overflow-x: auto;
+  }
+  .board__body {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    min-height: 460px;
+    min-width: 680px;
+  }
+  .board__nav {
+    border-right: 1px solid var(--color-divider);
+    padding: 20px 0;
+  }
+  .board__nav-item {
+    padding: 9px 20px;
+    font-size: 13px;
+    border-left: 2px solid transparent;
+  }
+  .board__nav-item--active {
+    color: var(--color-accent-700);
+    border-left-color: var(--color-accent);
+    font-family: var(--font-heading);
+  }
+  .board__nav-rule {
+    margin: 16px 20px;
+  }
+  .board__main {
+    padding: 24px 28px;
+  }
+  .board__head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  .board__title {
+    font-size: 23px;
+    font-weight: 400;
+    margin: 0;
+  }
+  .board__summary {
+    font-size: 12px;
+  }
+  .board .num {
+    text-align: right;
+  }
+  .jo-board-note {
+    font-size: 11px;
+    text-align: center;
+    margin: 14px 0 0;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* ── Workflow ────────────────────────────────────────────────────── */
+  .jo-workflow__head {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+  .jo-workflow__title {
+    font-size: clamp(30px, 4.6vw, 46px);
+    font-weight: 400;
+    line-height: 1.08;
+    margin: 0 0 14px;
+  }
+  .jo-workflow__note {
+    font-size: 15px;
+    line-height: 1.75;
+    max-width: 52ch;
+    margin: 0 auto;
+  }
+  .jo-workflow__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--color-divider);
+    border: 1px solid var(--color-divider);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+  }
+  .jo-stage {
+    background: var(--color-bg);
+    padding: 32px 28px;
+  }
+  .jo-stage__num {
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    margin-bottom: 14px;
+  }
+  .jo-stage__title {
+    font-size: 24px;
+    font-weight: 400;
+    margin: 0 0 10px;
+  }
+  .jo-stage__body {
+    font-size: 13.5px;
+    line-height: 1.75;
+    margin: 0;
+  }
+
+  /* ── Why it exists ───────────────────────────────────────────────── */
+  .jo-why__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 72px;
+    align-items: center;
+  }
+  .jo-why__title {
+    font-size: clamp(29px, 4.4vw, 44px);
+    font-weight: 400;
+    line-height: 1.08;
+    margin: 0 0 20px;
+  }
+  .jo-why__body {
+    font-size: 15.5px;
+    line-height: 1.85;
+    margin: 0 0 14px;
+  }
+  .jo-why__body:last-child {
+    margin-bottom: 0;
+  }
+  .jo-why__cards {
+    display: grid;
+    gap: 20px;
+  }
+
+  /* ── Waitlist ────────────────────────────────────────────────────── */
+  .jo-demo__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 72px;
+    align-items: start;
+  }
+  .jo-demo__title {
+    font-size: clamp(29px, 4.4vw, 44px);
+    font-weight: 400;
+    line-height: 1.08;
+    margin: 0 0 18px;
+  }
+  .jo-demo__body {
+    font-size: 15.5px;
+    line-height: 1.85;
+    margin: 0 0 26px;
+  }
+  .jo-demo__contact {
+    display: grid;
+    gap: 10px;
+    font-size: 14px;
+  }
+  .jo-demo__contact a {
+    text-decoration: none;
+  }
+
+  /* ── Responsive ──────────────────────────────────────────────────── */
+  @media (max-width: 1080px) {
+    .jo-workflow__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .jo-why__grid,
+    .jo-demo__grid {
+      grid-template-columns: 1fr;
+      gap: 22px;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .jo-workflow__grid {
+      grid-template-columns: 1fr;
+    }
+    /* On a phone the mock shows the jobs table only — the app sidebar is
+       chrome. The table then scrolls horizontally inside the window. */
+    .board__body {
+      grid-template-columns: 1fr;
+      min-width: 0;
+    }
+    .board__nav {
+      display: none;
+    }
+    .board__main {
+      min-width: 560px;
+    }
+  }
+</style>
