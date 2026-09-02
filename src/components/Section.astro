@@ -1,0 +1,89 @@
+---
+/**
+ * Section band — the site's one structural primitive.
+ *
+ * Sections are separated by a 1px hairline (`border-top`) and alternate between
+ * two background tones: `bg` (Alice Blue, the ground) and `surface` (the warm
+ * tint). No more than two tones per page. Surface bands typically carry a
+ * hairline on both edges, so `tone="surface"` defaults `border` to `both`.
+ *
+ * Inner content is centred at `width` (1180 or 1280 in the designs) with the
+ * standard band padding: `88px clamp(20px, 5vw, 48px)` at desktop.
+ *
+ *   <Section>…</Section>                       band on the ground, hairline top
+ *   <Section tone="surface">…</Section>        warm band, hairline top + bottom
+ *   <Section pad="compact">…</Section>         thin strip (client / recent rooms)
+ *   <Section pad="flush" border="none">…</Section>   no vertical padding, no rule
+ *   <Section pb={72}>…</Section>               default top, custom bottom
+ */
+interface Props {
+  id?: string;
+  tone?: 'bg' | 'surface';
+  border?: 'top' | 'both' | 'none';
+  /** Inner max-width in px. */
+  width?: number;
+  pad?: 'default' | 'compact' | 'flush';
+  /** Override the top / bottom band padding, in px (wins over `pad`). */
+  pt?: number;
+  pb?: number;
+  /** Extra class(es) on the inner wrapper, for page-specific layout. */
+  class?: string;
+}
+
+const {
+  id,
+  tone = 'bg',
+  border = tone === 'surface' ? 'both' : 'top',
+  width = 1280,
+  pad = 'default',
+  pt,
+  pb,
+  class: innerClass,
+} = Astro.props;
+
+const style = [
+  `--band-max: ${width}px`,
+  pt !== undefined ? `padding-top: ${pt}px` : '',
+  pb !== undefined ? `padding-bottom: ${pb}px` : '',
+]
+  .filter(Boolean)
+  .join('; ');
+---
+<section
+  id={id}
+  class:list={['band', `band--${tone}`, `band--border-${border}`, `band--pad-${pad}`]}
+>
+  <div class:list={['band__inner', innerClass]} style={style}>
+    <slot />
+  </div>
+</section>
+
+<style>
+  .band {
+    background: var(--color-bg);
+  }
+  .band--surface {
+    background: var(--color-surface);
+  }
+
+  .band--border-top {
+    border-top: 1px solid var(--color-divider);
+  }
+  .band--border-both {
+    border-top: 1px solid var(--color-divider);
+    border-bottom: 1px solid var(--color-divider);
+  }
+
+  .band__inner {
+    max-width: var(--band-max, 1280px);
+    margin-inline: auto;
+    padding: 88px clamp(20px, 5vw, 48px);
+  }
+
+  .band--pad-compact .band__inner {
+    padding-block: 22px;
+  }
+  .band--pad-flush .band__inner {
+    padding-block: 0;
+  }
+</style>

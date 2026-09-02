@@ -1,0 +1,60 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+/**
+ * A matted photograph. Every content photo on the site goes through this:
+ * the design system's `.plate` class (warm archival grade inside a thin mat)
+ * over a responsive, format-optimised <img> displayed at an explicit pixel
+ * height with `object-fit: cover` — exactly as the prototypes set it.
+ */
+interface Props {
+  src: ImageMetadata;
+  alt: string;
+  /** Rendered height in px; the image is cropped to it. */
+  height: number;
+  /** `sizes` attribute — the CSS width the image occupies at each breakpoint. */
+  sizes: string;
+  /** `object-position`, when a portrait crop needs steering. */
+  position?: string;
+  /** Candidate widths to generate. */
+  widths?: number[];
+  class?: string;
+  /** First viewport image (hero/above-the-fold) should be eager. */
+  loading?: 'eager' | 'lazy';
+}
+
+const {
+  src,
+  alt,
+  height,
+  sizes,
+  position,
+  widths = [360, 540, 760, 1040, 1320],
+  class: className,
+  loading = 'lazy',
+} = Astro.props;
+
+const candidateWidths = widths.filter((w) => w <= src.width);
+if (candidateWidths.length === 0) candidateWidths.push(src.width);
+---
+<Image
+  class:list={['plate', 'plate__img', className]}
+  src={src}
+  alt={alt}
+  sizes={sizes}
+  widths={candidateWidths}
+  format="webp"
+  quality={70}
+  loading={loading}
+  decoding="async"
+  style={`--plate-h: ${height}px;${position ? ` object-position: ${position};` : ''}`}
+/>
+
+<style>
+  .plate__img {
+    width: 100%;
+    height: var(--plate-h, 320px);
+    object-fit: cover;
+  }
+</style>

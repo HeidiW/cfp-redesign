@@ -1,0 +1,74 @@
+---
+/**
+ * Client behaviour for the site's forms. Marks a <form> with `data-swap-form`;
+ * on submit it POSTs to the form's `action` (an /api endpoint) via fetch and,
+ * on success, swaps the submit button's label to `data-swap-done` and leaves it
+ * disabled. On failure it restores the button and shows the message in the
+ * form's `[data-form-status]` element.
+ *
+ * A form with no `action` keeps the original prototype behaviour — label swap
+ * only, no request. Native POST still works if JavaScript is unavailable
+ * (the endpoints return an HTML confirmation page for that path).
+ *
+ * Render once per page that has a form.
+ */
+---
+<script>
+  const forms = document.querySelectorAll<HTMLFormElement>('form[data-swap-form]');
+
+  forms.forEach((form) => {
+    const button = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+    if (!button) return;
+
+    const restLabel = button.textContent?.trim() || 'Send';
+    const doneLabel = button.dataset.swapDone || 'Thank you';
+    const status = form.querySelector<HTMLElement>('[data-form-status]');
+    const endpoint = form.getAttribute('action');
+
+    const showStatus = (message: string) => {
+      if (!status) return;
+      status.textContent = message;
+      status.hidden = false;
+    };
+    const clearStatus = () => {
+      if (status) status.hidden = true;
+    };
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      clearStatus();
+
+      // Unwired form: preserve the design's label-swap-only behaviour.
+      if (!endpoint) {
+        button.textContent = doneLabel;
+        button.disabled = true;
+        form.dataset.sent = 'true';
+        return;
+      }
+
+      button.disabled = true;
+      button.textContent = 'Sending…';
+
+      try {
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          headers: { accept: 'application/json' },
+          body: new FormData(form),
+        });
+        const payload = await response.json().catch(() => ({}));
+
+        if (!response.ok || !payload.ok) {
+          throw new Error(payload.error || 'Something went wrong. Please try again.');
+        }
+
+        button.textContent = doneLabel;
+        form.dataset.sent = 'true';
+        // Button stays disabled — the submission is complete.
+      } catch (error) {
+        button.disabled = false;
+        button.textContent = restLabel;
+        showStatus(error instanceof Error ? error.message : 'Something went wrong. Please try again.');
+      }
+    });
+  });
+</script>

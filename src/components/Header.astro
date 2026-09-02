@@ -1,0 +1,88 @@
+---
+import Brand from './Brand.astro';
+import { headerLinks, headerCta, isCurrent } from '../data/nav';
+
+const pathname = Astro.url.pathname;
+---
+<header class="nav site-header">
+  <Brand variant="full" href="/" />
+
+  <nav class="site-nav" aria-label="Primary">
+    {headerLinks.map((link) => (
+      <a
+        href={link.href}
+        aria-current={isCurrent(link.href, pathname) ? 'page' : undefined}
+      >
+        {link.label}
+      </a>
+    ))}
+    <a
+      class="btn btn-primary site-nav__cta"
+      href={headerCta.href}
+      aria-current={isCurrent(headerCta.href, pathname) ? 'page' : undefined}
+      style="color: var(--color-accent);"
+    >
+      {headerCta.label}
+    </a>
+  </nav>
+</header>
+
+<style>
+  /* Overrides the design system's .nav padding/gap and adds the sticky,
+     translucent header treatment the prototypes carry. */
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: color-mix(in srgb, var(--color-bg) 92%, transparent);
+    backdrop-filter: blur(8px);
+    padding-inline: clamp(20px, 5vw, 48px);
+  }
+
+  /* .nav-brand from the design system sets margin-right: auto to push the nav
+     right; Brand's root carries that class via the wrapper below. */
+  .site-header :global(.brand) {
+    margin-right: auto;
+  }
+
+  .site-nav {
+    display: flex;
+    gap: 26px;
+    align-items: center;
+  }
+
+  .site-nav a {
+    color: inherit;
+    text-decoration: none;
+    font-size: 14px;
+  }
+
+  .site-nav a:hover,
+  .site-nav a[aria-current='page'] {
+    color: var(--color-accent);
+  }
+
+  .site-nav__cta {
+    margin-left: 10px;
+    white-space: nowrap;
+  }
+
+  /* ≤1080px — header wraps, nav links tighten (README responsive spec). */
+  @media (max-width: 1080px) {
+    .site-header {
+      flex-wrap: wrap;
+      row-gap: 14px;
+    }
+    .site-nav {
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+  }
+
+  /* ≤720px — nav takes the full row under the brand. */
+  @media (max-width: 720px) {
+    .site-nav {
+      width: 100%;
+    }
+  }
+</style>

@@ -1,0 +1,26 @@
+---
+/**
+ * The uppercase section kicker: 11px, wide tracking, in --color-accent-700
+ * (the deep ramp step tuned for body-size accent text). Used above most
+ * section headings across the site.
+ */
+interface Props {
+  /** Tracking in em. Designs use 0.18 for section kickers, 0.2 for page-level. */
+  track?: number;
+  class?: string;
+}
+const { track = 0.18, class: className } = Astro.props;
+---
+<div class:list={['eyebrow', className]} style={`--eyebrow-track: ${track}em`}>
+  <slot />
+</div>
+
+<style>
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: var(--eyebrow-track, 0.18em);
+    text-transform: uppercase;
+    color: var(--color-accent-700);
+    margin: 0 0 18px;
+  }
+</style>

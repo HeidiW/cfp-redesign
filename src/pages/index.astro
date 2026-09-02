@@ -1,0 +1,812 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+import Eyebrow from '../components/Eyebrow.astro';
+import Plate from '../components/Plate.astro';
+import ContactForm from '../components/ContactForm.astro';
+import NewsletterForm from '../components/NewsletterForm.astro';
+import FormSwap from '../components/FormSwap.astro';
+
+import heroImg from '../assets/work/home-hero-gold-leaf-lime.png';
+import moxyImg from '../assets/work/moxy-hotel-williamsburg.png';
+import maximesImg from '../assets/work/maximes.jpg';
+import friedmansImg from '../assets/work/friedmans.jpg';
+import w13thImg from '../assets/work/w-13th-st-residence.jpg';
+import bobbyFlayImg from '../assets/work/bobby-flay-residence.jpg';
+import carverImg from '../assets/work/carver-steak.jpg';
+
+// Home-page photo strip — eight frames, still awaiting art from the client.
+// Subjects and order are from the handoff; auto-fit collapses 8 → 4 → 2.
+const plateSlots = [
+  'Sample panel',
+  'Mixing pigment',
+  'Trowel detail',
+  'Crew on site',
+  'Gilding',
+  'Tadelakt, polished',
+  'Restoration',
+  'Finished room',
+];
+
+const smallProjects = [
+  { name: "Friedman's", meta: 'Gold leaf · 2024', img: friedmansImg,
+    alt: "Friedman's — gold leaf diamond pattern over troweled plaster" },
+  { name: 'W 13th St Residence', meta: 'Polished plaster · 2026', img: w13thImg,
+    alt: 'W 13th St Residence — polished plaster bedroom wall' },
+  { name: 'Bobby Flay Residence', meta: 'Lime plaster · 2025', img: bobbyFlayImg,
+    alt: 'Bobby Flay Residence — lime-plaster ceiling and beams' },
+  { name: 'Carver Steak', meta: 'Polished plaster · 2026', img: carverImg,
+    alt: 'Carver Steak — polished plaster coffered ceiling' },
+];
+
+const finishes = [
+  { name: 'Venetian plaster', body: 'Burnished lime with depth and a low sheen.' },
+  { name: 'Japanese plaster', body: 'Clay and fiber, dead matte, quiet.' },
+  { name: 'Tadelakt', body: 'Waterproof lime for baths and wet rooms.' },
+  { name: 'Gold leaf', body: 'Genuine and composition gilding, laid by hand.' },
+  { name: 'Murals', body: 'Painted scenes and ornament to drawing.' },
+  { name: 'Lime wash', body: 'Breathable, cloudy, ages well.' },
+  { name: 'Color matching', body: 'Pigment mixed to a swatch, a stone, a memory.' },
+  { name: 'Restoration', body: 'Repair and matching on older decorative work.' },
+];
+
+const consultingCards = [
+  { kicker: 'Architects & designers', title: 'Specification & sampling',
+    body: 'Material selection, on-site samples in real light, and spec language your GC can bid against.' },
+  { kicker: 'General contractors', title: 'Scope supervision',
+    body: 'Sequencing, substrate review, crew oversight and punch on plaster and decorative scope.' },
+  { kicker: 'Trade partners', title: 'Operations setup',
+    body: 'Estimating structure, job costing and workflow for finishing companies that want to scale.' },
+];
+
+const jobsoxoRows = [
+  { term: 'Inquiry → estimate', note: 'Leads, takeoffs and priced proposals in one thread' },
+  { term: 'Scheduling', note: 'Crews, sites and days on one board' },
+  { term: 'Invoicing & payment', note: 'Progress billing, collection and follow-up' },
+  { term: 'Payroll & books', note: 'Hours to payroll to reconciled accounts' },
+];
+---
+<BaseLayout
+  title="Conor Foy Plaster — Venetian & custom plaster, New York since 2002"
+  description="Hand-troweled lime, Japanese plaster, tadelakt and gold leaf for restaurants, hotels and homes across New York. Decorative plaster and restoration since 2002."
+>
+  {/* ── Hero ─────────────────────────────────────────────────────────── */}
+  <Section border="none" pb={72} class="hero">
+    <div class="hero__kicker tnum">
+      <span>Venetian &amp; custom plaster</span>
+      <span class="hero__kicker-rule"></span>
+      <span>New York, since 2002</span>
+    </div>
+
+    <h1 class="hero__title">Rooms that hold light.</h1>
+
+    <div class="hero__body">
+      <div class="hero__intro">
+        <p class="hero__lede">
+          Hand-troweled lime, Japanese plaster, tadelakt and gold leaf for
+          restaurants, hotels and homes — installed by a crew that has worked
+          together for twenty years, run on a system we built ourselves.
+        </p>
+        <div class="hero__actions">
+          <a class="btn btn-primary hero__btn" href="#contact">Request a consultation</a>
+          <a class="btn btn-secondary hero__btn" href="#work">See the work</a>
+        </div>
+      </div>
+
+      <figure class="hero__figure">
+        <div class="hero__frame">
+          <Image
+            class="plate hero__img"
+            src={heroImg}
+            alt="Gold leaf over hand-troweled lime plaster"
+            widths={[420, 640, 900, 1200]}
+            sizes="(max-width: 1080px) calc(100vw - 40px), 620px"
+            format="webp"
+            quality={72}
+            loading="eager"
+            fetchpriority="high"
+          />
+        </div>
+        <figcaption class="hero__caption">Gold leaf over lime plaster — studio sample, 2026</figcaption>
+      </figure>
+    </div>
+
+    <div class="strip8">
+      <div class="strip8__head">
+        <div class="strip8__kicker">In the shop, on the wall</div>
+        <p class="strip8__note text-muted">Samples, mixing, crew and detail.</p>
+      </div>
+      <div class="strip8__grid">
+        {plateSlots.map((subject) => (
+          <div class="strip8__cell">
+            <span class="strip8__label text-muted">{subject}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </Section>
+
+  {/* ── Recent rooms strip ───────────────────────────────────────────── */}
+  <Section pad="compact" border="both" class="clients">
+    <span class="clients__label text-muted">Recent rooms</span>
+    <span>Maxime's</span>
+    <span>Friedman's</span>
+    <span>W 13th St Residence</span>
+    <span>Bobby Flay residence</span>
+    <span>Moxy Williamsburg</span>
+    <span>Carver Steak</span>
+  </Section>
+
+  {/* ── Selected work ────────────────────────────────────────────────── */}
+  <Section id="work" border="none" pb={40} class="worklist">
+    <h2 class="worklist__kicker">Selected work</h2>
+
+    <article class="feature feature--text-first">
+      <div class="feature__text">
+        <div class="feature__meta text-muted tnum">01 — 2023</div>
+        <h3 class="feature__title">Moxy Hotel, Williamsburg</h3>
+        <p class="feature__body text-muted">
+          Venetian plaster through the public rooms with hand-painted murals in
+          the stair — the largest single scope we have carried, phased around an
+          operating hotel.
+        </p>
+        <div class="tag-row">
+          <span class="tag tag-outline">Venetian</span>
+        </div>
+      </div>
+      <Plate
+        src={moxyImg}
+        alt="Moxy Hotel Williamsburg — plaster columns and curved soffit"
+        height={520}
+        sizes="(max-width: 1080px) calc(100vw - 40px), 1000px"
+      />
+    </article>
+
+    <article class="feature feature--image-first">
+      <Plate
+        src={maximesImg}
+        alt="Maxime's — restored Art Nouveau dining room with gold leaf and plaster"
+        height={560}
+        position="center"
+        sizes="(max-width: 1080px) calc(100vw - 40px), 1000px"
+      />
+      <div class="feature__text">
+        <div class="feature__meta text-muted tnum">02 — 2025</div>
+        <h3 class="feature__title">Maxime's</h3>
+        <p class="feature__body text-muted">
+          Hand-painted faux marble crown molding — veining drawn by hand, coat
+          over coat, until the plaster reads as quarried stone.
+        </p>
+        <div class="tag-row">
+          <span class="tag tag-outline">Hand painted</span>
+          <span class="tag tag-outline">Faux marble</span>
+          <span class="tag tag-outline">Private club</span>
+        </div>
+      </div>
+    </article>
+
+    <div class="worklist__grid">
+      {smallProjects.map((project) => (
+        <div class="mini">
+          <Plate
+            src={project.img}
+            alt={project.alt}
+            height={210}
+            sizes="(max-width: 720px) calc(100vw - 40px), (max-width: 1080px) calc(50vw - 40px), 290px"
+          />
+          <div class="mini__name">{project.name}</div>
+          <div class="mini__meta text-muted tnum">{project.meta}</div>
+        </div>
+      ))}
+    </div>
+
+    <p class="worklist__more">
+      <a href="/work">Full portfolio →</a>
+    </p>
+  </Section>
+
+  {/* ── Services ─────────────────────────────────────────────────────── */}
+  <Section id="services" border="none" class="services">
+    <div class="services__inner">
+      <div class="services__head">
+        <h2 class="services__title">Eight finishes, mixed to the room.</h2>
+        <p class="services__intro">
+          Every job starts with samples made on site, in the room's own light —
+          because plaster that looks right in a shop looks like something else
+          under a restaurant's lamps. Nothing goes on a wall until you have seen
+          it where it will live.
+        </p>
+      </div>
+      <div class="services__grid">
+        {finishes.map((finish) => (
+          <div class="finish">
+            <div class="finish__name">{finish.name}</div>
+            <div class="finish__body text-muted">{finish.body}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </Section>
+
+  {/* ── About ────────────────────────────────────────────────────────── */}
+  <Section id="about" tone="surface" class="about">
+    <div class="about__head">
+      <Eyebrow>About Conor</Eyebrow>
+      <h2 class="about__title">A trade learned by hand, run like a business.</h2>
+    </div>
+    <div class="about__prose">
+      <p>
+        Conor Foy has been finishing walls in New York since 2002. The work is
+        done on site by a small crew who have been together a long time, with
+        material mixed to the room rather than ordered off a shelf.
+      </p>
+      <p>
+        What changed over twenty-three years is everything around the trowel.
+        Estimating, scheduling, daily logs, invoicing, payroll — we rebuilt all
+        of it, then built the software to run it. Architects and general
+        contractors now hire us as much for the way a job is managed as for the
+        finish at the end.
+      </p>
+      <p>
+        If you are drawing a room and want to know what a surface can actually
+        do, that conversation is free, and we enjoy having it.
+      </p>
+    </div>
+  </Section>
+
+  {/* ── Consulting ───────────────────────────────────────────────────── */}
+  <Section id="consulting" border="none" class="consulting">
+    <div class="consulting__head">
+      <Eyebrow>Consulting</Eyebrow>
+      <h2 class="consulting__title">Hire the judgment, not just the crew.</h2>
+      <p class="consulting__note text-muted">
+        Three ways people bring us in before a trowel touches a wall.
+      </p>
+    </div>
+    <div class="consulting__grid">
+      {consultingCards.map((card) => (
+        <div class="card">
+          <div class="card-kicker">{card.kicker}</div>
+          <div class="card-title">{card.title}</div>
+          <p class="card-body">{card.body}</p>
+        </div>
+      ))}
+    </div>
+  </Section>
+
+  {/* ── JobsOxo teaser ───────────────────────────────────────────────── */}
+  <Section id="jobsoxo" pt={80} pb={80} class="jobsoxo">
+    <div class="jobsoxo__intro">
+      <Eyebrow>Our platform · Available mid-September 2026</Eyebrow>
+      <h2 class="jobsoxo__title">JobsOxo</h2>
+      <p class="jobsoxo__body">
+        All-in-one business management for construction, painting and decorating
+        companies — from the first client inquiry through estimating,
+        scheduling, invoicing, payment collection, payroll and reconciliation.
+        We built it to run this shop. Now we sell it to yours.
+      </p>
+      <a class="btn btn-primary jobsoxo__cta" href="/jobsoxo">See JobsOxo →</a>
+    </div>
+    <div class="jobsoxo__list">
+      {jobsoxoRows.map((row) => (
+        <div class="jobsoxo__row">
+          <span class="jobsoxo__term">{row.term}</span>
+          <span class="jobsoxo__note text-muted">{row.note}</span>
+        </div>
+      ))}
+    </div>
+  </Section>
+
+  {/* ── Contact ──────────────────────────────────────────────────────── */}
+  <Section id="contact" tone="surface" border="top" class="contact">
+    <div class="contact__intro">
+      <Eyebrow>Consult with us</Eyebrow>
+      <h2 class="contact__title">Tell us about the room.</h2>
+      <p class="contact__body">
+        Email reply within one business day. Drawings are welcome but not
+        required — a photograph and a rough square footage is enough to start.
+      </p>
+      <hr class="hr" />
+      <div class="contact__details">
+        <a href="mailto:info@conorfoy.com">info@conorfoy.com</a>
+        <a href="https://wa.me/13474523548">Message us on WhatsApp</a>
+        <span class="text-muted">New York, NY</span>
+      </div>
+    </div>
+    <ContactForm />
+  </Section>
+
+  {/* ── Newsletter ───────────────────────────────────────────────────── */}
+  <Section border="top" pt={64} pb={64} class="newsletter">
+    <div class="newsletter__intro">
+      <h2 class="newsletter__title">Recent rooms, a few times a year.</h2>
+      <p class="text-muted newsletter__body">
+        New plaster and restoration projects in New York, photographed properly.
+        We send it when there is something worth looking at, and not otherwise.
+      </p>
+    </div>
+    <NewsletterForm />
+  </Section>
+
+  <FormSwap />
+</BaseLayout>
+
+<style>
+  /* ── Hero ──────────────────────────────────────────────────────────── */
+  .hero__kicker {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-accent-700);
+    margin-bottom: 32px;
+  }
+  .hero__kicker-rule {
+    width: 40px;
+    height: 1px;
+    background: var(--color-accent);
+  }
+
+  .hero__title {
+    font-size: clamp(46px, 9vw, 104px);
+    line-height: 0.98;
+    letter-spacing: -0.028em;
+    text-wrap: balance;
+    margin: 0 0 32px;
+  }
+
+  .hero__body {
+    display: grid;
+    grid-template-columns: 1fr 1.05fr;
+    gap: 64px;
+    align-items: stretch;
+  }
+
+  .hero__lede {
+    max-width: 50ch;
+    font-size: 16.5px;
+    line-height: 1.8;
+    text-align: justify;
+    margin: 0 0 32px;
+  }
+
+  .hero__actions {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .hero__btn {
+    font-size: 14px;
+    padding: 12px 22px;
+  }
+
+  /* The figure is a flex column stretched (by the grid) to the height of the
+     text column; the framed photo flex-grows to fill it and is cropped with
+     object-fit. This is what keeps the two columns ending level — an earlier
+     take pinned the photo height and left a void under the buttons. */
+  .hero__figure {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    min-width: 0;
+  }
+  .hero__frame {
+    position: relative;
+    flex: 1 1 auto;
+    min-height: 200px;
+  }
+  .hero__img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .hero__caption {
+    margin-top: 12px;
+    font-size: 12px;
+  }
+
+  .strip8 {
+    margin-top: 56px;
+    padding-top: 28px;
+    border-top: 1px solid var(--color-divider);
+  }
+  .strip8__head {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 18px;
+  }
+  .strip8__kicker {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-accent-700);
+  }
+  .strip8__note {
+    font-size: 12px;
+    margin: 0;
+    max-width: 46ch;
+  }
+  .strip8__grid {
+    display: grid;
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+    gap: 12px;
+  }
+  .strip8__cell {
+    aspect-ratio: 3 / 4;
+    min-width: 0;
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+    padding: 12px;
+    border: 1px solid var(--color-divider);
+    background: color-mix(in srgb, var(--color-surface) 45%, transparent);
+  }
+  .strip8__label {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 1.4;
+  }
+
+  /* ── Recent rooms strip ────────────────────────────────────────────── */
+  .clients {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    align-items: center;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+  .clients__label {
+    letter-spacing: 0.2em;
+  }
+
+  /* ── Selected work ─────────────────────────────────────────────────── */
+  .worklist__kicker {
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-accent-700);
+    margin: 0 0 48px;
+  }
+
+  .feature {
+    display: grid;
+    gap: 48px;
+    padding-bottom: 64px;
+    margin-bottom: 64px;
+    border-bottom: 1px solid var(--color-divider);
+  }
+  .feature--text-first {
+    grid-template-columns: 220px 1fr;
+  }
+  .feature--image-first {
+    grid-template-columns: 1fr 220px;
+  }
+  .feature__text {
+    padding-top: 6px;
+  }
+  .feature__meta {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .feature__title {
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 1.12;
+    margin: 0 0 12px;
+  }
+  .feature__body {
+    font-size: 13.5px;
+    line-height: 1.75;
+    margin: 0 0 16px;
+  }
+
+  .tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .worklist__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 28px;
+  }
+  .mini__name {
+    margin-top: 12px;
+    font-family: var(--font-heading);
+    font-size: 19px;
+  }
+  .mini__meta {
+    font-size: 12px;
+  }
+
+  .worklist__more {
+    margin: 40px 0 0;
+  }
+  .worklist__more a {
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+
+  /* ── Services ──────────────────────────────────────────────────────── */
+  .services__inner {
+    border-top: 1px solid var(--color-divider);
+    padding-top: 48px;
+  }
+  .services__head {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    margin-bottom: 48px;
+    align-items: end;
+  }
+  .services__title {
+    font-size: clamp(29px, 4.4vw, 44px);
+    font-weight: 400;
+    line-height: 1.08;
+    margin: 0;
+  }
+  .services__intro {
+    font-size: 15px;
+    line-height: 1.85;
+    text-align: justify;
+    margin: 0;
+  }
+  .services__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--color-divider);
+    border: 1px solid var(--color-divider);
+  }
+  .finish {
+    background: var(--color-bg);
+    padding: 26px 22px;
+  }
+  .finish__name {
+    font-family: var(--font-heading);
+    font-size: 21px;
+    margin-bottom: 8px;
+  }
+  .finish__body {
+    font-size: 12.5px;
+    line-height: 1.7;
+  }
+
+  /* ── About ─────────────────────────────────────────────────────────── */
+  .about {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 72px;
+    align-items: start;
+  }
+  .about__title {
+    font-size: clamp(27px, 4vw, 40px);
+    font-weight: 400;
+    line-height: 1.1;
+    margin: 0;
+  }
+  .about__prose {
+    columns: 2;
+    column-gap: 44px;
+    font-size: 15px;
+    line-height: 1.85;
+    text-align: justify;
+    hyphens: auto;
+  }
+  .about__prose p {
+    margin: 0 0 var(--space-3);
+  }
+
+  /* ── Consulting ────────────────────────────────────────────────────── */
+  .consulting {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 64px;
+    align-items: start;
+  }
+  .consulting__title {
+    font-size: clamp(27px, 4vw, 40px);
+    font-weight: 400;
+    line-height: 1.1;
+    margin: 0 0 18px;
+  }
+  .consulting__note {
+    font-size: 14px;
+    line-height: 1.8;
+    margin: 0;
+  }
+  .consulting__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  /* ── JobsOxo teaser ────────────────────────────────────────────────── */
+  .jobsoxo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 72px;
+    align-items: center;
+  }
+  .jobsoxo__title {
+    font-size: clamp(30px, 4.6vw, 46px);
+    font-weight: 400;
+    line-height: 1.08;
+    margin: 0 0 18px;
+  }
+  .jobsoxo__body {
+    font-size: 16px;
+    line-height: 1.8;
+    margin: 0 0 26px;
+    max-width: 46ch;
+    text-align: justify;
+  }
+  .jobsoxo__cta {
+    font-size: 14px;
+    padding: 12px 22px;
+  }
+  .jobsoxo__list {
+    display: grid;
+    border-top: 1px solid var(--color-divider);
+  }
+  .jobsoxo__row {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--color-divider);
+  }
+  .jobsoxo__term {
+    font-family: var(--font-heading);
+    font-size: 20px;
+  }
+  .jobsoxo__note {
+    font-size: 12.5px;
+    max-width: 24ch;
+    text-align: right;
+  }
+
+  /* ── Contact ───────────────────────────────────────────────────────── */
+  .contact {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 72px;
+    align-items: start;
+  }
+  .contact__title {
+    font-size: clamp(27px, 4vw, 40px);
+    font-weight: 400;
+    line-height: 1.1;
+    margin: 0 0 18px;
+  }
+  .contact__body {
+    font-size: 15px;
+    line-height: 1.85;
+    text-align: justify;
+    margin: 0 0 28px;
+  }
+  .contact__details {
+    display: grid;
+    gap: 10px;
+    font-size: 14px;
+  }
+  .contact__details a {
+    text-decoration: none;
+  }
+
+  /* ── Newsletter ────────────────────────────────────────────────────── */
+  .newsletter {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 72px;
+    align-items: center;
+  }
+  .newsletter__title {
+    font-size: 34px;
+    font-weight: 400;
+    margin: 0 0 10px;
+  }
+  .newsletter__body {
+    font-size: 14.5px;
+    line-height: 1.8;
+    margin: 0;
+  }
+
+  /* ── Responsive ────────────────────────────────────────────────────── */
+  @media (max-width: 1080px) {
+    .hero__body,
+    .services__head,
+    .about,
+    .consulting,
+    .jobsoxo,
+    .contact,
+    .newsletter {
+      grid-template-columns: 1fr;
+      gap: 22px;
+    }
+    .about__prose {
+      columns: 2;
+    }
+    /* Photo returns to its natural proportions once the hero is single-column. */
+    .hero__frame {
+      position: static;
+      flex: 0 1 auto;
+      min-height: 0;
+    }
+    .hero__img {
+      position: static;
+      width: 100%;
+      height: auto;
+    }
+    .strip8__grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+    .feature--text-first,
+    .feature--image-first {
+      grid-template-columns: 1fr;
+    }
+    .feature--image-first .feature__text {
+      order: -1;
+    }
+    .worklist__grid {
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+    }
+    .consulting__grid {
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+    }
+    .services__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 720px) {
+    .strip8__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .worklist__grid {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+    .consulting__grid {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+    .services__grid {
+      grid-template-columns: 1fr;
+    }
+    .about__prose {
+      columns: 1;
+    }
+    .clients {
+      gap: 8px 22px;
+    }
+    /* Term over note, both flush left — the side-by-side split is too tight
+       on a phone. */
+    .jobsoxo__row {
+      flex-direction: column;
+      gap: 4px;
+    }
+    .jobsoxo__note {
+      text-align: left;
+      max-width: none;
+    }
+  }
+</style>

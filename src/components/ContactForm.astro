@@ -1,0 +1,70 @@
+---
+/** Project-inquiry form. Copy and fields are final (handoff). Posts to
+ *  /api/contact, which emails info@conorfoy.com via Resend; FormSwap handles
+ *  the submit/label behaviour. */
+---
+<form class="contact-form" method="post" action="/api/contact" data-swap-form>
+  <div class="contact-form__pair">
+    <div class="field">
+      <label for="cf-name">Name</label>
+      <input class="input" id="cf-name" name="name" type="text" placeholder="Your name" required />
+    </div>
+    <div class="field">
+      <label for="cf-email">Email</label>
+      <input class="input" id="cf-email" name="email" type="email" placeholder="you@studio.com" required />
+    </div>
+  </div>
+  <div class="contact-form__pair">
+    <div class="field">
+      <label for="cf-type">Project type</label>
+      <input class="input" id="cf-type" name="projectType" type="text" placeholder="Restaurant, hotel, residence…" />
+    </div>
+    <div class="field">
+      <label for="cf-timeline">Approximate timeline</label>
+      <input class="input" id="cf-timeline" name="timeline" type="text" placeholder="e.g. Q1 2027" />
+    </div>
+  </div>
+  <div class="field">
+    <label for="cf-message">What are you looking to do?</label>
+    <textarea class="input" id="cf-message" name="message"
+      placeholder="The room, the finish you have in mind, and anything already drawn."></textarea>
+  </div>
+
+  <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+  <button
+    class="btn btn-primary contact-form__submit"
+    type="submit"
+    data-swap-done="Thank you — we'll reply within a day"
+  >
+    Send request
+  </button>
+  <p class="form-status" data-form-status role="alert" hidden></p>
+</form>
+
+<style>
+  .contact-form {
+    display: grid;
+    gap: 18px;
+  }
+
+  .contact-form__pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+
+  .contact-form__submit {
+    justify-self: start;
+    font-size: 14px;
+    padding: 12px 24px;
+  }
+
+  /* data-rsp="rows" in the prototype: the pairs stack ≤1080px. */
+  @media (max-width: 1080px) {
+    .contact-form__pair {
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+  }
+</style>

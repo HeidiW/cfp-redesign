@@ -1,0 +1,46 @@
+---
+/** Newsletter signup — "Sign up" → "Subscribed". Posts to /api/newsletter,
+ *  which adds the address to the Resend Audience. */
+---
+<form class="newsletter-form" method="post" action="/api/newsletter" data-swap-form>
+  <div class="field newsletter-form__field">
+    <label for="nl-email">Email</label>
+    <input class="input" id="nl-email" name="email" type="email" placeholder="you@studio.com" required />
+  </div>
+
+  <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+  <button
+    class="btn btn-primary newsletter-form__submit"
+    type="submit"
+    data-swap-done="Subscribed"
+  >
+    Sign up
+  </button>
+  <p class="form-status newsletter-form__status" data-form-status role="alert" hidden></p>
+</form>
+
+<style>
+  .newsletter-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: flex-end;
+  }
+
+  .newsletter-form__field {
+    flex: 1;
+    min-width: 200px;
+  }
+
+  .newsletter-form__submit {
+    font-size: 14px;
+    padding: 11px 22px;
+    white-space: nowrap;
+  }
+
+  /* Status sits on its own row under the field + button. */
+  .newsletter-form__status {
+    flex-basis: 100%;
+  }
+</style>
