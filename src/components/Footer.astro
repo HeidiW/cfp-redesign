@@ -24,7 +24,9 @@ const pathname = Astro.url.pathname;
       ))}
     </nav>
 
-    <div class="site-footer__legal text-muted tnum">{legal}</div>
+    <div class="site-footer__legal text-muted tnum">
+      {legal} · <a class="site-footer__privacy" href="/privacy">Privacy</a>
+    </div>
   </div>
 </footer>
 
@@ -63,5 +65,13 @@ const pathname = Astro.url.pathname;
 
   .site-footer__legal {
     font-size: 12px;
+  }
+
+  .site-footer__privacy {
+    color: inherit;
+    text-decoration: none;
+  }
+  .site-footer__privacy:hover {
+    color: var(--color-accent);
   }
 </style>

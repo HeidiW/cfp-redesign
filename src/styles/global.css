@@ -17,7 +17,9 @@
 /* ── Part 1 · Classical design system ─────────────────────────────────────── */
 
 /* Classical — design-system tokens and component classes. This file is the source of truth for the system's look; retune it here and see readme.md. */
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Lora:wght@400;600&display=swap');
+/* Fonts self-hosted (see fonts.css) — the design system's Google Fonts @import
+   is replaced so no request goes to a third party. */
+@import './fonts.css';
 
 :root {
   --color-bg: #f3f2f2;

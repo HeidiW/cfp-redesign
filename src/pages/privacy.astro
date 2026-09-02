@@ -1,0 +1,157 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+import Eyebrow from '../components/Eyebrow.astro';
+
+const updated = 'September 2026';
+---
+<BaseLayout
+  title="Privacy — Conor Foy Plaster"
+  description="What happens to the information you give us through this site."
+>
+  <Section border="none" pt={80} pb={80}>
+    <div class="legal">
+      <Eyebrow track={0.2} mb={24}>Privacy</Eyebrow>
+      <h1 class="legal__title">What happens to your information.</h1>
+      <p class="legal__updated text-muted tnum">Last updated: {updated}</p>
+
+      <div class="legal__body">
+        <p>
+          This site is run by Conor Foy Plaster, a decorative plaster shop in
+          New York. It has no accounts and no login. The only information it
+          collects is what you type into one of the forms, plus anonymous
+          traffic statistics. This page explains both.
+        </p>
+
+        <h2>What the forms collect</h2>
+        <ul>
+          <li>
+            <strong>Consultation request</strong> (Contact page and Home page) —
+            your name and email, and optionally your company, phone, role,
+            project type, location, area, timeline, the finishes you are
+            considering, and whatever you write in the message.
+          </li>
+          <li>
+            <strong>JobsOxo waitlist</strong> — your name, company, email, crew
+            size, and your message.
+          </li>
+          <li>
+            <strong>Newsletter signup</strong> — your email address only.
+          </li>
+        </ul>
+        <p>
+          We ask for the optional fields because they help us give you a useful
+          answer, not because we need them. Leave them blank if you prefer.
+        </p>
+
+        <h2>What we do with it</h2>
+        <p>
+          Consultation and waitlist submissions are emailed to us so we can
+          reply — to <a href="mailto:info@conorfoy.com">info@conorfoy.com</a> for
+          plaster enquiries, <a href="mailto:hello@jobsoxo.com">hello@jobsoxo.com</a>
+          for JobsOxo. Newsletter addresses go onto our mailing list. That is
+          the whole of it. We do not sell your information, share it for
+          advertising, or use it to build a profile of you.
+        </p>
+
+        <h2>Who else handles it</h2>
+        <ul>
+          <li>
+            <strong>Resend</strong> (resend.com) delivers the form emails and
+            stores the newsletter mailing list on our behalf.
+          </li>
+          <li>
+            <strong>Vercel</strong> (vercel.com) hosts the site and provides the
+            traffic statistics below.
+          </li>
+        </ul>
+        <p>
+          Both are US companies acting as our processors. We do not use any
+          other third-party service on this site.
+        </p>
+
+        <h2>Analytics, and no cookies</h2>
+        <p>
+          We use Vercel Web Analytics to see how many people visit and which
+          pages they read. It is <strong>cookieless</strong> and aggregate — it
+          records page views, referrers, rough location by country, and device
+          type, with no identifier that follows you between visits or across
+          other websites. This site sets <strong>no cookies at all</strong>, and
+          there is nothing to consent to.
+        </p>
+
+        <h2>No third-party requests</h2>
+        <p>
+          Fonts are served from this site's own domain, so — unlike most sites —
+          loading a page here sends nothing to Google, an ad network, or a
+          tracker. The only outbound connection your browser makes is to Vercel,
+          for the analytics beacon.
+        </p>
+
+        <h2>How long we keep it</h2>
+        <p>
+          We keep enquiry and waitlist correspondence for as long as we are
+          working with you and for a reasonable period afterwards as a business
+          record. Newsletter addresses stay on the list until you unsubscribe.
+          Ask us to delete anything and we will, unless we are required to keep
+          it.
+        </p>
+
+        <h2>Your choices</h2>
+        <p>
+          Every newsletter has an unsubscribe link. To see, correct, or delete
+          anything else we hold about you, email
+          <a href="mailto:info@conorfoy.com">info@conorfoy.com</a> and we will
+          take care of it.
+        </p>
+
+        <h2>Changes</h2>
+        <p>
+          If this policy changes, the date at the top changes with it. Questions
+          go to <a href="mailto:info@conorfoy.com">info@conorfoy.com</a>.
+        </p>
+      </div>
+    </div>
+  </Section>
+</BaseLayout>
+
+<style>
+  .legal {
+    max-width: 66ch;
+  }
+  .legal__title {
+    font-size: clamp(32px, 5.5vw, 56px);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin: 0 0 14px;
+  }
+  .legal__updated {
+    font-size: 13px;
+    margin: 0 0 40px;
+  }
+
+  .legal__body {
+    font-size: 15px;
+    line-height: 1.85;
+  }
+  .legal__body h2 {
+    font-size: 21px;
+    font-weight: 400;
+    margin: 36px 0 10px;
+  }
+  .legal__body p {
+    margin: 0 0 var(--space-3);
+  }
+  .legal__body ul {
+    margin: 0 0 var(--space-3);
+    padding-left: 1.2em;
+  }
+  .legal__body li {
+    margin-bottom: 8px;
+  }
+  .legal__body a {
+    color: var(--color-accent-700);
+    text-underline-offset: 3px;
+  }
+</style>
