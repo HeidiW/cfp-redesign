@@ -15,6 +15,26 @@ export const isEmail = (value: string): boolean => EMAIL_RE.test(value);
  */
 export const isBot = (data: FormData): boolean => field(data, '_gotcha') !== '';
 
+/**
+ * CSRF guard: the `Origin` header (browsers send it on every cross-site POST)
+ * must match the public host the request came in on. A missing Origin — some
+ * non-browser clients omit it — is allowed; those aren't the CSRF threat, and
+ * these endpoints only send mail / add to a list, nothing destructive.
+ */
+export function sameOrigin(request: Request): boolean {
+  const origin = request.headers.get('origin');
+  if (!origin) return true;
+  const host =
+    request.headers.get('x-forwarded-host') ??
+    request.headers.get('host') ??
+    new URL(request.url).host;
+  try {
+    return new URL(origin).host === host;
+  } catch {
+    return false;
+  }
+}
+
 /** True when the request expects an HTML page back (a no-JS form POST). */
 export const wantsHtml = (request: Request): boolean =>
   (request.headers.get('accept') ?? '').includes('text/html');

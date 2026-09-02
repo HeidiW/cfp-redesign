@@ -1,6 +1,6 @@
 import type { APIRoute } from 'astro';
 import { resend, audienceId } from '../../lib/email';
-import { field, isEmail, isBot, json, wantsHtml, htmlPage } from '../../lib/forms';
+import { field, isEmail, isBot, sameOrigin, json, wantsHtml, htmlPage } from '../../lib/forms';
 
 export const prerender = false;
 
@@ -9,6 +9,11 @@ const CONFIRMATION = 'Thank you — you are on the list.';
 export const POST: APIRoute = async ({ request }) => {
   const data = await request.formData();
   const html = wantsHtml(request);
+
+  if (!sameOrigin(request)) {
+    const error = 'This request looks like it came from another site.';
+    return html ? htmlPage(error, 403) : json({ ok: false, error }, 403);
+  }
 
   if (isBot(data)) {
     return html ? htmlPage(CONFIRMATION) : json({ ok: true });

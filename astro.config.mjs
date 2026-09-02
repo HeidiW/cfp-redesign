@@ -11,6 +11,12 @@ export default defineConfig({
   build: {
     format: 'directory',
   },
+  security: {
+    // Astro's built-in check misfires behind Vercel's proxy (it 403s form
+    // POSTs whose Origin *does* match the host). The /api endpoints run their
+    // own sameOrigin() guard instead — see src/lib/forms.ts.
+    checkOrigin: false,
+  },
   env: {
     schema: {
       // Resend — both optional so the site builds and runs without secrets;
