@@ -127,19 +127,8 @@ const jobsoxoRows = [
     </div>
   </Section>
 
-  {/* ── Recent rooms strip ───────────────────────────────────────────── */}
-  <Section pad="compact" border="both" class="clients">
-    <span class="clients__label text-muted">Recent rooms</span>
-    <span>Maxime's</span>
-    <span>Friedman's</span>
-    <span>W 13th St Residence</span>
-    <span>Bobby Flay residence</span>
-    <span>Moxy Williamsburg</span>
-    <span>Carver Steak</span>
-  </Section>
-
   {/* ── Selected work ────────────────────────────────────────────────── */}
-  <Section id="work" border="none" pb={40} class="worklist">
+  <Section id="work" border="top" pb={40} class="worklist">
     <h2 class="worklist__kicker">Selected work</h2>
 
     <article class="feature feature--text-first">
@@ -455,20 +444,6 @@ const jobsoxoRows = [
     text-transform: uppercase;
     text-align: center;
     line-height: 1.4;
-  }
-
-  /* ── Recent rooms strip ────────────────────────────────────────────── */
-  .clients {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 40px;
-    align-items: center;
-    font-size: 11px;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-  }
-  .clients__label {
-    letter-spacing: 0.2em;
   }
 
   /* ── Selected work ─────────────────────────────────────────────────── */
@@ -791,9 +766,6 @@ const jobsoxoRows = [
     }
     .about__prose {
       columns: 1;
-    }
-    .clients {
-      gap: 8px 22px;
     }
     /* Term over note, both flush left — the side-by-side split is too tight
        on a phone. */
