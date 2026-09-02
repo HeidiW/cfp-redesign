@@ -2,19 +2,23 @@
 import Section from './Section.astro';
 
 /**
- * The closing call-to-action band — a warm surface strip with a heading, a
- * one-line note and an outlined button. Used at the foot of Work, Trade
- * Partners, and other interior pages.
+ * The closing call-to-action band — a heading, a one-line note and an outlined
+ * button, side by side. Used at the foot of several interior pages.
+ *
+ * Default sits on the page ground with no rule (Services, Consulting, Trade
+ * Partners); `tone="surface"` puts it on the warm band with a hairline top
+ * (Work, About).
  */
 interface Props {
   title: string;
   note: string;
   ctaLabel: string;
   ctaHref: string;
+  tone?: 'bg' | 'surface';
 }
-const { title, note, ctaLabel, ctaHref } = Astro.props;
+const { title, note, ctaLabel, ctaHref, tone = 'bg' } = Astro.props;
 ---
-<Section tone="surface" border="top" pt={72} pb={72}>
+<Section tone={tone} border={tone === 'surface' ? 'top' : 'none'} pt={72} pb={72}>
   <div class="cta-band">
     <div>
       <h2 class="cta-band__title">{title}</h2>

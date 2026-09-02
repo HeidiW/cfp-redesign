@@ -1,0 +1,253 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+import Eyebrow from '../components/Eyebrow.astro';
+import CtaBand from '../components/CtaBand.astro';
+
+const engagements = [
+  {
+    kicker: 'For architects & designers',
+    title: 'Specification & sampling',
+    paras: [
+      'We come in at drawing stage and tell you what the surface will really do — how it behaves in raking light from a north window, what it costs in labor per square foot, where it will craze in five years, and whether the detail you have drawn can actually be troweled by a human arm.',
+      'You leave with samples made in the actual room and specification language a general contractor can bid against without three rounds of clarification.',
+    ],
+    linked: false,
+    includes: [
+      'Site walk and light study',
+      'On-site sample panels',
+      'Written spec & substrate notes',
+      'Budget range per finish',
+    ],
+  },
+  {
+    kicker: 'For general contractors',
+    title: 'Scope supervision',
+    paras: [
+      'Decorative plaster is the scope that gets sequenced last and blamed first. We supervise it for you: reviewing substrate before anyone loads a hawk, sequencing the coats against the rest of your schedule, overseeing whichever crew is doing the work, and running the punch.',
+      'You can hire us to supervise our own crew or somebody else’s. We have done both.',
+    ],
+    linked: false,
+    includes: [
+      'Substrate sign-off',
+      'Sequencing against your schedule',
+      'Crew oversight and QC visits',
+      'Punch list and close-out',
+    ],
+  },
+  {
+    kicker: 'For trade partners',
+    title: 'Operations setup',
+    paras: [
+      'Painting and finishing companies hit a ceiling that has nothing to do with craft — they cannot estimate consistently, cannot see job cost until the job is over, and lose a day a week to paperwork. We rebuilt our own shop around that problem and now help other companies do the same.',
+    ],
+    // Second paragraph carries an inline link — rendered in the template.
+    linked: true,
+    includes: [
+      'Estimating structure and rates',
+      'Job costing and reporting',
+      'Workflow from inquiry to payment',
+      'JobsOxo setup and training',
+    ],
+  },
+];
+
+const engagementSteps = [
+  {
+    kicker: 'First',
+    title: 'A conversation',
+    body: 'Half an hour on the phone or on site. No charge, and often it ends with us telling you that you do not need us.',
+  },
+  {
+    kicker: 'Then',
+    title: 'A scope and a number',
+    body: 'Fixed fee for defined work, or a day rate for ongoing oversight. Written down before anything starts.',
+  },
+  {
+    kicker: 'Throughout',
+    title: 'Visible progress',
+    body: 'Everything runs in JobsOxo, so you can see status, photos and costs without waiting for a report.',
+  },
+];
+---
+<BaseLayout
+  title="Consulting — Conor Foy Plaster"
+  description="Specification and sampling for architects, scope supervision for general contractors, and operations setup for finishing companies — from a plaster shop with twenty-three years of rooms behind it."
+>
+  {/* ── Intro ───────────────────────────────────────────────────────── */}
+  <Section border="none" pt={80} pb={56} class="con-hero">
+    <div class="con-hero__row">
+      <div>
+        <Eyebrow track={0.2} mb={24}>Consulting</Eyebrow>
+        <h1 class="con-hero__title">Hire the judgment, not just the crew.</h1>
+      </div>
+      <p class="con-hero__lede">
+        Twenty-three years of finishing rooms teaches you what a drawing will
+        actually cost, where a substrate will move, and which specification will
+        come back as a change order. Increasingly, people hire us for that before
+        they hire anyone to hold a trowel.
+      </p>
+    </div>
+  </Section>
+
+  {/* ── Engagements ─────────────────────────────────────────────────── */}
+  <Section border="none" pt={0} pb={72} class="engagements">
+    <div class="engagements__list">
+      {engagements.map((engagement) => (
+        <article class="eng">
+          <div class="eng__head">
+            <Eyebrow track={0.16} mb={12}>{engagement.kicker}</Eyebrow>
+            <h2 class="eng__title">{engagement.title}</h2>
+          </div>
+          <div class="eng__prose">
+            {engagement.paras.map((para) => <p>{para}</p>)}
+            {engagement.linked && (
+              <p>
+                The software we built for it is <a href="/jobsoxo">JobsOxo</a>,
+                and you can have the system without the consulting if that is all
+                you need.
+              </p>
+            )}
+          </div>
+          <div class="eng__includes">
+            <div class="eng__includes-title">Typically includes</div>
+            {engagement.includes.map((item) => (
+              <div class="eng__includes-item text-muted">{item}</div>
+            ))}
+          </div>
+        </article>
+      ))}
+    </div>
+  </Section>
+
+  {/* ── How engagements work ────────────────────────────────────────── */}
+  <Section tone="surface" pt={72} pb={72} class="how">
+    <div class="how__grid">
+      <h2 class="how__title">How engagements work</h2>
+      <div class="how__cards">
+        {engagementSteps.map((step) => (
+          <div class="card">
+            <div class="card-kicker">{step.kicker}</div>
+            <div class="card-title">{step.title}</div>
+            <p class="card-body">{step.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </Section>
+
+  <CtaBand
+    title="Bring us in early."
+    note="It costs less at drawing stage than it does at punch."
+    ctaLabel="Request a consultation"
+    ctaHref="/contact"
+  />
+</BaseLayout>
+
+<style>
+  /* ── Intro ───────────────────────────────────────────────────────── */
+  .con-hero__row {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 64px;
+    align-items: end;
+  }
+  .con-hero__title {
+    font-size: clamp(38px, 7vw, 76px);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.025em;
+    margin: 0;
+  }
+  .con-hero__lede {
+    font-size: 16px;
+    line-height: 1.85;
+    text-align: justify;
+    margin: 0 0 8px;
+  }
+
+  /* ── Engagements ─────────────────────────────────────────────────── */
+  .engagements__list {
+    display: grid;
+    border-top: 1px solid var(--color-divider);
+  }
+  .eng {
+    display: grid;
+    grid-template-columns: 300px 1fr 260px;
+    gap: 56px;
+    padding: 48px 0;
+    border-bottom: 1px solid var(--color-divider);
+    align-items: start;
+  }
+  .eng__title {
+    font-size: 34px;
+    font-weight: 400;
+    line-height: 1.08;
+    margin: 0;
+  }
+  .eng__prose p {
+    font-size: 15px;
+    line-height: 1.85;
+    text-align: justify;
+    margin: 0 0 14px;
+  }
+  .eng__prose p:last-child {
+    margin-bottom: 0;
+  }
+  .eng__includes {
+    display: grid;
+    gap: 10px;
+    font-size: 13px;
+    border-left: 1px solid var(--color-divider);
+    padding-left: 24px;
+  }
+  .eng__includes-title {
+    font-family: var(--font-heading);
+    font-size: 15px;
+  }
+  .eng__includes-item {
+    line-height: 1.7;
+  }
+
+  /* ── How engagements work ────────────────────────────────────────── */
+  .how__grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 64px;
+    align-items: start;
+  }
+  .how__title {
+    font-size: clamp(27px, 4vw, 40px);
+    font-weight: 400;
+    line-height: 1.1;
+    margin: 0;
+  }
+  .how__cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  /* ── Responsive ──────────────────────────────────────────────────── */
+  @media (max-width: 1080px) {
+    .con-hero__row,
+    .how__grid {
+      grid-template-columns: 1fr;
+      gap: 22px;
+    }
+    .eng {
+      grid-template-columns: 1fr;
+      gap: 22px;
+    }
+    .how__cards {
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+    }
+  }
+
+  @media (max-width: 720px) {
+    .how__cards {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+  }
+</style>
