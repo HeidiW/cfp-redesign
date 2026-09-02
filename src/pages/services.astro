@@ -1,0 +1,263 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+import Eyebrow from '../components/Eyebrow.astro';
+import CtaBand from '../components/CtaBand.astro';
+
+const finishes = [
+  {
+    n: '01',
+    name: 'Venetian plaster',
+    tag: 'Polished',
+    use: 'Walls, columns, soffits',
+    body: 'Burnished lime built up in thin coats and compressed with a steel trowel until it takes a low, stone-like sheen. It has depth you cannot fake with paint — the surface reads differently as you cross the room. Our most-requested finish, and the one most often specified wrong: it wants a flat, sound substrate and a schedule that lets each coat cure.',
+  },
+  {
+    n: '02',
+    name: 'Japanese plaster',
+    tag: 'Matte',
+    use: 'Dining rooms, bedrooms',
+    body: 'Clay and natural fiber, left dead matte. Where Venetian reflects, this absorbs — it makes a room quieter and photographs like paper. Good in dining rooms where you want the light to come from the fixtures rather than the walls.',
+  },
+  {
+    n: '03',
+    name: 'Tadelakt',
+    tag: 'Waterproof',
+    use: 'Baths, showers, wet bars',
+    body: 'Lime polished with stone and sealed with olive-oil soap — waterproof without a coating, and seamless, so there is no grout line to fail. The Moroccan bath finish, and the reason it keeps appearing in restaurant restrooms: it survives water and looks like nothing else.',
+  },
+  {
+    n: '04',
+    name: 'Gold leaf',
+    tag: 'Gilding',
+    use: 'Ceilings, reveals, ornament',
+    body: 'Genuine and composition leaf, laid by hand over size or directly onto plaster. Used as stroke rather than field — a ceiling coffer, a reveal, a band behind a bar — because gold does its work in small quantities and stops working in large ones.',
+  },
+  {
+    n: '05',
+    name: 'Murals',
+    tag: 'Hand-painted',
+    use: 'Stairs, ceilings, feature walls',
+    body: 'Painted scenes and ornament worked out from your drawings or ours, directly on plaster so the image and the wall are one surface. Sampled at full scale on a panel before we commit to the room.',
+  },
+  {
+    n: '06',
+    name: 'Lime wash',
+    tag: 'Breathable',
+    use: 'Large areas, older buildings',
+    body: 'Breathable, cloudy, and the most forgiving of the family — it moves with an old building instead of fighting it, and it ages into something better than it started. The right answer for large areas on a real budget.',
+  },
+  {
+    n: '07',
+    name: 'Color matching',
+    tag: 'Custom',
+    use: 'Every job',
+    body: 'Pigment mixed to a swatch, a stone, a piece of the floor, or a photograph of somewhere you once stayed. Matched in the room, not from a fan deck, and recorded so the same color can be mixed again in five years for a repair.',
+  },
+  {
+    n: '08',
+    name: 'Restoration',
+    tag: 'Repair',
+    use: 'Landmark and pre-war',
+    body: 'Repair and matching on older decorative work — running new cornice to an existing profile, patching plaster so the seam disappears, re-gilding what has gone dull. Half of a good restoration is deciding what to leave alone.',
+  },
+];
+
+const steps = [
+  { n: '01', term: 'Walk & sample', body: 'We see the room, take the light, and make samples on site — not in a shop.' },
+  { n: '02', term: 'Substrate', body: 'Prep and repair. Most plaster failures are substrate failures wearing a nice coat.' },
+  { n: '03', term: 'Install', body: 'Our own crew, coat by coat, with cure time built into the schedule rather than borrowed from it.' },
+  { n: '04', term: 'Punch & record', body: 'Walk-through, touch-up, and the color formula filed so a repair years from now still matches.' },
+];
+---
+<BaseLayout
+  title="Services — Conor Foy Plaster"
+  description="Eight plaster finishes — Venetian, Japanese, tadelakt, gold leaf, murals, lime wash, colour matching and restoration — mixed to the room and installed by our own crew."
+>
+  {/* ── Intro ───────────────────────────────────────────────────────── */}
+  <Section border="none" pt={80} pb={56} class="svc-hero">
+    <div class="svc-hero__row">
+      <div>
+        <Eyebrow track={0.2} mb={24}>Finishes</Eyebrow>
+        <h1 class="svc-hero__title">Eight surfaces, mixed to the room.</h1>
+      </div>
+      <p class="svc-hero__lede">
+        Plaster that looks right in a shop looks like something else under a
+        restaurant's lamps. Every job starts with samples made on site, in the
+        room's own light, and nothing goes on a wall until you have seen it
+        where it will live.
+      </p>
+    </div>
+  </Section>
+
+  {/* ── Finish catalogue ────────────────────────────────────────────── */}
+  <Section border="none" pt={0} pb={40} class="finishes">
+    <div class="finishes__list">
+      {finishes.map((finish) => (
+        <div class="finish">
+          <span class="finish__num text-muted tnum">{finish.n}</span>
+          <h2 class="finish__name">{finish.name}</h2>
+          <p class="finish__body">{finish.body}</p>
+          <div class="finish__aside">
+            <span class="tag tag-outline">{finish.tag}</span>
+            <span class="finish__use text-muted">{finish.use}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  </Section>
+
+  {/* ── How a job runs ──────────────────────────────────────────────── */}
+  <Section tone="surface" pt={80} pb={80} class="how">
+    <div class="how__grid">
+      <div class="how__intro">
+        <Eyebrow>How a job runs</Eyebrow>
+        <h2 class="how__title">Four steps, and none of them skipped.</h2>
+        <p class="how__note text-muted">
+          Managed in JobsOxo, so you can see where your job stands without
+          calling to ask.
+        </p>
+      </div>
+      <div class="how__steps">
+        {steps.map((step) => (
+          <div class="step">
+            <span class="step__num text-muted tnum">{step.n}</span>
+            <span class="step__term">{step.term}</span>
+            <span class="step__body text-muted">{step.body}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </Section>
+
+  <CtaBand
+    title="Not sure which finish the room wants?"
+    note="That is the conversation we like having, and it is free."
+    ctaLabel="Request a consultation"
+    ctaHref="/contact"
+  />
+</BaseLayout>
+
+<style>
+  /* ── Intro ───────────────────────────────────────────────────────── */
+  .svc-hero__row {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 64px;
+    align-items: end;
+  }
+  .svc-hero__title {
+    font-size: clamp(38px, 7vw, 76px);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.025em;
+    margin: 0;
+  }
+  .svc-hero__lede {
+    font-size: 16px;
+    line-height: 1.85;
+    text-align: justify;
+    margin: 0 0 8px;
+  }
+
+  /* ── Finish catalogue ────────────────────────────────────────────── */
+  .finishes__list {
+    display: grid;
+    border-top: 1px solid var(--color-divider);
+  }
+  .finish {
+    display: grid;
+    grid-template-columns: 60px 300px 1fr 200px;
+    gap: 40px;
+    padding: 34px 0;
+    border-bottom: 1px solid var(--color-divider);
+    align-items: start;
+  }
+  .finish__num {
+    font-size: 12px;
+    padding-top: 6px;
+  }
+  .finish__name {
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 1.1;
+    margin: 0;
+  }
+  .finish__body {
+    font-size: 14px;
+    line-height: 1.85;
+    text-align: justify;
+    margin: 0;
+  }
+  .finish__aside {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-items: flex-start;
+  }
+  .finish__use {
+    font-size: 12px;
+  }
+
+  /* ── How a job runs ──────────────────────────────────────────────── */
+  .how__grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 64px;
+    align-items: start;
+  }
+  .how__title {
+    font-size: clamp(27px, 4vw, 40px);
+    font-weight: 400;
+    line-height: 1.1;
+    margin: 0 0 18px;
+  }
+  .how__note {
+    font-size: 14px;
+    line-height: 1.8;
+    margin: 0;
+  }
+  .how__steps {
+    display: grid;
+    border-top: 1px solid var(--color-divider);
+  }
+  .step {
+    display: grid;
+    grid-template-columns: 52px 200px 1fr;
+    gap: 28px;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--color-divider);
+    align-items: baseline;
+  }
+  .step__num {
+    font-size: 12px;
+  }
+  .step__term {
+    font-family: var(--font-heading);
+    font-size: 22px;
+  }
+  .step__body {
+    font-size: 13.5px;
+    line-height: 1.75;
+  }
+
+  /* ── Responsive ──────────────────────────────────────────────────── */
+  @media (max-width: 1080px) {
+    .svc-hero__row,
+    .how__grid {
+      grid-template-columns: 1fr;
+      gap: 22px;
+    }
+    .finish {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    .finish__num {
+      padding-top: 0;
+    }
+    .step {
+      grid-template-columns: 1fr;
+      gap: 6px;
+    }
+  }
+</style>
