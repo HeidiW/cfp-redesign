@@ -17,6 +17,7 @@ import laightStImg from '../assets/work/laight-st-residence.jpg';
 import carverImg from '../assets/work/carver-steak.jpg';
 
 import samplePanelImg from '../assets/strip/sample-panel.jpg';
+import gildingImg from '../assets/strip/gilding.jpg';
 
 // Home-page photo strip — eight frames, filled in as art arrives from the client.
 // Subjects and order are from the handoff; the grid collapses 8 → 4 → 2.
@@ -27,7 +28,8 @@ const plateSlots = [
   { label: 'Custom colors' },
   { label: 'Trowel detail' },
   { label: 'Crew on site' },
-  { label: 'Gilding' },
+  { label: 'Gilding', img: gildingImg, position: 'left center',
+    alt: 'Gold-leaf diamond pattern over plaster above a banquette' },
   { label: 'Tadelakt, polished' },
   { label: 'Restoration' },
   { label: 'Finished room' },
@@ -136,6 +138,7 @@ const jobsoxoRows = [
                 quality={70}
                 loading="lazy"
                 decoding="async"
+                style={slot.position ? `object-position: ${slot.position};` : undefined}
               />
             )}
           </div>
