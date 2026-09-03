@@ -16,17 +16,21 @@ import w13thImg from '../assets/work/w-13th-st-residence.jpg';
 import laightStImg from '../assets/work/laight-st-residence.jpg';
 import carverImg from '../assets/work/carver-steak.jpg';
 
-// Home-page photo strip — eight frames, still awaiting art from the client.
-// Subjects and order are from the handoff; auto-fit collapses 8 → 4 → 2.
+import samplePanelImg from '../assets/strip/sample-panel.jpg';
+
+// Home-page photo strip — eight frames, filled in as art arrives from the client.
+// Subjects and order are from the handoff; the grid collapses 8 → 4 → 2.
+// `img` is the photograph once we have it; a slot without one shows its label.
 const plateSlots = [
-  'Sample panel',
-  'Mixing pigment',
-  'Trowel detail',
-  'Crew on site',
-  'Gilding',
-  'Tadelakt, polished',
-  'Restoration',
-  'Finished room',
+  { label: 'Sample panel', img: samplePanelImg,
+    alt: 'Hand-troweled plaster sample panel, warm ochre' },
+  { label: 'Mixing pigment' },
+  { label: 'Trowel detail' },
+  { label: 'Crew on site' },
+  { label: 'Gilding' },
+  { label: 'Tadelakt, polished' },
+  { label: 'Restoration' },
+  { label: 'Finished room' },
 ];
 
 const smallProjects = [
@@ -118,9 +122,22 @@ const jobsoxoRows = [
         <p class="strip8__note text-muted">Samples, mixing, crew and detail.</p>
       </div>
       <div class="strip8__grid">
-        {plateSlots.map((subject) => (
-          <div class="strip8__cell">
-            <span class="strip8__label text-muted">{subject}</span>
+        {plateSlots.map((slot) => (
+          <div class:list={['strip8__cell', { 'strip8__cell--has-img': slot.img }]}>
+            <span class="strip8__label text-muted">{slot.label}</span>
+            {slot.img && (
+              <Image
+                class="strip8__img"
+                src={slot.img}
+                alt={slot.alt ?? slot.label}
+                widths={[150, 220, 300, 440]}
+                sizes="(max-width: 720px) 45vw, (max-width: 1080px) 22vw, 120px"
+                format="webp"
+                quality={70}
+                loading="lazy"
+                decoding="async"
+              />
+            )}
           </div>
         ))}
       </div>
@@ -429,6 +446,7 @@ const jobsoxoRows = [
     gap: 12px;
   }
   .strip8__cell {
+    position: relative;
     aspect-ratio: 3 / 4;
     min-width: 0;
     overflow: hidden;
@@ -444,6 +462,31 @@ const jobsoxoRows = [
     text-transform: uppercase;
     text-align: center;
     line-height: 1.4;
+  }
+  /* Photo sits over the label and fades in on hover/focus. */
+  .strip8__img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+  .strip8__cell--has-img:hover .strip8__img,
+  .strip8__cell--has-img:focus-within .strip8__img {
+    opacity: 1;
+  }
+  @media (hover: none) {
+    /* No hover affordance on touch — show the photo outright. */
+    .strip8__cell--has-img .strip8__img {
+      opacity: 1;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .strip8__img {
+      transition: none;
+    }
   }
 
   /* ── Selected work ─────────────────────────────────────────────────── */
