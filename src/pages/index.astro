@@ -1,5 +1,5 @@
 ---
-import { Image } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Section from '../components/Section.astro';
 import Eyebrow from '../components/Eyebrow.astro';
@@ -38,6 +38,20 @@ const plateSlots = [
   { label: 'Finished room', img: finishedRoomImg,
     alt: 'Powder room in polished plaster with a marble vanity and brass fittings' },
 ];
+
+// A larger render of each filled slot, for the double-click lightbox.
+const plateSlotsView = await Promise.all(
+  plateSlots.map(async (slot) => {
+    if (!slot.img) return slot;
+    const full = await getImage({
+      src: slot.img,
+      width: Math.min(1600, slot.img.width),
+      format: 'webp',
+      quality: 78,
+    });
+    return { ...slot, full: full.src };
+  }),
+);
 
 const smallProjects = [
   { name: "Friedman's", meta: 'Gold leaf · 2024', img: friedmansImg,
@@ -128,8 +142,12 @@ const jobsoxoRows = [
         <p class="strip8__note text-muted">Samples, mixing, crew and detail.</p>
       </div>
       <div class="strip8__grid">
-        {plateSlots.map((slot) => (
-          <div class:list={['strip8__cell', { 'strip8__cell--has-img': slot.img }]}>
+        {plateSlotsView.map((slot) => (
+          <div
+            class:list={['strip8__cell', { 'strip8__cell--has-img': slot.img }]}
+            data-full={slot.full}
+            data-alt={slot.full ? slot.alt ?? slot.label : undefined}
+          >
             <span class="strip8__label text-muted">{slot.label}</span>
             {slot.img && (
               <Image
@@ -343,6 +361,12 @@ const jobsoxoRows = [
   </Section>
 
   <FormSwap />
+
+  {/* Double-click a strip photo to open it here at full size. */}
+  <dialog class="lightbox" id="stripLightbox" aria-label="Enlarged photo">
+    <button type="button" class="lightbox__close" data-lightbox-close aria-label="Close">&times;</button>
+    <img class="lightbox__img" alt="" />
+  </dialog>
 </BaseLayout>
 
 <style>
@@ -480,6 +504,10 @@ const jobsoxoRows = [
     opacity: 0;
     transition: opacity 0.25s ease;
   }
+  .strip8__cell--has-img {
+    cursor: zoom-in;
+    user-select: none;
+  }
   .strip8__cell--has-img:hover .strip8__img,
   .strip8__cell--has-img:focus-within .strip8__img {
     opacity: 1;
@@ -493,6 +521,47 @@ const jobsoxoRows = [
   @media (prefers-reduced-motion: reduce) {
     .strip8__img {
       transition: none;
+    }
+  }
+
+  /* ── Strip lightbox (double-click a photo) ─────────────────────────── */
+  .lightbox {
+    border: none;
+    padding: 0;
+    background: transparent;
+    max-width: min(92vw, 1100px);
+    max-height: 90vh;
+    overflow: visible;
+  }
+  .lightbox::backdrop {
+    background: rgba(20, 18, 15, 0.82);
+  }
+  .lightbox__img {
+    display: block;
+    width: 100%;
+    max-height: 90vh;
+    object-fit: contain;
+    background: var(--color-surface);
+  }
+  .lightbox__close {
+    position: absolute;
+    top: -14px;
+    right: -14px;
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 50%;
+    background: var(--color-surface);
+    color: var(--color-ink, #1a1a1a);
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+  }
+  @media (max-width: 720px) {
+    .lightbox__close {
+      top: 8px;
+      right: 8px;
     }
   }
 
@@ -829,3 +898,44 @@ const jobsoxoRows = [
     }
   }
 </style>
+
+<script>
+  // Double-click a filled strip photo to open it full size in a <dialog>.
+  const dialog = document.getElementById('stripLightbox') as HTMLDialogElement | null;
+  const dialogImg = dialog?.querySelector<HTMLImageElement>('.lightbox__img');
+
+  if (dialog && dialogImg) {
+    const open = (full: string, alt: string) => {
+      dialogImg.src = full;
+      dialogImg.alt = alt;
+      dialog.showModal();
+    };
+    const close = () => {
+      dialog.close();
+      dialogImg.removeAttribute('src');
+    };
+
+    document.querySelectorAll<HTMLElement>('.strip8__cell--has-img').forEach((cell) => {
+      cell.addEventListener('dblclick', () => {
+        const full = cell.dataset.full;
+        if (full) open(full, cell.dataset.alt ?? '');
+      });
+    });
+
+    dialog.addEventListener('click', (event) => {
+      if ((event.target as HTMLElement).closest('[data-lightbox-close]')) {
+        close();
+        return;
+      }
+      // Click outside the content box (on the backdrop) closes too.
+      const box = dialog.getBoundingClientRect();
+      const outside =
+        event.clientX < box.left ||
+        event.clientX > box.right ||
+        event.clientY < box.top ||
+        event.clientY > box.bottom;
+      if (outside) close();
+    });
+    dialog.addEventListener('close', () => dialogImg.removeAttribute('src'));
+  }
+</script>
