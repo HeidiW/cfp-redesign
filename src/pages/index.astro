@@ -23,9 +23,9 @@ import finishedRoomImg from '../assets/strip/finished-room.jpg';
 import customColorsImg from '../assets/strip/custom-colors.jpg';
 import tadelaktImg from '../assets/strip/tadelakt-polished.jpg';
 
-// Home-page photo strip — eight frames, filled in as art arrives from the client.
-// Subjects and order are from the handoff; the grid collapses 8 → 4 → 2.
-// `img` is the photograph once we have it; a slot without one shows its label.
+// Home-page photo strip — eight subjects from the handoff, in order. A slot
+// renders only once its photograph is in; the two still awaiting art
+// ('Crew on site', 'Restoration') are held back rather than shown as labels.
 const plateSlots = [
   { label: 'Sample panel', img: samplePanelImg,
     alt: 'Hand-troweled plaster sample panel, warm ochre' },
@@ -43,19 +43,26 @@ const plateSlots = [
     alt: 'Powder room in polished plaster with a marble vanity and brass fittings' },
 ];
 
-// A larger render of each filled slot, for the double-click lightbox.
+// Only slots with a photo are shown, each with a larger render for the
+// double-click lightbox. The grid tracks the visible count (see --strip8-cols).
 const plateSlotsView = await Promise.all(
-  plateSlots.map(async (slot) => {
-    if (!slot.img) return slot;
-    const full = await getImage({
-      src: slot.img,
-      width: Math.min(1600, slot.img.width),
-      format: 'webp',
-      quality: 78,
-    });
-    return { ...slot, full: full.src };
-  }),
+  plateSlots
+    .filter((slot) => slot.img)
+    .map(async (slot) => {
+      const img = slot.img!;
+      const full = await getImage({
+        src: img,
+        width: Math.min(1600, img.width),
+        format: 'webp',
+        quality: 78,
+      });
+      return { ...slot, img, full: full.src };
+    }),
 );
+
+const stripCols = plateSlotsView.length;
+const stripColsMd = stripCols <= 4 ? stripCols : Math.ceil(stripCols / 2);
+const stripColsSm = Math.min(stripCols, 2);
 
 const smallProjects = [
   { name: "Friedman's", meta: 'Gold leaf · 2024', img: friedmansImg,
@@ -145,36 +152,33 @@ const jobsoxoRows = [
         <div class="strip8__kicker">In the shop, on the wall</div>
         <p class="strip8__note text-muted">Samples, mixing, crew and detail.</p>
       </div>
-      <div class="strip8__grid">
-        {plateSlotsView.map((slot) =>
-          slot.img ? (
-            <button
-              type="button"
-              class="strip8__cell strip8__cell--has-img"
-              data-full={slot.full}
-              data-alt={slot.alt ?? slot.label}
-              aria-label={`Enlarge photo — ${slot.alt ?? slot.label}`}
-            >
-              <span class="strip8__label text-muted" aria-hidden="true">{slot.label}</span>
-              <Image
-                class="strip8__img"
-                src={slot.img}
-                alt=""
-                widths={[150, 220, 300, 440]}
-                sizes="(max-width: 720px) 45vw, (max-width: 1080px) 22vw, 120px"
-                format="webp"
-                quality={70}
-                loading="lazy"
-                decoding="async"
-                style={slot.position ? `object-position: ${slot.position};` : undefined}
-              />
-            </button>
-          ) : (
-            <div class="strip8__cell">
-              <span class="strip8__label text-muted">{slot.label}</span>
-            </div>
-          ),
-        )}
+      <div
+        class="strip8__grid"
+        style={`--strip8-cols: ${stripCols}; --strip8-cols-md: ${stripColsMd}; --strip8-cols-sm: ${stripColsSm};`}
+      >
+        {plateSlotsView.map((slot) => (
+          <button
+            type="button"
+            class="strip8__cell strip8__cell--has-img"
+            data-full={slot.full}
+            data-alt={slot.alt ?? slot.label}
+            aria-label={`Enlarge photo — ${slot.alt ?? slot.label}`}
+          >
+            <span class="strip8__label text-muted" aria-hidden="true">{slot.label}</span>
+            <Image
+              class="strip8__img"
+              src={slot.img}
+              alt=""
+              widths={[150, 220, 300, 440]}
+              sizes="(max-width: 720px) 45vw, (max-width: 1080px) 22vw, 120px"
+              format="webp"
+              quality={70}
+              loading="lazy"
+              decoding="async"
+              style={slot.position ? `object-position: ${slot.position};` : undefined}
+            />
+          </button>
+        ))}
       </div>
     </div>
   </Section>
@@ -483,7 +487,7 @@ const jobsoxoRows = [
   }
   .strip8__grid {
     display: grid;
-    grid-template-columns: repeat(8, minmax(0, 1fr));
+    grid-template-columns: repeat(var(--strip8-cols, 8), minmax(0, 1fr));
     gap: 12px;
   }
   .strip8__cell {
@@ -870,7 +874,7 @@ const jobsoxoRows = [
       height: auto;
     }
     .strip8__grid {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(var(--strip8-cols-md, 4), minmax(0, 1fr));
     }
     .feature--text-first,
     .feature--image-first {
@@ -889,7 +893,7 @@ const jobsoxoRows = [
 
   @media (max-width: 720px) {
     .strip8__grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: repeat(var(--strip8-cols-sm, 2), minmax(0, 1fr));
     }
     .worklist__grid {
       grid-template-columns: 1fr;
