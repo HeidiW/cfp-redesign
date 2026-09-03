@@ -146,18 +146,20 @@ const jobsoxoRows = [
         <p class="strip8__note text-muted">Samples, mixing, crew and detail.</p>
       </div>
       <div class="strip8__grid">
-        {plateSlotsView.map((slot) => (
-          <div
-            class:list={['strip8__cell', { 'strip8__cell--has-img': slot.img }]}
-            data-full={slot.full}
-            data-alt={slot.full ? slot.alt ?? slot.label : undefined}
-          >
-            <span class="strip8__label text-muted">{slot.label}</span>
-            {slot.img && (
+        {plateSlotsView.map((slot) =>
+          slot.img ? (
+            <button
+              type="button"
+              class="strip8__cell strip8__cell--has-img"
+              data-full={slot.full}
+              data-alt={slot.alt ?? slot.label}
+              aria-label={`Enlarge photo — ${slot.alt ?? slot.label}`}
+            >
+              <span class="strip8__label text-muted" aria-hidden="true">{slot.label}</span>
               <Image
                 class="strip8__img"
                 src={slot.img}
-                alt={slot.alt ?? slot.label}
+                alt=""
                 widths={[150, 220, 300, 440]}
                 sizes="(max-width: 720px) 45vw, (max-width: 1080px) 22vw, 120px"
                 format="webp"
@@ -166,9 +168,13 @@ const jobsoxoRows = [
                 decoding="async"
                 style={slot.position ? `object-position: ${slot.position};` : undefined}
               />
-            )}
-          </div>
-        ))}
+            </button>
+          ) : (
+            <div class="strip8__cell">
+              <span class="strip8__label text-muted">{slot.label}</span>
+            </div>
+          ),
+        )}
       </div>
     </div>
   </Section>
@@ -490,6 +496,15 @@ const jobsoxoRows = [
     padding: 12px;
     border: 1px solid var(--color-divider);
     background: color-mix(in srgb, var(--color-surface) 45%, transparent);
+  }
+  /* Filled cells are <button>s (double-click / Enter opens the lightbox). */
+  button.strip8__cell {
+    appearance: none;
+    margin: 0;
+    width: 100%;
+    font: inherit;
+    color: inherit;
+    text-align: center;
   }
   .strip8__label {
     font-size: 10px;
@@ -904,14 +919,20 @@ const jobsoxoRows = [
 </style>
 
 <script>
-  // Double-click a filled strip photo to open it full size in a <dialog>.
+  // Open a filled strip photo full size in a <dialog>: double-click with a
+  // mouse, Enter/Space with the keyboard (each cell is a <button>).
   const dialog = document.getElementById('stripLightbox') as HTMLDialogElement | null;
   const dialogImg = dialog?.querySelector<HTMLImageElement>('.lightbox__img');
 
   if (dialog && dialogImg) {
-    const open = (full: string, alt: string) => {
+    let lastTrigger: HTMLElement | null = null;
+
+    const open = (cell: HTMLElement) => {
+      const full = cell.dataset.full;
+      if (!full) return;
+      lastTrigger = cell;
       dialogImg.src = full;
-      dialogImg.alt = alt;
+      dialogImg.alt = cell.dataset.alt ?? '';
       dialog.showModal();
     };
     const close = () => {
@@ -920,9 +941,12 @@ const jobsoxoRows = [
     };
 
     document.querySelectorAll<HTMLElement>('.strip8__cell--has-img').forEach((cell) => {
-      cell.addEventListener('dblclick', () => {
-        const full = cell.dataset.full;
-        if (full) open(full, cell.dataset.alt ?? '');
+      cell.addEventListener('dblclick', () => open(cell));
+      // Keyboard activation of a <button> fires a click with detail === 0;
+      // a real mouse click has detail >= 1, so mouse users still need a
+      // double-click and don't trip the lightbox on a single stray click.
+      cell.addEventListener('click', (event) => {
+        if (event.detail === 0) open(cell);
       });
     });
 
@@ -940,6 +964,11 @@ const jobsoxoRows = [
         event.clientY > box.bottom;
       if (outside) close();
     });
-    dialog.addEventListener('close', () => dialogImg.removeAttribute('src'));
+    dialog.addEventListener('close', () => {
+      dialogImg.removeAttribute('src');
+      // Return focus to the photo that opened the dialog (WCAG 2.4.3).
+      lastTrigger?.focus();
+      lastTrigger = null;
+    });
   }
 </script>

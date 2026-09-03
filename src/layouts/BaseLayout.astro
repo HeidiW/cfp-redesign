@@ -34,8 +34,9 @@ const { title, description, footerLegal, headerCta, pageTone = 'default' } = Ast
     <meta name="generator" content={Astro.generator} />
   </head>
   <body data-page-tone={pageTone === 'neutral' ? 'neutral' : undefined}>
+    <a class="skip-link" href="#main">Skip to content</a>
     <Header cta={headerCta} />
-    <main>
+    <main id="main">
       <slot />
     </main>
     <Footer legal={footerLegal} />

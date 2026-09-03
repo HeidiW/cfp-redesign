@@ -167,6 +167,7 @@ Deliberately minimal — this is a marketing site.
 - **Forms:** on submit, prevent default and swap the button label to a confirmation. JobsOxo waitlist: `"Join the waitlist"` → `"Thank you — we'll be in touch"`. The contact and newsletter forms behave the same way. No real backend is wired — connect these to whatever the codebase uses (a form service, an API route, an email provider list).
 - **Hover / focus / pressed:** inherited from `styles.css`; do not override per page.
 - **No scroll animations, carousels, parallax, or reveal-on-scroll.** Nothing moves that the user didn't move.
+- **Accessibility (WCAG 2.1 AA):** a "Skip to content" link is the first focusable element on every page (→ `<main id="main">`). Filled photo-strip cells are real `<button>`s — Tab to focus (which also reveals the photo), Enter/Space or double-click opens the lightbox, Esc closes and returns focus to the cell. `prefers-reduced-motion` is honoured globally. `.text-muted` / `figcaption` sit at 68% ink (≈5:1) and form-control borders at 58% (≥3:1) — the prototype's 55%/`--color-divider` failed AA.
 
 ## State management
 
