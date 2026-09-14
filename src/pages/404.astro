@@ -1,0 +1,56 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/Section.astro';
+import Eyebrow from '../components/Eyebrow.astro';
+
+const links = [
+  { href: '/work', label: 'See the work' },
+  { href: '/services', label: 'Services' },
+  { href: '/contact', label: 'Request a consultation' },
+];
+---
+<BaseLayout
+  title="Page not found — Conor Foy Plaster"
+  description="This page doesn't exist. Find our work, services, or get in touch with Conor Foy Plaster."
+>
+  <Section border="none" pt={80} pb={80}>
+    <div class="notfound">
+      <Eyebrow track={0.2} mb={24}>404</Eyebrow>
+      <h1 class="notfound__title">This room isn&rsquo;t finished yet.</h1>
+      <p class="notfound__body">
+        The page you're looking for doesn't exist — it may have moved, or the
+        link was mistyped. Here's where to go instead.
+      </p>
+      <div class="notfound__links">
+        {links.map((link, i) => (
+          <a class={`btn ${i === 0 ? 'btn-primary' : 'btn-secondary'}`} href={link.href}>
+            {link.label}
+          </a>
+        ))}
+      </div>
+    </div>
+  </Section>
+</BaseLayout>
+
+<style>
+  .notfound {
+    max-width: 60ch;
+  }
+  .notfound__title {
+    font-size: clamp(32px, 5.5vw, 56px);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin: 0 0 18px;
+  }
+  .notfound__body {
+    font-size: 16px;
+    line-height: 1.8;
+    margin: 0 0 40px;
+  }
+  .notfound__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+</style>

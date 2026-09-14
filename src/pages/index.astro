@@ -9,12 +9,12 @@ import NewsletterForm from '../components/NewsletterForm.astro';
 import FormSwap from '../components/FormSwap.astro';
 
 import heroImg from '../assets/work/home-hero-gold-leaf-lime.png';
-import moxyImg from '../assets/work/moxy-hotel-williamsburg.png';
+import moxyImg from '../assets/work/moxy-hotel-williamsburg/public-rooms-stair.png';
 import maximesImg from '../assets/work/maximes.jpg';
-import friedmansImg from '../assets/work/friedmans.jpg';
+import friedmansImg from '../assets/work/friedmans/pdr-mirror-wall.jpg';
 import w13thImg from '../assets/work/w-13th-st-residence.jpg';
-import laightStImg from '../assets/work/laight-st-residence.jpg';
-import carverImg from '../assets/work/carver-steak.jpg';
+import laightStImg from '../assets/work/laight-st-residence/ceiling-beams.jpg';
+import carverImg from '../assets/work/carver-steak/coffered-ceiling.jpg';
 
 import samplePanelImg from '../assets/strip/sample-panel.jpg';
 import gildingImg from '../assets/strip/gilding.jpg';
@@ -65,14 +65,14 @@ const stripColsMd = stripCols <= 4 ? stripCols : Math.ceil(stripCols / 2);
 const stripColsSm = Math.min(stripCols, 2);
 
 const smallProjects = [
-  { name: "Friedman's", meta: 'Gold leaf · 2024', img: friedmansImg,
-    alt: "Friedman's — gold leaf diamond pattern over troweled plaster" },
+  { name: "Friedmans", meta: 'Gold leaf · 2024', img: friedmansImg,
+    alt: "Friedmans — gold leaf diamond pattern over troweled plaster" },
   { name: 'W 13th St Residence', meta: 'Polished plaster · 2026', img: w13thImg,
     alt: 'W 13th St Residence — polished plaster bedroom wall' },
   { name: 'Laight St Residence', meta: 'Lime plaster · 2025', img: laightStImg,
     alt: 'Laight St Residence — lime-plaster ceiling and beams' },
-  { name: 'Carver Steak', meta: 'Polished plaster · 2026', img: carverImg,
-    alt: 'Carver Steak — polished plaster coffered ceiling' },
+  { name: 'Carversteak NYC', meta: 'Polished plaster · 2026', img: carverImg,
+    alt: 'Carversteak NYC — polished plaster coffered ceiling' },
 ];
 
 const finishes = [
@@ -104,7 +104,7 @@ const jobsoxoRows = [
 ---
 <BaseLayout
   title="Conor Foy Plaster — Venetian & custom plaster, New York since 2002"
-  description="Hand-troweled lime, Japanese plaster, tadelakt and gold leaf for restaurants, hotels and homes across New York. Decorative plaster and restoration since 2002."
+  description="Hand-troweled lime, Japanese plaster, tadelakt and gold leaf for restaurants, hotels and homes across New York — plaster and restoration since 2002."
 >
   {/* ── Hero ─────────────────────────────────────────────────────────── */}
   <Section border="none" pb={72} class="hero">

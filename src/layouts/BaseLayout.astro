@@ -1,10 +1,12 @@
 ---
+import { getImage } from 'astro:assets';
 import '../styles/global.css';
 import Analytics from '@vercel/analytics/astro';
 import ConsentAnalytics from '../components/ConsentAnalytics.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import type { NavLink } from '../data/nav';
+import defaultOgSource from '../assets/work/home-hero-gold-leaf-lime.png';
 
 interface Props {
   title: string;
@@ -15,14 +17,38 @@ interface Props {
   headerCta?: NavLink;
   /** Page ground. `neutral` is the lighter neutral-100 JobsOxo runs on. */
   pageTone?: 'default' | 'neutral';
+  /** Open Graph type. Defaults to "website"; individual pages rarely need to override this. */
+  ogType?: string;
 }
-const { title, description, footerLegal, headerCta, pageTone = 'default' } = Astro.props;
+const { title, description, footerLegal, headerCta, pageTone = 'default', ogType = 'website' } = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const defaultOgImage = await getImage({ src: defaultOgSource, width: 1200, height: 630, format: 'jpg' });
+const ogImageURL = new URL(defaultOgImage.src, Astro.site);
+
+const businessLd = {
+  '@context': 'https://schema.org',
+  '@type': 'HomeAndConstructionBusiness',
+  name: 'Conor Foy Plaster',
+  description:
+    'Hand-troweled Venetian plaster, Japanese plaster, tadelakt and gold leaf for restaurants, hotels and homes across New York. Decorative plaster and restoration since 2002.',
+  url: Astro.site?.toString(),
+  image: ogImageURL.toString(),
+  email: 'info@conorfoy.com',
+  telephone: '+13474523548',
+  areaServed: {
+    '@type': 'City',
+    name: 'New York City',
+  },
+  foundingDate: '2002',
+};
 ---
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#640d14" />
     <link
       rel="icon"
       href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='1.5' y='1.5' width='29' height='29' rx='2' fill='%23ebf2fa' stroke='%23640d14' stroke-width='1.5'/%3E%3Ctext x='16' y='21.5' font-family='Georgia, serif' font-size='13' letter-spacing='0.5' fill='%23640d14' text-anchor='middle'%3ECF%3C/text%3E%3C/svg%3E"
@@ -31,7 +57,25 @@ const { title, description, footerLegal, headerCta, pageTone = 'default' } = Ast
     <link rel="preload" href="/fonts/lora-400-latin.woff2" as="font" type="font/woff2" crossorigin />
     <title>{title}</title>
     {description && <meta name="description" content={description} />}
+    <link rel="canonical" href={canonicalURL} />
     <meta name="generator" content={Astro.generator} />
+
+    {/* ── Open Graph / Twitter Card ────────────────────────────────────── */}
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content="Conor Foy Plaster" />
+    <meta property="og:title" content={title} />
+    {description && <meta property="og:description" content={description} />}
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    {description && <meta name="twitter:description" content={description} />}
+    <meta name="twitter:image" content={ogImageURL} />
+
+    {/* ── Structured data ──────────────────────────────────────────────── */}
+    <script type="application/ld+json" set:html={JSON.stringify(businessLd)} is:inline />
   </head>
   <body data-page-tone={pageTone === 'neutral' ? 'neutral' : undefined}>
     <a class="skip-link" href="#main">Skip to content</a>
