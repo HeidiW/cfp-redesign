@@ -327,50 +327,51 @@ const jobs = [
     ],
   },
   {
-    name: 'Forgione',
+    name: 'Forge',
+    href: 'https://www.marcforgione.com/',
     year: '2026',
     location: '30 Hudson St.',
     photos: [
       {
         img: forgioneDiningBooth,
-        alt: 'Forgione — dining room booth with faux-aged whitewashed brick finish',
+        alt: 'Forge — dining room booth with faux-aged whitewashed brick finish',
         room: 'Dining room',
         materials:
           'A faux-aged brick finish, hand-painted and distressed to read as whitewashed century-old brick, above reclaimed wood wainscoting.',
       },
       {
         img: forgioneDiningDoorway,
-        alt: 'Forgione — dining room doorway with faux-aged whitewashed brick finish',
+        alt: 'Forge — dining room doorway with faux-aged whitewashed brick finish',
         room: 'Dining room',
         materials: 'The same faux-aged brick finish carried around the doorway.',
       },
       {
         img: forgioneDiningBrickDetail,
-        alt: 'Forgione — detail of the faux-aged whitewashed brick finish',
+        alt: 'Forge — detail of the faux-aged whitewashed brick finish',
         room: 'Dining room',
         materials: 'Detail of the hand-worked brick finish, layered whitewash over red and grey undertones.',
       },
       {
         img: forgioneBackDiningWide,
-        alt: 'Forgione — back dining room with smooth lime plaster walls',
+        alt: 'Forge — back dining room with smooth lime plaster walls',
         room: 'Back dining room',
         materials: 'Hand-troweled lime plaster in a warm greige tone through the back dining room, worked to a mottled, aged patina.',
       },
       {
         img: forgioneBackDiningWall,
-        alt: 'Forgione — back dining room lime plaster wall above wood wainscoting',
+        alt: 'Forge — back dining room lime plaster wall above wood wainscoting',
         room: 'Back dining room',
         materials: 'The same lime plaster above reclaimed wood wainscoting, sconce-lit along the wall.',
       },
       {
         img: forgioneBackDiningSconces,
-        alt: 'Forgione — back dining room lime plaster wall beneath a beamed ceiling',
+        alt: 'Forge — back dining room lime plaster wall beneath a beamed ceiling',
         room: 'Back dining room',
         materials: 'Lime plaster and wood wainscoting continue beneath the black beamed ceiling.',
       },
       {
         img: forgionePlasterDetail,
-        alt: 'Forgione — detail of the aged patina lime plaster finish',
+        alt: 'Forge — detail of the aged patina lime plaster finish',
         room: 'Plaster detail',
         materials: 'Detail of the aged patina finish, light and dark limewash layered for a weathered, centuries-old look.',
       },
@@ -449,6 +450,7 @@ const jobs = [
       <WorkRow
         index={i + 1}
         name={job.name}
+        href={job.href}
         year={job.year}
         location={job.location}
         photos={job.photos}
