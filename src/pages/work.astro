@@ -2,54 +2,271 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Section from '../components/Section.astro';
 import Eyebrow from '../components/Eyebrow.astro';
-import Plate from '../components/Plate.astro';
+import WorkRow from '../components/WorkRow.astro';
 import CtaBand from '../components/CtaBand.astro';
 
-import moxyImg from '../assets/work/moxy-hotel-williamsburg.png';
+import moxyPublicRoomsStair from '../assets/work/moxy-hotel-williamsburg/public-rooms-stair.png';
+import moxyGalleryCorridor from '../assets/work/moxy-hotel-williamsburg/gallery-corridor.jpg';
+import moxyPublicRoomsWide from '../assets/work/moxy-hotel-williamsburg/public-rooms-wide.jpg';
 import maximesImg from '../assets/work/maximes.jpg';
-import friedmansImg from '../assets/work/friedmans.jpg';
+import friedmansAnteroom from '../assets/work/friedmans/anteroom.jpg';
+import friedmansPdrWide from '../assets/work/friedmans/pdr-wide.jpg';
+import friedmansPdrMirrorWall from '../assets/work/friedmans/pdr-mirror-wall.jpg';
+import friedmansPdrCeiling from '../assets/work/friedmans/pdr-ceiling.jpg';
+import friedmansGildingDetail1 from '../assets/work/friedmans/gilding-detail-01.jpg';
+import friedmansGildingDetail2 from '../assets/work/friedmans/gilding-detail-02.jpg';
 import w13thImg from '../assets/work/w-13th-st-residence.jpg';
 import laightStImg from '../assets/work/laight-st-residence.jpg';
 import carverImg from '../assets/work/carver-steak.jpg';
 
+import horatioBedroom1 from '../assets/work/horatio-st-apartment/bedroom-01.jpg';
+import horatioBedroom2 from '../assets/work/horatio-st-apartment/bedroom-02.jpg';
+import horatioKitchenRange from '../assets/work/horatio-st-apartment/kitchen-range-wall.jpg';
+import horatioKitchenSink from '../assets/work/horatio-st-apartment/kitchen-sink-wall.jpg';
+import horatioBathShower from '../assets/work/horatio-st-apartment/primary-bath-shower.jpg';
+import horatioBathVanityWide from '../assets/work/horatio-st-apartment/primary-bath-vanity-wide.jpg';
+import horatioBathVanity from '../assets/work/horatio-st-apartment/primary-bath-vanity.jpg';
+
+import forgioneDiningBooth from '../assets/work/forgione/dining-room-booth.jpg';
+import forgioneDiningDoorway from '../assets/work/forgione/dining-room-doorway.jpg';
+import forgioneDiningBrickDetail from '../assets/work/forgione/dining-room-brick-detail.jpg';
+import forgioneBackDiningWide from '../assets/work/forgione/back-dining-room-wide.jpg';
+import forgioneBackDiningWall from '../assets/work/forgione/back-dining-room-wall.jpg';
+import forgioneBackDiningSconces from '../assets/work/forgione/back-dining-room-sconces.jpg';
+import forgionePlasterDetail from '../assets/work/forgione/plaster-patina-detail.jpg';
+
 const categories = ['Restaurants', 'Hotels', 'Residences', 'Private clubs', 'Restoration'];
 
-const projects = [
+const jobs = [
+  {
+    name: 'Moxy Hotel',
+    year: '2023',
+    location: 'Williamsburg, Brooklyn',
+    photos: [
+      {
+        img: moxyPublicRoomsStair,
+        alt: 'Moxy Hotel Williamsburg — plaster columns and curved soffit',
+        room: 'Public rooms & stair',
+        materials:
+          'Venetian plaster through the public rooms, with hand-painted murals carried up the stair.',
+      },
+      {
+        img: moxyGalleryCorridor,
+        alt: 'Moxy Hotel Williamsburg — plaster gallery corridor with arched openings and banquette seating',
+        room: 'Gallery corridor',
+        materials:
+          'Venetian plaster in a warm grey, worked to a soft, cloud-like patina through the arched openings.',
+      },
+      {
+        img: moxyPublicRoomsWide,
+        alt: 'Moxy Hotel Williamsburg — wide view of the curved plaster soffit above the dining room',
+        room: 'Public rooms & stair',
+        materials:
+          'The same curved plaster soffit seen from the dining room below, banded in cast reveals and dressed with trailing greenery.',
+      },
+    ],
+  },
+  {
+    name: "Maxime's",
+    year: '2025',
+    location: 'Midtown',
+    photos: [
+      {
+        img: maximesImg,
+        alt: "Maxime's — restored Art Nouveau dining room with gold leaf and plaster",
+        room: 'Dining room',
+        materials:
+          'Hand-painted faux marble crown molding in gold leaf, veining drawn by hand coat over coat.',
+      },
+    ],
+  },
   {
     name: "Friedman's",
     year: '2024',
-    img: friedmansImg,
-    alt: "Friedman's — gold leaf laid in a diamond field over troweled plaster in the banquette room",
-    body:
-      'Gold leaf laid in a diamond field over troweled plaster, set out to turn the corners without breaking pattern — deliberately imperfect, so it catches the wall lights the way old gilding does.',
-    tags: ['Gold leaf', 'Restaurant'],
+    location: 'Greenwich St.',
+    photos: [
+      {
+        img: friedmansAnteroom,
+        alt: "Friedman's — smooth plaster anteroom leading into the private dining room",
+        room: 'Anteroom',
+        materials:
+          'Smooth troweled plaster in a warm sand tone, a quiet backdrop before the gilded room beyond.',
+      },
+      {
+        img: friedmansPdrWide,
+        alt: "Friedman's — private dining room with gold leaf diamond pattern over troweled plaster",
+        room: 'Private dining room',
+        materials:
+          'Gold leaf laid in a diamond field over troweled plaster, wrapping the banquette wall floor to ceiling.',
+      },
+      {
+        img: friedmansPdrMirrorWall,
+        alt: "Friedman's — private dining room mirror wall with gold leaf diamond pattern",
+        room: 'Private dining room',
+        materials: 'The same gold-leaf diamond pattern framing three mirrors above the banquette.',
+      },
+      {
+        img: friedmansPdrCeiling,
+        alt: "Friedman's — private dining room ceiling medallion with gold leaf diamond walls",
+        room: 'Private dining room',
+        materials: 'Gold-leaf diamonds continue around the oval ceiling medallion.',
+      },
+      {
+        img: friedmansGildingDetail1,
+        alt: "Friedman's — detail of gold leaf diamond pattern applied over plaster",
+        room: 'Gilding detail',
+        materials: 'Gold leaf applied diamond by diamond over the plastered wall, shown here mid-application.',
+      },
+      {
+        img: friedmansGildingDetail2,
+        alt: "Friedman's — detail of gold leaf diamond pattern turning a corner",
+        room: 'Gilding detail',
+        materials: 'Each diamond built up in overlapping leaf, catching light differently as it wraps the corner.',
+      },
+    ],
   },
   {
     name: 'W 13th St Residence',
     year: '2026',
-    img: w13thImg,
-    alt: 'W 13th St Residence — polished plaster bedroom wall',
-    body:
-      'Polished plaster carried wall to wall in a single warm tone, burnished until the surface holds a faint sheen — quiet enough to live with, deep enough to change with the light.',
-    tags: ['Polished plaster', 'Residential'],
+    location: 'West 13th Street',
+    photos: [
+      {
+        img: w13thImg,
+        alt: 'W 13th St Residence — polished plaster bedroom wall',
+        room: 'Bedroom',
+        materials:
+          'Polished plaster carried wall to wall in a single warm tone, burnished to a faint sheen.',
+      },
+    ],
   },
   {
     name: 'Laight St Residence',
     year: '2025',
-    img: laightStImg,
-    alt: 'Laight St Residence — lime-plaster ceiling and beams above reclaimed wood',
-    body:
-      'Hand-troweled lime over ceiling and beams, kept soft and slightly uneven so the light moves across it through the day and settles warm against the reclaimed wood.',
-    tags: ['Lime plaster', 'Residential'],
+    location: 'Laight Street',
+    photos: [
+      {
+        img: laightStImg,
+        alt: 'Laight St Residence — lime-plaster ceiling and beams above reclaimed wood',
+        room: 'Ceiling & beams',
+        materials:
+          'Hand-troweled lime plaster over the ceiling and beams, kept soft and slightly uneven.',
+      },
+    ],
   },
   {
     name: 'Carver Steak',
     year: '2026',
-    img: carverImg,
-    alt: 'Carver Steak — polished plaster coffered ceiling above dark millwork',
-    body:
-      'A polished plaster coffered ceiling burnished to a warm limestone glow — the one bright plane in a room of dark wood and green velvet, doing all the lifting.',
-    tags: ['Polished plaster', 'Ceilings', 'Restaurant'],
+    location: 'New York',
+    photos: [
+      {
+        img: carverImg,
+        alt: 'Carver Steak — polished plaster coffered ceiling above dark millwork',
+        room: 'Dining room ceiling',
+        materials: 'Polished plaster coffered ceiling burnished to a warm limestone glow.',
+      },
+    ],
+  },
+  {
+    name: 'Horatio St. Apartment',
+    year: '2026',
+    location: 'West Village',
+    photos: [
+      {
+        img: horatioBedroom1,
+        alt: 'Horatio St. Apartment — bedroom with warm lime-plaster walls and ceiling',
+        room: 'Bedroom',
+        materials: 'Smooth lime plaster carried wall to ceiling in a warm sand tone.',
+      },
+      {
+        img: horatioBedroom2,
+        alt: 'Horatio St. Apartment — primary bedroom with lime-plaster walls and skyline view',
+        room: 'Primary bedroom',
+        materials: 'The same warm lime plaster, with built-in cabinetry below the skyline view.',
+      },
+      {
+        img: horatioKitchenRange,
+        alt: 'Horatio St. Apartment — kitchen range wall with gold polished-plaster backsplash',
+        room: 'Kitchen',
+        materials:
+          'Polished plaster backsplash in a burnished gold tone, set within an arched niche behind the range.',
+      },
+      {
+        img: horatioKitchenSink,
+        alt: 'Horatio St. Apartment — kitchen sink wall with gold polished-plaster backsplash',
+        room: 'Kitchen',
+        materials:
+          'The same gold polished plaster continues behind the sink, paired with green marble counters.',
+      },
+      {
+        img: horatioBathShower,
+        alt: 'Horatio St. Apartment — primary bathroom shower with grey venetian plaster and marble',
+        room: 'Primary bathroom',
+        materials:
+          'Fine venetian plaster in warm grey on the walls and ceiling, framing a book-matched marble shower.',
+      },
+      {
+        img: horatioBathVanityWide,
+        alt: 'Horatio St. Apartment — primary bathroom, shower and vanity wall',
+        room: 'Primary bathroom',
+        materials: 'Grey venetian plaster surrounds the marble-clad shower and vanity wall.',
+      },
+      {
+        img: horatioBathVanity,
+        alt: 'Horatio St. Apartment — primary bathroom vanity and mirror niche',
+        room: 'Primary bathroom',
+        materials: 'Venetian plaster meets a marble vanity top beneath a backlit mirror niche.',
+      },
+    ],
+  },
+  {
+    name: 'Forgione',
+    year: '2026',
+    location: '30 Hudson St.',
+    photos: [
+      {
+        img: forgioneDiningBooth,
+        alt: 'Forgione — dining room booth with faux-aged whitewashed brick finish',
+        room: 'Dining room',
+        materials:
+          'A faux-aged brick finish, hand-painted and distressed to read as whitewashed century-old brick, above reclaimed wood wainscoting.',
+      },
+      {
+        img: forgioneDiningDoorway,
+        alt: 'Forgione — dining room doorway with faux-aged whitewashed brick finish',
+        room: 'Dining room',
+        materials: 'The same faux-aged brick finish carried around the doorway.',
+      },
+      {
+        img: forgioneDiningBrickDetail,
+        alt: 'Forgione — detail of the faux-aged whitewashed brick finish',
+        room: 'Dining room',
+        materials: 'Detail of the hand-worked brick finish, layered whitewash over red and grey undertones.',
+      },
+      {
+        img: forgioneBackDiningWide,
+        alt: 'Forgione — back dining room with smooth lime plaster walls',
+        room: 'Back dining room',
+        materials: 'Hand-troweled lime plaster in a warm greige tone through the back dining room, worked to a mottled, aged patina.',
+      },
+      {
+        img: forgioneBackDiningWall,
+        alt: 'Forgione — back dining room lime plaster wall above wood wainscoting',
+        room: 'Back dining room',
+        materials: 'The same lime plaster above reclaimed wood wainscoting, sconce-lit along the wall.',
+      },
+      {
+        img: forgioneBackDiningSconces,
+        alt: 'Forgione — back dining room lime plaster wall beneath a beamed ceiling',
+        room: 'Back dining room',
+        materials: 'Lime plaster and wood wainscoting continue beneath the black beamed ceiling.',
+      },
+      {
+        img: forgionePlasterDetail,
+        alt: 'Forgione — detail of the aged patina lime plaster finish',
+        room: 'Plaster detail',
+        materials: 'Detail of the aged patina finish, light and dark limewash layered for a weathered, centuries-old look.',
+      },
+    ],
   },
 ];
 ---
@@ -81,78 +298,15 @@ const projects = [
 
   {/* ── Projects ────────────────────────────────────────────────────── */}
   <Section border="none" pt={24} pb={80} class="projects">
-    <article class="feature feature--text-first">
-      <div class="feature__text">
-        <div class="feature__meta text-muted tnum">01 — 2023</div>
-        <h2 class="feature__title">Moxy Hotel</h2>
-        <div class="feature__place text-muted">Williamsburg, Brooklyn</div>
-        <p class="feature__body">
-          Venetian plaster through the public rooms with hand-painted murals in
-          the stair. The largest single scope we have carried, phased around an
-          operating hotel so no floor lost more than a week.
-        </p>
-        <div class="tag-row">
-          <span class="tag tag-outline">Venetian</span>
-          <span class="tag tag-outline">Hotel</span>
-        </div>
-      </div>
-      <Plate
-        src={moxyImg}
-        alt="Moxy Hotel Williamsburg — plaster columns and curved soffit"
-        height={560}
-        sizes="(max-width: 1080px) calc(100vw - 40px), 1020px"
-        loading="eager"
+    {jobs.map((job, i) => (
+      <WorkRow
+        index={i + 1}
+        name={job.name}
+        year={job.year}
+        location={job.location}
+        photos={job.photos}
       />
-    </article>
-
-    <article class="feature feature--image-first">
-      <Plate
-        src={maximesImg}
-        alt="Maxime's — restored Art Nouveau dining room with gold leaf and plaster"
-        height={600}
-        position="center"
-        sizes="(max-width: 1080px) calc(100vw - 40px), 1020px"
-      />
-      <div class="feature__text">
-        <div class="feature__meta text-muted tnum">02 — 2025</div>
-        <h2 class="feature__title">Maxime's</h2>
-        <div class="feature__place text-muted">Midtown</div>
-        <p class="feature__body">
-          The largest single job we have taken: hand-painted faux marble crown
-          molding, veining drawn by hand, coat over coat, until the plaster reads
-          as quarried stone. Lit low and red, the room feels older than the
-          building it sits in.
-        </p>
-        <div class="tag-row">
-          <span class="tag tag-outline">Hand painted</span>
-          <span class="tag tag-outline">Faux marble</span>
-          <span class="tag tag-outline">Private club</span>
-        </div>
-      </div>
-    </article>
-
-    <div class="projects__grid">
-      {projects.map((project) => (
-        <article class="pcard">
-          <Plate
-            src={project.img}
-            alt={project.alt}
-            height={340}
-            sizes="(max-width: 720px) calc(100vw - 40px), (max-width: 1080px) calc(50vw - 40px), 580px"
-          />
-          <div class="pcard__head">
-            <h2 class="pcard__title">{project.name}</h2>
-            <span class="pcard__year text-muted tnum">{project.year}</span>
-          </div>
-          <p class="pcard__body text-muted">{project.body}</p>
-          <div class="tag-row">
-            {project.tags.map((tag) => (
-              <span class="tag tag-outline">{tag}</span>
-            ))}
-          </div>
-        </article>
-      ))}
-    </div>
+    ))}
   </Section>
 
   <CtaBand
@@ -194,101 +348,11 @@ const projects = [
     border-top: 1px solid var(--color-divider);
   }
 
-  /* ── Featured rows ───────────────────────────────────────────────── */
-  .feature {
-    display: grid;
-    gap: 48px;
-    padding-bottom: 64px;
-    margin-bottom: 64px;
-    border-bottom: 1px solid var(--color-divider);
-  }
-  .feature--text-first {
-    grid-template-columns: 240px 1fr;
-  }
-  .feature--image-first {
-    grid-template-columns: 1fr 240px;
-  }
-  .feature__text {
-    padding-top: 6px;
-  }
-  .feature__meta {
-    font-size: 11px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    margin-bottom: 12px;
-  }
-  .feature__title {
-    font-size: 32px;
-    font-weight: 400;
-    line-height: 1.1;
-    margin: 0 0 6px;
-  }
-  .feature__place {
-    font-size: 12px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    margin-bottom: 16px;
-  }
-  .feature__body {
-    font-size: 13.5px;
-    line-height: 1.8;
-    margin: 0 0 16px;
-  }
-
-  .tag-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-  }
-
-  /* ── Small project grid ──────────────────────────────────────────── */
-  .projects__grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 48px 40px;
-  }
-  .pcard__head {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 20px;
-    margin-top: 18px;
-  }
-  .pcard__title {
-    font-size: 27px;
-    font-weight: 400;
-    margin: 0;
-  }
-  .pcard__year {
-    font-size: 12px;
-  }
-  .pcard__body {
-    font-size: 13.5px;
-    line-height: 1.8;
-    margin: 10px 0 14px;
-  }
-
   /* ── Responsive ──────────────────────────────────────────────────── */
   @media (max-width: 1080px) {
     .work-hero__row {
       grid-template-columns: 1fr;
       gap: 22px;
-    }
-    .feature--text-first,
-    .feature--image-first {
-      grid-template-columns: 1fr;
-    }
-    /* Stacked, the rows keep DOM order — so the reversed row reads
-       image-then-text, matching the prototype. */
-    .projects__grid {
-      grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
-    }
-  }
-
-  @media (max-width: 720px) {
-    .projects__grid {
-      grid-template-columns: 1fr;
-      gap: 28px;
     }
   }
 </style>
