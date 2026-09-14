@@ -193,6 +193,7 @@ const jobs = [
   },
   {
     name: 'W 13th St Residence',
+    hidden: true,
     year: '2026',
     location: 'West 13th Street',
     category: 'Residences',
@@ -409,6 +410,7 @@ const jobs = [
   },
   {
     name: 'St. Regis Residences',
+    href: 'https://marriottresidences.com/luxury_brand/st-regis-residences/',
     year: '2025',
     location: 'Rye, NY',
     category: 'Residences',
@@ -477,7 +479,7 @@ const jobs = [
 
   {/* ── Projects ────────────────────────────────────────────────────── */}
   <Section border="none" pt={24} pb={80} class="projects">
-    {jobs.map((job, i) => (
+    {jobs.filter((job) => !job.hidden).map((job, i) => (
       <WorkRow
         index={i + 1}
         name={job.name}
