@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig, envField } from 'astro/config';
 import vercel from '@astrojs/vercel';
+import sitemap from '@astrojs/sitemap';
 
 // Marketing site for Conor Foy Plaster. The eight content pages are static;
 // the form endpoints under /api opt into on-demand rendering (see
@@ -8,6 +9,7 @@ import vercel from '@astrojs/vercel';
 export default defineConfig({
   site: 'https://conorfoy.com',
   adapter: vercel(),
+  integrations: [sitemap()],
   build: {
     format: 'directory',
   },
