@@ -15,13 +15,14 @@ interface Props {
   href?: string;
   year: string;
   location: string;
+  category: string;
   photos: Photo[];
 }
 
-const { index, name, href, year, location, photos } = Astro.props;
+const { index, name, href, year, location, category, photos } = Astro.props;
 const num = String(index).padStart(2, '0');
 ---
-<article class="job">
+<article class="job" data-category={category}>
   <div class="job__head">
     <div class="job__meta text-muted tnum">{num} — {year}</div>
     <h2 class="job__title">

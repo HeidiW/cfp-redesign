@@ -60,6 +60,7 @@ const jobs = [
     name: 'Moxy Hotel',
     year: '2023',
     location: 'Williamsburg, Brooklyn',
+    category: 'Hotels',
     photos: [
       {
         img: moxyPublicRoomsStair,
@@ -88,6 +89,7 @@ const jobs = [
     name: "Maxime's",
     year: '2025',
     location: 'Midtown',
+    category: 'Restaurants',
     photos: [
       {
         img: maximesImg,
@@ -154,6 +156,7 @@ const jobs = [
     name: "Friedmans",
     year: '2024',
     location: 'Greenwich St.',
+    category: 'Restaurants',
     photos: [
       {
         img: friedmansPdrWide,
@@ -192,6 +195,7 @@ const jobs = [
     name: 'W 13th St Residence',
     year: '2026',
     location: 'West 13th Street',
+    category: 'Residences',
     photos: [
       {
         img: w13thImg,
@@ -206,6 +210,7 @@ const jobs = [
     name: 'Laight St Residence',
     year: '2025',
     location: 'Laight Street',
+    category: 'Residences',
     photos: [
       {
         img: laightStHeadboardCeilingDetail,
@@ -249,6 +254,7 @@ const jobs = [
     name: 'Carver Steak',
     year: '2026',
     location: 'New York',
+    category: 'Restaurants',
     photos: [
       {
         img: carverImg,
@@ -262,6 +268,7 @@ const jobs = [
     name: 'Horatio St. Apartment',
     year: '2026',
     location: 'West Village',
+    category: 'Residences',
     photos: [
       {
         img: horatioBedroom1,
@@ -315,6 +322,7 @@ const jobs = [
     href: 'https://www.marcforgione.com/',
     year: '2026',
     location: '30 Hudson St.',
+    category: 'Restaurants',
     photos: [
       {
         img: forgioneDiningBooth,
@@ -365,6 +373,7 @@ const jobs = [
     name: 'St. Regis Residences',
     year: '2025',
     location: 'Rye, NY',
+    category: 'Residences',
     photos: [
       {
         img: stRegisStairEnclosureWide,
@@ -420,10 +429,10 @@ const jobs = [
       </p>
     </div>
 
-    <div class="work-hero__tags">
-      <span class="tag tag-accent">All work</span>
+    <div class="work-hero__tags" id="work-filters">
+      <button type="button" class="tag tag-accent" data-filter="All work" aria-pressed="true">All work</button>
       {categories.map((category) => (
-        <span class="tag tag-outline">{category}</span>
+        <button type="button" class="tag tag-outline" data-filter={category} aria-pressed="false">{category}</button>
       ))}
     </div>
   </Section>
@@ -437,9 +446,11 @@ const jobs = [
         href={job.href}
         year={job.year}
         location={job.location}
+        category={job.category}
         photos={job.photos}
       />
     ))}
+    <p class="work-empty text-muted" id="work-empty" hidden>No projects in this category yet.</p>
   </Section>
 
   <CtaBand
@@ -480,6 +491,23 @@ const jobs = [
     padding-top: 28px;
     border-top: 1px solid var(--color-divider);
   }
+  .work-hero__tags .tag {
+    cursor: pointer;
+    transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  }
+  .work-hero__tags .tag:hover {
+    border-color: var(--color-accent);
+  }
+  .work-hero__tags .tag:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
+  /* ── Projects ────────────────────────────────────────────────────── */
+  .work-empty {
+    font-size: 15px;
+    padding: 40px 0;
+  }
 
   /* ── Responsive ──────────────────────────────────────────────────── */
   @media (max-width: 1080px) {
@@ -489,3 +517,33 @@ const jobs = [
     }
   }
 </style>
+
+<script>
+  const filterBar = document.getElementById('work-filters');
+  const buttons = Array.from(filterBar?.querySelectorAll<HTMLButtonElement>('[data-filter]') ?? []);
+  const jobs = Array.from(document.querySelectorAll<HTMLElement>('.job'));
+  const emptyMessage = document.getElementById('work-empty');
+
+  function applyFilter(filter: string) {
+    let visibleCount = 0;
+    for (const job of jobs) {
+      const match = filter === 'All work' || job.dataset.category === filter;
+      job.hidden = !match;
+      if (match) visibleCount += 1;
+    }
+    if (emptyMessage) emptyMessage.hidden = visibleCount > 0;
+
+    for (const button of buttons) {
+      const active = button.dataset.filter === filter;
+      button.classList.toggle('tag-accent', active);
+      button.classList.toggle('tag-outline', !active);
+      button.setAttribute('aria-pressed', String(active));
+    }
+  }
+
+  filterBar?.addEventListener('click', (event) => {
+    const button = (event.target as HTMLElement).closest<HTMLButtonElement>('[data-filter]');
+    if (!button) return;
+    applyFilter(button.dataset.filter ?? 'All work');
+  });
+</script>
