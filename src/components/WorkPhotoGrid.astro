@@ -1,0 +1,52 @@
+---
+import Plate from './Plate.astro';
+import type { Photo } from '../data/jobs';
+
+interface Props {
+  photos: Photo[];
+}
+
+const { photos } = Astro.props;
+---
+<div class="job__photos">
+  {photos.map((photo) => (
+    <figure class="job__photo">
+      <Plate
+        src={photo.img}
+        alt={photo.alt}
+        height={380}
+        sizes="(max-width: 720px) calc(100vw - 40px), (max-width: 1080px) calc(50vw - 40px), 380px"
+      />
+      <figcaption class="job__cap">
+        <div class="job__cap-room">{photo.room}</div>
+        <p class="job__cap-materials text-muted">{photo.materials}</p>
+      </figcaption>
+    </figure>
+  ))}
+</div>
+
+<style>
+  .job__photos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px 32px;
+  }
+  .job__cap {
+    margin-top: 14px;
+  }
+  .job__cap-room {
+    font-size: 15px;
+    margin-bottom: 4px;
+  }
+  .job__cap-materials {
+    font-size: 13px;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  @media (max-width: 720px) {
+    .job__photos {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

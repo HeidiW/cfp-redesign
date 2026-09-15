@@ -1,0 +1,86 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Section from '../../components/Section.astro';
+import Eyebrow from '../../components/Eyebrow.astro';
+import WorkPhotoGrid from '../../components/WorkPhotoGrid.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { jobs, type Job } from '../../data/jobs';
+
+export function getStaticPaths() {
+  return jobs.map((job) => ({
+    params: { slug: job.slug },
+    props: { job },
+  }));
+}
+
+interface Props {
+  job: Job;
+}
+
+const { job } = Astro.props;
+---
+<BaseLayout title={`${job.name} — Conor Foy Plaster`} description={job.seoDescription}>
+  <Section border="none" pt={80} pb={48} class="project-hero">
+    <a href="/work" class="project-hero__back">← All work</a>
+    <Eyebrow track={0.2} mb={24}>{job.category ?? 'Portfolio'}</Eyebrow>
+    <h1 class="project-hero__title">{job.name}</h1>
+    <div class="project-hero__meta text-muted tnum">
+      {job.location} · {job.year}
+      {job.href && (
+        <>
+          {' · '}
+          <a href={job.href} target="_blank" rel="noopener noreferrer" class="project-hero__external">Visit site ↗</a>
+        </>
+      )}
+    </div>
+  </Section>
+
+  <Section border="none" pt={0} pb={80}>
+    <WorkPhotoGrid photos={job.photos} />
+  </Section>
+
+  <CtaBand
+    tone="surface"
+    title="Drawing something now?"
+    note="Send the room. We reply within one business day."
+    ctaLabel="Request a consultation"
+    ctaHref="/contact"
+  />
+</BaseLayout>
+
+<style>
+  .project-hero__back {
+    display: inline-block;
+    font-size: 13px;
+    color: var(--color-accent);
+    text-decoration: none;
+    margin-bottom: 32px;
+  }
+  .project-hero__back:hover,
+  .project-hero__back:focus-visible {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .project-hero__title {
+    font-size: clamp(38px, 7vw, 76px);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.025em;
+    margin: 0 0 18px;
+  }
+  .project-hero__meta {
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .project-hero__external {
+    color: var(--color-accent);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.15s ease;
+  }
+  .project-hero__external:hover,
+  .project-hero__external:focus-visible {
+    border-bottom-color: currentColor;
+  }
+</style>

@@ -1,16 +1,10 @@
 ---
-import Plate from './Plate.astro';
-import type { ImageMetadata } from 'astro';
-
-interface Photo {
-  img: ImageMetadata;
-  alt: string;
-  room: string;
-  materials: string;
-}
+import WorkPhotoGrid from './WorkPhotoGrid.astro';
+import type { Photo } from '../data/jobs';
 
 interface Props {
   index: number;
+  slug: string;
   name: string;
   href?: string;
   year: string;
@@ -19,33 +13,26 @@ interface Props {
   photos: Photo[];
 }
 
-const { index, name, href, year, location, category, photos } = Astro.props;
+const { index, slug, name, href, year, location, category, photos } = Astro.props;
 const num = String(index).padStart(2, '0');
 ---
 <article class="job" data-category={category}>
   <div class="job__head">
     <div class="job__meta text-muted tnum">{num} — {year}</div>
     <h2 class="job__title">
-      {href ? <a href={href} target="_blank" rel="noopener noreferrer" class="job__title-link">{name}</a> : name}
+      <a href={`/work/${slug}/`} class="job__title-link">{name}</a>
     </h2>
-    <div class="job__place text-muted">{location}</div>
+    <div class="job__place text-muted">
+      {location}
+      {href && (
+        <>
+          {' · '}
+          <a href={href} target="_blank" rel="noopener noreferrer" class="job__external-link">Visit site ↗</a>
+        </>
+      )}
+    </div>
   </div>
-  <div class="job__photos">
-    {photos.map((photo) => (
-      <figure class="job__photo">
-        <Plate
-          src={photo.img}
-          alt={photo.alt}
-          height={380}
-          sizes="(max-width: 720px) calc(100vw - 40px), (max-width: 1080px) calc(50vw - 40px), 380px"
-        />
-        <figcaption class="job__cap">
-          <div class="job__cap-room">{photo.room}</div>
-          <p class="job__cap-materials text-muted">{photo.materials}</p>
-        </figcaption>
-      </figure>
-    ))}
-  </div>
+  <WorkPhotoGrid photos={photos} />
 </article>
 
 <style>
@@ -87,27 +74,14 @@ const num = String(index).padStart(2, '0');
     text-transform: uppercase;
     margin-bottom: 28px;
   }
-  .job__photos {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 40px 32px;
+  .job__external-link {
+    color: var(--color-accent);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.15s ease;
   }
-  .job__cap {
-    margin-top: 14px;
-  }
-  .job__cap-room {
-    font-size: 15px;
-    margin-bottom: 4px;
-  }
-  .job__cap-materials {
-    font-size: 13px;
-    line-height: 1.6;
-    margin: 0;
-  }
-
-  @media (max-width: 720px) {
-    .job__photos {
-      grid-template-columns: 1fr;
-    }
+  .job__external-link:hover,
+  .job__external-link:focus-visible {
+    border-bottom-color: currentColor;
   }
 </style>

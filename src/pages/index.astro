@@ -65,13 +65,13 @@ const stripColsMd = stripCols <= 4 ? stripCols : Math.ceil(stripCols / 2);
 const stripColsSm = Math.min(stripCols, 2);
 
 const smallProjects = [
-  { name: "Friedmans", meta: 'Gold leaf · 2024', img: friedmansImg,
+  { name: "Friedmans", slug: 'friedmans', meta: 'Gold leaf · 2024', img: friedmansImg,
     alt: "Friedmans — gold leaf diamond pattern over troweled plaster" },
-  { name: 'W 13th St Residence', meta: 'Polished plaster · 2026', img: w13thImg,
+  { name: 'W 13th St Residence', slug: 'w-13th-st-residence', meta: 'Polished plaster · 2026', img: w13thImg,
     alt: 'W 13th St Residence — polished plaster bedroom wall' },
-  { name: 'Laight St Residence', meta: 'Lime plaster · 2025', img: laightStImg,
+  { name: 'Laight St Residence', slug: 'laight-st-residence', meta: 'Lime plaster · 2025', img: laightStImg,
     alt: 'Laight St Residence — lime-plaster ceiling and beams' },
-  { name: 'Carversteak NYC', meta: 'Polished plaster · 2026', img: carverImg,
+  { name: 'Carversteak NYC', slug: 'carversteak-nyc', meta: 'Polished plaster · 2026', img: carverImg,
     alt: 'Carversteak NYC — polished plaster coffered ceiling' },
 ];
 
@@ -233,7 +233,7 @@ const jobsoxoRows = [
 
     <div class="worklist__grid">
       {smallProjects.map((project) => (
-        <div class="mini">
+        <a class="mini" href={`/work/${project.slug}/`}>
           <Plate
             src={project.img}
             alt={project.alt}
@@ -242,7 +242,7 @@ const jobsoxoRows = [
           />
           <div class="mini__name">{project.name}</div>
           <div class="mini__meta text-muted tnum">{project.meta}</div>
-        </div>
+        </a>
       ))}
     </div>
 
@@ -643,13 +643,23 @@ const jobsoxoRows = [
     grid-template-columns: repeat(4, 1fr);
     gap: 28px;
   }
+  .mini {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+  }
   .mini__name {
     margin-top: 12px;
     font-family: var(--font-heading);
     font-size: 19px;
+    transition: color 0.15s ease;
   }
   .mini__meta {
     font-size: 12px;
+  }
+  .mini:hover .mini__name,
+  .mini:focus-visible .mini__name {
+    color: var(--color-accent);
   }
 
   .worklist__more {
