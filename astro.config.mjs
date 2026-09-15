@@ -7,7 +7,7 @@ import sitemap from '@astrojs/sitemap';
 // the form endpoints under /api opt into on-demand rendering (see
 // `export const prerender = false` in each) and run as Vercel functions.
 export default defineConfig({
-  site: 'https://conorfoy.com',
+  site: 'https://conorfoyplaster.com',
   adapter: vercel(),
   integrations: [sitemap()],
   build: {

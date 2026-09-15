@@ -67,7 +67,7 @@ export const htmlPage = (heading: string, status = 200): Response =>
       `<body style="font-family:Georgia,'Times New Roman',serif;color:#132a13;background:#ebf2fa;` +
       `max-width:34rem;margin:18vh auto 0;padding:0 1.5rem;line-height:1.8;font-size:1.05rem">` +
       `<p>${heading}</p>` +
-      `<p><a href="/" style="color:#640d14">&larr; Back to conorfoy.com</a></p>` +
+      `<p><a href="/" style="color:#640d14">&larr; Back to conorfoyplaster.com</a></p>` +
       `</body></html>`,
     { status, headers: { 'content-type': 'text/html; charset=utf-8' } },
   );
