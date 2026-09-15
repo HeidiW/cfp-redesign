@@ -245,7 +245,7 @@ export const jobs: Job[] = [
     slug: 'laight-st-residence',
     name: 'Laight St Residence',
     year: '2025',
-    location: 'Laight Street',
+    location: 'Tribeca',
     category: 'Residences',
     seoDescription:
       'Hand-troweled lime plaster through a residence on Laight Street, bedroom, media wall and vaulted corridor by Conor Foy Plaster.',
